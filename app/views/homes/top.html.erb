@@ -1,0 +1,20 @@
+<div class="container">
+ <div class="row">
+  <div class="mx-auto">
+    <h3>新規登録の方はこちらから</h3>
+      <h4>
+      <%= link_to new_user_registration_path,class: "btn btn-outline-success rounded-pill" do %>
+        <i class="fas fa-user-plus"></i> Sign up
+      <% end %>
+      </h4>
+　　<h3>会員の方はこちらから</h3>
+      <h4>
+      <%= link_to new_user_session_path ,class: "btn btn-outline-success rounded-pill" do %>
+        <i class="fas fa-sign-in-alt"></i> Log in
+      <% end %>
+      </h4>
+      
+
+  </div>
+ </div>
+</div>

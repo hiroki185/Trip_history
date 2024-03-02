@@ -1,0 +1,77 @@
+<div class="container">
+
+<h2>Sign up</h2>
+<%= form_with model: @user, url: user_registration_path do |f| %>
+
+   <%= render "public/shared/error_messages", resource: resource %>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+     <th></th>
+    </tr>
+  </thead>
+
+    <tbody>
+<tr>
+  <td class="mb-2">名前</td>
+<td class="field">
+ <%= f.label :first_name, "(姓)", class: "mb-2 ml-1" %>
+ <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "mb-2 mx-3" %>
+</td>
+
+<td class="field">
+  <%= f.label :last_name, "(名)", class: "mb-2" %>
+  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "mb-2 mx-3" %>
+</td>
+</tr>
+
+<tr>
+  <td class="mb-2">フリガナ</td>
+  <td>
+  <%= f.label :first_name_kana, "(セイ)", class: "mb-2 ml-1" %>
+  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "mb-2" %>
+  </td>
+  <td>
+      <%= f.label :last_name_kana, "(メイ)", class: "mb-2" %>
+  <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "mb-2" %>
+  </td>
+</tr>
+
+<tr>
+  <td class="mb-2">メールアドレス</td>
+  <td class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 mx-5" %>
+  </td>
+</tr>
+
+<tr>
+  <td class="mb-2">パスワード(6文字以上)</td>
+  <td class="field">
+    <%= f.password_field :password, autocomplete: "new-password", class: "mb-2 mx-5" %>
+  </td>
+</tr>
+
+<tr>
+  <td class="mb-2">パスワード(確認用)</td>
+  <td class="field">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mb-2 mx-5" %>
+  </td>
+</tr>
+
+ <tr>
+   <td></td>
+  <td class="actions">
+    <%= f.submit "新規登録", class: "btn btn-outline-success rounded-pill mb-2 mx-5" %>
+  </td>
+  </tr>
+  </tbody>
+</table>
+<% end %>
+
+ <div>既に登録済みの方</div>
+<p><%= link_to "こちら", user_session_path %>　 からログインしてください。</p>
+
+</div>
