@@ -22,7 +22,13 @@ class TravelsController < ApplicationController
   def edit
   end
 
+  def destroy
+    travel = Travel.find(params[:id])
+    travel.destroy
+    redirect_to travels_path
+  end
+
   def travel_params
-    params.require(:travel).permit(:title, :body)
+    params.require(:travel).permit(:title, :body, :image)
   end
 end

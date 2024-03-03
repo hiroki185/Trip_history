@@ -1,23 +1,34 @@
-<table class="table table-hover table-inverse">
-   <thread>
-     <tr>
-       <th></th>
-       <th>Title</th>
-       <th>Opinion</th>
-       <th>Tag</th>
-       <th></th>
-       <th colspan="3"></th>
-     </tr>
-   </thread>
-   <tbody>
-     <% travels.each do |travel| %>
-     <tr>
-       <td>
+<table class="table table-borderless">
 
+     <% travels.each do |travel| %>
+     <tr class="table-bordered">
+       <tr>
+       <td>
+        <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
        </td>
        <td><%= link_to travel.title,travel %></td>
+       <td>いいね数</td>
+       <td>コメント数</td>
+       <td>フォローする</td>
+     </tr>
+     <tr>
+       <td>
+        <% if travel.image.attached? %>
+         <%= image_tag travel.image,class: "rounded-circle", size: "50x50" %>
+        <% else %>
+         <%= image_tag 'Untitled_logo_1_free-file.jpg',class: "rounded-circle", size: "50x50" %>
+        <% end %>
+       </td>
        <td><%= travel.body %></td>
-
+     </tr>
+     <tr>
+       <td><%= travel.created_at %></td>
+       <td></td>
+       <td></td>
+       <td></td>
+       <td><%= link_to "削除", travel_path(travel.id), method: :delete,class: "btn btn-outline-danger rounded-pill" %></td>
+     </tr>
+     </tr>
    <% end %>
-   </tbody>
+
  </table>
