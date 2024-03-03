@@ -8,15 +8,16 @@ class TravelsController < ApplicationController
     if @travel.save
       redirect_to travel_path(@travel), notice: "You have created book successfully."
     else
-      @travels = Travel.all
+      @travels = Travel.all.page(params[:page]).per(3)
       @user = current_user
       render :index
     end
   end
 
   def index
-    @travels = Travel.all
+    @travels = Travel.all.page(params[:page]).per(3)
     @user = current_user
+    @travel = Travel.new
   end
 
   def edit

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @travels = @user.travels
+    @travels = @user.travels.page(params[:page]).per(3)
     @travel = Travel.new
   end
 

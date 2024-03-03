@@ -1,14 +1,14 @@
 <%= form_with model: travel do |f| %>
   <div class="form-group">
-    <%= f.label :地名や場所 %>
+    <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control travel_title' %>
   </div>
   <div class="form-group">
-  <%= f.label :画像 %>
+  <%= f.label :image %>
   <%= f.file_field :image, accept: "image/*" %>
   </div>
   <div class="form-group">
-    <%= f.label :感想 %>
+    <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control travel_body' %>
   </div>
 
