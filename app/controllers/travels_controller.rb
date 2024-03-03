@@ -17,7 +17,6 @@ class TravelsController < ApplicationController
 
   def index
     @travels = Travel.all.page(params[:page]).per(3)
-    @user = current_user
     @travel = Travel.new
   end
 

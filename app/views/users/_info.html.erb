@@ -1,2 +1,12 @@
-<h4><%= user.name %></h4>
+
+  <%= image_tag user.get_profile_image, class: "rounded-circle mr-3 mt-3", size:'200x200' %>
+  <h4 class="mt-3 ml-5"><%= user.name %></h4>
+  <table class="table table-borderless">
+  <tr>
+    <th><%= link_to "フォロー一覧", user_followings_path(user),class: "btn btn-outline-success rounded-pill ml-4" %></th>
+  </tr>
+  <tr>
+    <th><%= link_to "フォロワー一覧", user_followers_path(user),class: "btn btn-outline-success rounded-pill ml-3" %></th>
+  </tr>
+</table>
 

@@ -1,0 +1,23 @@
+<table class='table'>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
+        <td><%= user.name %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+        <td>
+      <% if current_user.following?(user) %>
+        <%= link_to "フォロー外す", user_relationships_path(user.id),class: "btn btn-outline-success rounded-pill", method: :delete %>
+      <% else %>
+        <%= link_to "フォローする", user_relationships_path(user.id),class: "btn btn-outline-success rounded-pill", method: :post %>
+      <% end %>
+        </td>
+        <td>
+         <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+          <%= link_to 'chatを始める', chat_path(user.id), class: "ml-3" %>
+         <% end %>
+        </td>
+        <td><%= link_to 'Show', user %></td>
+
+      </tr>
+    <% end %>
+</table>

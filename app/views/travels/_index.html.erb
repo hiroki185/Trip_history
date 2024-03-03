@@ -1,46 +1,56 @@
-<table class="table table-borderless">
 
-     <% travels.each do |travel| %>
-     <tr class="table-bordered">
-       <tr>
-       <td>
-        <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
-       </td>
-       <td><%= link_to travel.title,travel %></td>
-       <td id="favorite_btn_<%= travel.id %>">
-         <%= render "favorites/btn", travel: travel %>
-       </td>
-       <td>コメント数</td>
-       <td>
-<% if current_user.following?(@user) %>
-  <%= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete %>
+<% travels.each do |travel| %>
+<div class="panel panel-default">
+<table class="table table-borderless table-bordered mb-4">
+  <tr class="table-bordered">
+    <td>
+<% if current_user && travel.user == current_user %>
+
+  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+
 <% else %>
-  <%= link_to "フォローする", user_relationships_path(@user.id), method: :post %>
+
+  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+
 <% end %>
-        </td>
-     </tr>
-     <tr>
-       <td>
-        <% if travel.image.attached? %>
-         <%= image_tag travel.image,class: "rounded-circle", size: "50x50" %>
-        <% else %>
-         <%= image_tag 'Untitled_logo_1_free-file.jpg',class: "rounded-circle", size: "50x50" %>
-        <% end %>
-       </td>
-       <td><%= travel.body %></td>
-     </tr>
-     <tr>
-       <td><%= travel.created_at %></td>
-       <td></td>
-       <td></td>
-       <td></td>
-       <td>
-        <% if current_user && travel.user == current_user %>
-        <%= link_to "削除", travel_path(travel.id), method: :delete,class: "btn btn-outline-danger rounded-pill" %>
-        <% end %>
-        </td>
-     </tr>
-     </tr>
-   <% end %>
- </table>
- <%= paginate @travels %>
+    </td>
+    <td><%= link_to travel.title, travel %></td>
+    <td id="favorite_btn_<%= travel.id %>">
+      <%= render "favorites/btn", travel: travel %>
+    </td>
+    <td>コメント数</td>
+    <td>
+<% if current_user.following?(travel.user) %>
+  <%= link_to "フォロー外す", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete %>
+<% else %>
+  <%= link_to "フォローする", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :post %>
+<% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <% if travel.image.attached? %>
+        <%= image_tag travel.image, class: "rounded-circle", size: "50x50" %>
+      <% else %>
+        <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "50x50" %>
+      <% end %>
+    </td>
+    <td><%= travel.body %></td>
+  </tr>
+  <tr>
+    <td><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>
+      <% if current_user && travel.user == current_user %>
+        <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+      <% end %>
+    </td>
+  </tr>
+  </table>
+</div>
+
+<% end %>
+
+<%= paginate @travels %>
