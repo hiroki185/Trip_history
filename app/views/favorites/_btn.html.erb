@@ -1,0 +1,11 @@
+<% if travel.favorited_by?(current_user) %>
+  <%= link_to travel_favorite_path(travel), method: :delete, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
+    <%= travel.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to travel_favorite_path(travel), method: :post, remote: true do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+    <%= travel.favorites.count %>
+  <% end %>
+<% end %>

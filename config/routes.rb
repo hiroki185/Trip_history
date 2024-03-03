@@ -10,8 +10,11 @@ devise_for :users,skip: [:passwords], controllers: {
 }
 
 root to: "homes#top"
-resources :travels
+resources :travels do
+  resource :favorite, only: [:create, :destroy]
+end
 resources :users
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #cd Trip_history
 #rails routes

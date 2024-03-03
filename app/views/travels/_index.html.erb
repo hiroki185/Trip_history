@@ -7,7 +7,9 @@
         <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
        </td>
        <td><%= link_to travel.title,travel %></td>
-       <td>いいね数</td>
+       <td id="favorite_btn_<%= travel.id %>">
+         <%= render "favorites/btn", travel: travel %>
+       </td>
        <td>コメント数</td>
        <td>フォローする</td>
      </tr>
