@@ -1,6 +1,7 @@
 class TravelsController < ApplicationController
   def show
     @travel = Travel.find(params[:id])
+    @travel_comment = TravelComment.new
   end
 
   def create
@@ -31,6 +32,6 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation)
+    params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address)
   end
 end

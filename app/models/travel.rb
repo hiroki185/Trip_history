@@ -1,6 +1,7 @@
 class Travel < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
+  has_many :travel_comments, dependent: :destroy
   has_one_attached :image
 
     attribute :amount_range, :string

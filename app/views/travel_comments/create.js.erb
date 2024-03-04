@@ -1,0 +1,3 @@
+$('#comment_counter').html("<%= j(render 'travel_comments/counter', travel: @comment.travel) %>");
+$('#comment_index').html("<%= j(render 'travel_comments/index', travel: @comment.travel) %>");
+$('#comment_textarea').val("");

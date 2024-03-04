@@ -1,0 +1,20 @@
+<table>
+  <tbody>
+    <% travel.travel_comments.each do |travel_comment| %>
+    <tr>
+      <td>
+        <%= link_to user_path(travel_comment.user) do %>
+          <%= image_tag travel_comment.user.get_profile_image, size: "50x50" %><br>
+          <%= travel_comment.user.name %>
+        <% end %>
+      </td>
+      <td><%= travel_comment.comment %></td>
+      <td>
+        <% if travel_comment.user == current_user %>
+          <%= link_to "Destroy", travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-sm btn-danger float-end", remote: true %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

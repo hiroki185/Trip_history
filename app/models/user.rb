@@ -16,9 +16,13 @@ class User < ApplicationRecord
      has_many :followings, through: :relationships, source: :followed
      has_many :followers, through: :reverse_of_relationships, source: :follower
 
+     #DM機能
      has_many :user_rooms, dependent: :destroy
      has_many :chats, dependent: :destroy
      has_many :rooms, through: :user_rooms
+
+     #コメント機能
+     has_many :travel_comments, dependent: :destroy
 
      validates :first_name, presence: true
      validates :last_name, presence: true
@@ -52,6 +56,7 @@ def following?(user)
   followings.include?(user)
 end
 
+  #画像
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'Untitled_logo_1_free-file.jpg'
   end

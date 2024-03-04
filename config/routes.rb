@@ -11,7 +11,9 @@ devise_for :users,skip: [:passwords], controllers: {
 
 root to: "homes#top"
 resources :travels do
+  resources :travel_comments, only: [:create, :destroy]
   resource :favorite, only: [:create, :destroy]
+
 end
 
 devise_scope :user do
