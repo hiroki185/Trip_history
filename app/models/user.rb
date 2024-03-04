@@ -28,12 +28,15 @@ class User < ApplicationRecord
      #ゲストユーザーの処理
      GUEST_USER_EMAIL = "guest@example.com"
 
-  def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
-    end
+def self.guest
+  find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+    user.password = SecureRandom.urlsafe_base64
+    user.first_name = "ゲスト"
+    user.last_name = "ユーザー"
+    user.first_name_kana = "げすと"
+    user.last_name_kana = "ゆーざー"
   end
+end
 
 
 # フォローしたときの処理

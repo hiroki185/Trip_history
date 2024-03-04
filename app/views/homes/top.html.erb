@@ -1,6 +1,10 @@
 <div class="container">
  <div class="row">
   <div class="mx-auto">
+    <h3>お試しで使ってみよう</h3>
+    <h4>
+      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-outline-success rounded-pill", method: :post %>
+    </h4>
     <h3>新規登録の方はこちらから</h3>
       <h4>
       <%= link_to new_user_registration_path,class: "btn btn-outline-success rounded-pill" do %>
