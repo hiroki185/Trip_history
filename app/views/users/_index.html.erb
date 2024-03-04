@@ -1,3 +1,4 @@
+
 <table class='table'>
     <% users.each do |user| %>
       <tr>
@@ -13,7 +14,7 @@
         </td>
         <td>
          <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
-          <%= link_to 'chatを始める', chat_path(user.id), class: "ml-3" %>
+          <%= link_to 'chatを始める', chat_path(user.id), class: "btn btn-outline-success rounded-pill" %>
          <% end %>
         </td>
         <td><%= link_to 'Show', user %></td>

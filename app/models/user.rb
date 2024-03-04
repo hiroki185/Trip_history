@@ -25,6 +25,17 @@ class User < ApplicationRecord
      validates :last_name_kana, presence: true
      validates :first_name_kana, presence: true
 
+     #ゲストユーザーの処理
+     GUEST_USER_EMAIL = "guest@example.com"
+
+  def self.guest
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
+
+
 # フォローしたときの処理
 def follow(user_id)
   relationships.create(followed_id: user_id)
