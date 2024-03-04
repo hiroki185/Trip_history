@@ -1,24 +1,19 @@
-
-        <% if @travel.image.attached? %>
-         <%= image_tag @travel.image,class: "rounded-circle mt-4 ml-4", size: "300x300" %>
-        <% else %>
-         <%= image_tag 'Untitled_logo_1_free-file.jpg',class: "rounded-circle", size: "300x300" %>
-        <% end %>
-
-        <table class="table table-borderless ml-4">
-          <tr>
-            <td>地名  <%= @travel.title %></td>
-          </tr>
-　　　　　<tr>
-　　　　　  <td>住所  a</td>
-　　　　　</tr>
-　　　　　<tr>
-　　　　　  <td>費用  b</td>
-　　　　　</tr>
-　　　　　<tr>
-　　　　　  <td>移動手段  c</td>
-　　　　　</tr>
-　　　　　<tr>
-　　　　　  <td>感想  <%= @travel.body %></td>
-　　　　　</tr>
-        </table>
+<% if @travel.image.attached? %>
+  <%= image_tag @travel.image, class: "rounded-circle mt-4 ml-4", size: "300x300" %>
+<% else %>
+  <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x300" %>
+<% end %>
+<table class="table table-borderless ml-4">
+  <tr>
+    <td>地名: <%= @travel.title %></td>
+  </tr>
+  <tr>
+    <td>金額範囲: <%= @travel.amount_range %></td>
+  </tr>
+  <tr>
+    <td>交通手段: <%= @travel.transportation %></td>
+  </tr>
+  <tr>
+    <td>感想: <%= @travel.body %></td>
+  </tr>
+</table>
