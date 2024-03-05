@@ -1,20 +1,42 @@
-<table>
-  <tbody>
-    <% travel.travel_comments.each do |travel_comment| %>
-    <tr>
-      <td>
-        <%= link_to user_path(travel_comment.user) do %>
-          <%= image_tag travel_comment.user.get_profile_image, size: "50x50" %><br>
-          <%= travel_comment.user.name %>
-        <% end %>
-      </td>
-      <td><%= travel_comment.comment %></td>
-      <td>
-        <% if travel_comment.user == current_user %>
-          <%= link_to "Destroy", travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-sm btn-danger float-end", remote: true %>
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<style>
+  .scrollable {
+    max-height: 200px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .comment {
+    word-wrap: break-word; /* 20文字で改行するためのプロパティ */
+  }
+
+</style>
+
+<div class="scrollable" style="overflow: auto; max-height: 200px;">
+  <table>
+    <tbody>
+      <% travel.travel_comments.each do |travel_comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(travel_comment.user) do %>
+            <%= image_tag travel_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %><br>
+            <%= travel_comment.user.first_name %>
+          <% end %>
+        </td>
+        <td class="comment"><%= travel_comment.comment %></td>
+        <td>
+          <% if travel_comment.user == current_user %>
+            <%= link_to "削除", travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<script>
+  const comments = document.getElementsByClassName("comment");
+  Array.from(comments).forEach((comment) => {
+    comment.innerHTML = comment.innerHTML.replace(/(.{28})/g, "$1<br>");
+  });
+</script>

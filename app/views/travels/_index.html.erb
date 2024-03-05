@@ -24,7 +24,9 @@
     <td style="width: 20;" id="favorite_btn_<%= travel.id %>">
       <%= render "favorites/btn", travel: travel %>
     </td>
-    <td style="width: 15%;">コメント数</td>
+    <td id="comment_counter">
+      <%= render "travel_comments/counter", travel: travel %>
+    </td>
     <td class="text-right">
       <% if current_user.following?(travel.user) %>
         <%= link_to "フォロー外す", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete %>
@@ -41,7 +43,7 @@
         <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "50x50" %>
       <% end %>
     </td>
-    <td><%= travel.body.length > 10 ? travel.body[0..9] + "..." : travel.body %></td>
+    <td><%= travel.body.length > 13 ? travel.body[0..12] + "..." : travel.body %></td>
   </tr>
   <tr>
     <td><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></td>
@@ -57,4 +59,6 @@
   </table>
 <% end %>
 </div>
+<div class="flex justify-end">
 <%= paginate @travels %>
+</div>

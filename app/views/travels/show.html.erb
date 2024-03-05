@@ -1,42 +1,74 @@
+<head>
+  <style>
+    .break-text {
+      word-wrap: break-word;
+    }
 
-<div class='container px-sm-0 ml-5'>
-  <div class='row'>
-    <div class='col-md-9'>
-      <div class='row'> <!-- 修正した部分：追加したdiv -->
+    .table-borderless {
+  border-collapse: collapse;
+}
+
+.table-borderless td, .table-borderless th {
+  border-bottom: 1px solid #dee2e6;
+}
+  </style>
+</head>
+<div class='container'>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='row'>
+      <h3 class="col ml-3"><%= @travel.title %></h3>
+      <h3 class="col mr-5">感想</h3>
+      </div>
+      <div class='row'>
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded-circle mt-4 ml-4", size: "400x400" %>
+          <%= image_tag @travel.image, class: "rounded ml-4", size: "500x350" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "400x400" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded mt-4 ml-4", size: "500x350" %>
         <% end %>
-        <h3 class="mx-auto mt-4">
-          感想 <br>
-          <%= @travel.body %>
-        </h3>
-      </div> <!-- 修正した部分：追加したdiv の閉じタグ -->
-    </div>
-        <table class="table table-borderless-bottom ml-4">
+        <div class="col">
+        <% split_length = 36 %>
+        <% @travel.body.scan(/.{1,#{split_length.to_i}}/).each do |text| %>
+          <p class="break-text"><%= text %></p>
+        <% end %>
+       </div>
+         <table class="table table-borderless col-12 mt-4 ml-4">
           <tr>
-            <td><h4>地名: <%= @travel.title %></h4></td>
+            <td></td>
           </tr>
           <tr>
-            <td><h4>住所: <%= @travel.address %></h4></td>
+            <td><h3>住所: <%= @travel.address %></h3></td>
           </tr>
           <tr>
-            <td><h4>費用: <%= @travel.amount_range %></h4></td>
+            <td><h3>費用: <%= @travel.amount_range %></h3></td>
           </tr>
           <tr>
-            <td><h4>交通手段: <%= @travel.transportation %></h4></td>
+            <td><h3>交通手段: <%= @travel.transportation %></h3></td>
           </tr>
           <tr>
             <td id="comment_counter">
-             <%= render "travel_comments/counter", travel: @travel %>
-           </td>
+              <%= render "travel_comments/counter", travel: @travel %>
+            </td>
+            <td id="favorite_btn_<%= @travel.id %>">
+            <%= render "favorites/btn", travel: @travel %>
+            </td>
           </tr>
         </table>
-       <div id="comment_index">
-         <%= render "travel_comments/index", travel: @travel %>
-       </div>
-      <%= render "travel_comments/form", travel: @travel, travel_comment: @travel_comment %>
-    <div>
+      </div>
+    </div>
+<div class='container'>
+<div class='row'>
+  <div class='col-12'>
+    <div class='row'>
+    <div class="col-6" id="comment_index">
+    <%= render "travel_comments/index", travel: @travel %>
+   </div>
+   <div class="col-6">
+    <%= render "travel_comments/form", travel: @travel, travel_comment: @travel_comment %>
+    </div>
+      </div>
+   </div>
+   </div>
   </div>
+</div>
 </div>
