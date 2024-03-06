@@ -27,6 +27,9 @@ end
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+          collection do
+      get 'search'
+    end
   end
 resources :chats, only: [:show, :create, :destroy]
 
@@ -35,4 +38,4 @@ get 'tagsearches/search', to: 'tagsearches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #cd Trip_history
 #rails routes
-end 
+end

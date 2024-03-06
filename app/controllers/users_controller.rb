@@ -7,7 +7,11 @@ class UsersController < ApplicationController
     @travel = Travel.new
   end
 
-
+  def search
+    @user = current_user
+    @users = User.search(params[:keyword])
+  end
+  
   def index
     @users = User.all
     @user = current_user

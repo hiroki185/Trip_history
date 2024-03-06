@@ -17,8 +17,7 @@ class TravelsController < ApplicationController
   end
 
   def search
-    @travels_searches = Travel.search(params[:keyword])
-    @travels = Travel.all.page(params[:page]).per(5)
+    @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(5)
   end
 
   def index
@@ -33,7 +32,7 @@ class TravelsController < ApplicationController
   def destroy
     travel = Travel.find(params[:id])
     travel.destroy
-    redirect_to travels_path
+    redirect_to user_path(current_user)
   end
 
   def travel_params

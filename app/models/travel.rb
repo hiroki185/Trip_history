@@ -4,7 +4,10 @@ class Travel < ApplicationRecord
   has_many :travel_comments, dependent: :destroy
   has_one_attached :image
 
-  validates :category, presence: true, allow_blank: true, format: { with: /\A#?(.+)/, message: "は＃（ハッシュタグ）を含むか空である必要があります" }
+validates :category,
+  presence: true,
+  format: { with:/(?:\A|[\p{Blank}\p{Punctuation}])＃|#/m, message: "は＃を含む必要があります" },
+  allow_blank: true
 
     attribute :amount_range, :string
     attribute :transportation, :string
