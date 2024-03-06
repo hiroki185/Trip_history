@@ -16,6 +16,11 @@ class TravelsController < ApplicationController
     end
   end
 
+  def search
+    @travels_searches = Travel.search(params[:keyword])
+    @travels = Travel.all.page(params[:page]).per(5)
+  end
+
   def index
     @travels = Travel.all.page(params[:page]).per(5)
     @travel = Travel.new
@@ -32,6 +37,6 @@ class TravelsController < ApplicationController
   end
 
   def travel_params
-    params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address)
+    params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
 end

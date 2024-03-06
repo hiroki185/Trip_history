@@ -46,11 +46,14 @@
             <td><h3>交通手段: <%= @travel.transportation %></h3></td>
           </tr>
           <tr>
-            <td id="comment_counter">
+            <td class="row" id="comment_counter">
               <%= render "travel_comments/counter", travel: @travel %>
-            </td>
-            <td id="favorite_btn_<%= @travel.id %>">
-            <%= render "favorites/btn", travel: @travel %>
+             <% if @travel.category.present? %>
+　　　　      <%=link_to @travel.category,tagsearches_search_path(content: @travel.category)%>
+　　         <% end %>
+　　         <div class="col" id="favorite_btn_<%= @travel.id %>">
+              <%= render "favorites/btn", travel: @travel %>
+              </div>
             </td>
           </tr>
         </table>

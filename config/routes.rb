@@ -13,6 +13,9 @@ root to: "homes#top"
 resources :travels do
   resources :travel_comments, only: [:create, :destroy]
   resource :favorite, only: [:create, :destroy]
+      collection do
+      get 'search'
+    end
 
 end
 
@@ -26,7 +29,10 @@ end
     get 'followers' => 'relationships#followers', as: 'followers'
   end
 resources :chats, only: [:show, :create, :destroy]
+
+get 'tagsearches/search', to: 'tagsearches#search'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #cd Trip_history
 #rails routes
-end
+end 

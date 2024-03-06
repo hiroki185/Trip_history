@@ -30,6 +30,12 @@
             <% end %>
           </li>
           <li>
+           <%= form_with(url: search_travels_path, local: true, method: :get ) do |form| %>
+              <%= form.text_field :keyword,class:  %>
+           <%= form.submit "検索",class: 'btn-outline-success rounded-pill mr-3 mt-1' %>
+           <% end %>
+          </li>
+          <li>
             <%= link_to edit_user_path(current_user) do %>
             <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle mr-3" %>
             <% end %>
@@ -38,22 +44,22 @@
         <% else %>
 
    <li>
-      <%= link_to root_path,class: 'nav-link btn btn-outline-success rounded-pill' do %>
+      <%= link_to root_path,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
         <i class="fas fa-home"></i> Home
       <% end %>
    </li>
    <li>
-      <%= link_to new_user_registration_path,class: 'nav-link btn btn-outline-success rounded-pill' do %>
+      <%= link_to new_user_registration_path,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
         <i class="fas fa-user-plus"></i> Sign up
       <% end %>
    </li>
    <li>
-      <%= link_to new_user_session_path ,class: 'nav-link btn btn-outline-success rounded-pill' do %>
+      <%= link_to new_user_session_path ,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
         <i class="fas fa-sign-in-alt"></i> Log in
       <% end %>
    </li>
              <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-success rounded-pill' do %>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
             <i class="fa-solid fa-right-from-bracket"></i> Log out
             <% end %>
           </li>

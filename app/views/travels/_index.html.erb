@@ -8,7 +8,6 @@
     }
   </style>
 </head>
-
 <div class="scrollable" style="overflow: auto; max-height: 600px;">
 <% travels.each do |travel| %>
 <table class="table table-borderless table-bordered mb-4">
@@ -49,7 +48,11 @@
     <td><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></td>
     <td></td>
     <td></td>
-    <td></td>
+    <td>
+    <% if travel.category.present? %>
+　　　　<%=link_to travel.category,tagsearches_search_path(content: travel.category)%>
+　　<% end %>
+    </td>
     <td class="text-right">
       <% if current_user && travel.user == current_user %>
         <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>

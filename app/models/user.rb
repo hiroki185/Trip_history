@@ -42,6 +42,14 @@ def self.guest
   end
 end
 
+def self.search(search)
+  if search != ""
+     User.where('name LIKE(?)', "%#{search}%")
+  else
+    User.all
+  end
+end
+
 
 # フォローしたときの処理
 def follow(user_id)

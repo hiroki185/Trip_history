@@ -21,6 +21,11 @@
   <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], :selected => '徒歩'), class: 'form-control' %>
 </div>
 
+<div class="form-group">
+  <label>タグ</label>
+  <%= f.text_field :category,class: 'form-control book_category', placeholder: '＃をつけて投稿' %>
+</div>
+
   <div class="form-group">
     <%= f.label :感想 %>
     <%= f.text_area :body, class: 'form-control travel_body' %>
