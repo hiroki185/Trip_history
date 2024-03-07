@@ -3,6 +3,11 @@ class TravelsController < ApplicationController
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
   end
+  
+  
+  def new
+    @travel = Travel.new
+  end
 
   def create
     @travel = Travel.new(travel_params)
@@ -15,6 +20,16 @@ class TravelsController < ApplicationController
       render :index
     end
   end
+  
+  def update
+  @travel = Travel.find(params[:id])
+  
+  if @travel.update(travel_params)
+    redirect_to @travel, notice: "編集が完了しました。"
+  else
+    render :edit
+  end
+end
 
   def search
     @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(5)
@@ -27,6 +42,9 @@ class TravelsController < ApplicationController
   end
 
   def edit
+   @travel = Travel.find(params[:id])
+   @amount_ranges = ['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上']
+   @transportations = ['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船']
   end
 
   def destroy

@@ -1,24 +1,15 @@
 <div class="container">
 
-<h2>Sign up</h2>
+<h2></h2>
 <%= form_with model: @user, url: user_registration_path do |f| %>
 
    <%= render "public/shared/error_messages", resource: resource %>
   <table>
-    <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-     <th></th>
-    </tr>
-  </thead>
 
-    <tbody>
 <tr>
   <td class="mb-2">名前</td>
 <td class="field">
- <%= f.label :first_name, "(姓)", class: "mb-2 ml-1" %>
+ <%= f.label :first_name, "(姓)", class: "mb-2" %>
  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "mb-2 mx-3" %>
 </td>
 
@@ -31,7 +22,7 @@
 <tr>
   <td class="mb-2">フリガナ</td>
   <td>
-  <%= f.label :first_name_kana, "(セイ)", class: "mb-2 ml-1" %>
+  <%= f.label :first_name_kana, "(セイ)", class: "mb-2" %>
   <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "mb-2" %>
   </td>
   <td>
@@ -43,7 +34,7 @@
 <tr>
   <td class="mb-2">メールアドレス</td>
   <td class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 mx-5" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 ml-5" %>
   </td>
 </tr>
 
@@ -67,7 +58,6 @@
     <%= f.submit "新規登録", class: "btn btn-outline-success rounded-pill mb-2 mx-5" %>
   </td>
   </tr>
-  </tbody>
 </table>
 <% end %>
 

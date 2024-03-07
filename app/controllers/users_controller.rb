@@ -9,11 +9,11 @@ class UsersController < ApplicationController
 
   def search
     @user = current_user
-    @users = User.search(params[:keyword])
+    @users = User.search(params[:keyword]).page(params[:page]).per(6)
   end
   
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(6)
     @user = current_user
   end
 

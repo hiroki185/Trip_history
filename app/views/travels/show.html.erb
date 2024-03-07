@@ -54,6 +54,14 @@
 　　         <div class="col" id="favorite_btn_<%= @travel.id %>">
               <%= render "favorites/btn", travel: @travel %>
               </div>
+              <div>
+                <% if current_user && @travel.user == current_user %>
+                 <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+                <% end %>
+                <% if current_user && @travel.user == current_user %>
+                 <%= link_to "削除", travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+                <% end %>
+              </div>
             </td>
           </tr>
         </table>
