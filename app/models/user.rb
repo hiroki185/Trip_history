@@ -42,6 +42,12 @@ def self.guest
   end
 end
 
+#退会機能
+  # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 def self.search(search)
   if search != ""
      User.where('name LIKE(?)', "%#{search}%")

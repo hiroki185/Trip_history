@@ -9,6 +9,12 @@ devise_for :users,skip: [:passwords], controllers: {
   sessions: 'public/sessions'
 }
 
+  namespace :admin do
+    root to: "homes#top"
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :travels
+  end
+
 root to: "homes#top"
 resources :travels do
   resources :travel_comments, only: [:create, :destroy]
@@ -31,6 +37,12 @@ end
       get 'search'
     end
   end
+  
+  # 退会確認画面
+  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+  # 論理削除用のルーティング
+  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+  
 resources :chats, only: [:show, :create, :destroy]
 
 get 'tagsearches/search', to: 'tagsearches#search'

@@ -1,0 +1,21 @@
+<div class="container">
+<h2 style="border-bottom-width: 6px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">ユーザー一覧</h2>
+<table class="table table-borderless">
+  <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+    <th></th>
+    <th>登録名</th>
+    <th>プロフィール名</th>
+    <th>メールアドレス</th>
+  </tr>
+    <% @users.each do |user| %>
+      <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+        <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
+        <td><%= link_to "#{user.first_name}#{user.last_name}", admin_user_path(user) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>投稿数： <%= user.travels.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+      </tr>
+    <% end %>
+</table>
+</div>
