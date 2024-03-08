@@ -1,0 +1,103 @@
+<head>
+  <style>
+    .break-text {
+      word-wrap: break-word;
+    }
+
+    .table-borderless {
+  border-collapse: collapse;
+}
+
+.table-borderless td, .table-borderless th {
+  border-bottom: 1px solid #dee2e6;
+}
+
+  .scrollable {
+    max-height: 300px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .comment {
+    word-wrap: break-word; /* 20文字で改行するためのプロパティ */
+  }
+  </style>
+</head>
+<div class='container'>
+  <div class='row mt-3'>
+    <div class='col-12'>
+      <div class='row'>
+      <h3 class="col ml-3"><%= @travel.title %></h3>
+      <h3 class="col mr-5">感想</h3>
+      </div>
+      <div class='row'>
+        <% if @travel.image.attached? %>
+          <%= image_tag @travel.image, class: "rounded ml-4", size: "500x350" %>
+        <% else %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded mt-4 ml-4", size: "500x350" %>
+        <% end %>
+        <div class="col">
+        <% split_length = 36 %>
+        <% @travel.body.scan(/.{1,#{split_length.to_i}}/).each do |text| %>
+          <p class="break-text"><%= text %></p>
+        <% end %>
+       </div>
+         <table class="table table-borderless col-12 mt-4 ml-4">
+          <tr>
+            <td></td>
+          </tr>
+          <tr>
+            <td><h3>住所: <%= @travel.address %></h3></td>
+          </tr>
+          <tr>
+            <td><h3>費用: <%= @travel.amount_range %></h3></td>
+          </tr>
+          <tr>
+            <td><h3>交通手段: <%= @travel.transportation %></h3></td>
+          </tr>
+          <tr>
+            <td class="row" id="comment_counter">
+              <%= render "travel_comments/counter", travel: @travel %>
+             <% if @travel.category.present? %>
+　　　　      <%=link_to @travel.category,tagsearches_search_path(content: @travel.category)%>
+　　         <% end %>
+              <div>
+                 <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+                 <%= link_to "削除", admin_travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+<div class='container'>
+<div class='row'>
+  <div class='col-12'>
+    <div class='row'>
+<div class="scrollable" style="overflow: auto; max-height: 300px;">
+  <table>
+    <tbody>
+      <% @travel.travel_comments.each do |travel_comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(travel_comment.user) do %>
+            <%= image_tag travel_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %><br>
+            <%= travel_comment.user.first_name %>
+          <% end %>
+        </td>
+        <td class="comment"><%= travel_comment.comment %></td>
+        <td>
+            <%= link_to "削除", travel_travel_comment_path(@travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+      </div>
+   </div>
+   </div>
+  </div>
+</div>
+</div>

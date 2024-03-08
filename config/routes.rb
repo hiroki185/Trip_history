@@ -12,10 +12,11 @@ devise_for :users,skip: [:passwords], controllers: {
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
-    resources :travels
+    resources :travels, only: [:index, :show, :edit, :update, :destroy]
   end
 
 root to: "homes#top"
+
 resources :travels do
   resources :travel_comments, only: [:create, :destroy]
   resource :favorite, only: [:create, :destroy]
@@ -25,24 +26,26 @@ resources :travels do
 
 end
 
+#ゲストログイン機能
 devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
 end
 
+#ユーザー関連の機能、フォロー機能、ユーザー検索機能
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-          collection do
+    collection do
       get 'search'
     end
   end
-  
+
   # 退会確認画面
   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   # 論理削除用のルーティング
   patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-  
+
 resources :chats, only: [:show, :create, :destroy]
 
 get 'tagsearches/search', to: 'tagsearches#search'
