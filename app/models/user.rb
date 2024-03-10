@@ -53,7 +53,7 @@ def self.search(search)
      User.where('name LIKE(?)', "%#{search}%")
   else
     User.all
-  end
+  end  
 end
 
 

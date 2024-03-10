@@ -52,6 +52,8 @@ end
     travel.destroy
     redirect_to user_path(current_user)
   end
+  
+private
 
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)

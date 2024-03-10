@@ -63,7 +63,7 @@
 　　　　      <%=link_to @travel.category,tagsearches_search_path(content: @travel.category)%>
 　　         <% end %>
               <div>
-                 <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+                 <%= link_to "編集", edit_admin_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
                  <%= link_to "削除", admin_travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
               </div>
             </td>
@@ -81,14 +81,12 @@
       <% @travel.travel_comments.each do |travel_comment| %>
       <tr>
         <td>
-          <%= link_to user_path(travel_comment.user) do %>
             <%= image_tag travel_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %><br>
             <%= travel_comment.user.first_name %>
-          <% end %>
         </td>
         <td class="comment"><%= travel_comment.comment %></td>
         <td>
-            <%= link_to "削除", travel_travel_comment_path(@travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true %>
+            <%= link_to "削除", admin_travel_travel_comment_path(@travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true %>
         </td>
       </tr>
       <% end %>

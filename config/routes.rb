@@ -12,7 +12,9 @@ devise_for :users,skip: [:passwords], controllers: {
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
-    resources :travels, only: [:index, :show, :edit, :update, :destroy]
+    resources :travels, only: [:index, :show, :edit, :update, :destroy] do
+    resources :travel_comments, only: [:destroy]
+   end
   end
 
 root to: "homes#top"
@@ -53,4 +55,6 @@ get 'tagsearches/search', to: 'tagsearches#search'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #cd Trip_history
 #rails routes
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@18.183.49.74
+#mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
 end

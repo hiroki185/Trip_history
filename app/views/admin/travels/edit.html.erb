@@ -1,0 +1,38 @@
+<div class='container'>
+<%= form_with model: @travel do |f| %>
+  <div class="form-group">
+    <%= f.label :場所や地名 %>
+    <%= f.text_field :title, class: 'form-control travel_title' %>
+  </div>
+  <div class="form-group">
+  <%= f.label :住所 %>
+  <%= f.text_field :address, class: 'form-control' %>
+　</div>
+　<div class="row">
+  <div class="form-group col">
+  <%= f.label :画像 %>
+  <%= f.file_field :image, accept: "image/*" %>
+  </div>
+<div class="form-group col">
+  <%= f.label :費用 %>
+  <%= f.select :amount_range, options_for_select(@amount_ranges, @travel.amount_range), class: 'form-control' %>
+</div>
+<div class="form-group col">
+      <%= f.label :交通手段 %>
+  <%= f.select :transportation, options_for_select(@transportations, @travel.transportation), class: 'form-control' %>
+</div>
+</div>
+<div class="form-group">
+  <label>タグ</label>
+  <%= f.text_field :category,class: 'form-control book_category', placeholder: '＃をつけて投稿' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :感想 %>
+  <%= f.text_area :body, rows: 8, class: 'form-control' %>
+</div>
+  <div class="form-group">
+    <%= f.submit "更新", class: 'btn btn-outline-success rounded-pill' %>
+  </div>
+<% end %>
+</div>
