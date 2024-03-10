@@ -59,5 +59,4 @@ get 'tagsearches/search', to: 'tagsearches#search'
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
 end 
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa
-#change_column :users, :name, :string, default: "旅人"
-#change_column_default :users, :name, from: nil, to: "旅人"
+#:wq
