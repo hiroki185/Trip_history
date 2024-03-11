@@ -24,6 +24,11 @@ class User < ApplicationRecord
      #コメント機能
      has_many :travel_comments, dependent: :destroy
 
+     #通知機能
+     has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
+     has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+
+
      validates :first_name, presence: true
      validates :last_name, presence: true
      validates :last_name_kana, presence: true
@@ -53,9 +58,8 @@ def self.search(search)
      User.where('name LIKE(?)', "%#{search}%")
   else
     User.all
-  end  
+  end
 end
-
 
 # フォローしたときの処理
 def follow(user_id)
@@ -74,4 +78,5 @@ end
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'Untitled_logo_1_free-file.jpg'
   end
+
 end

@@ -3,8 +3,8 @@ class TravelsController < ApplicationController
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
   end
-  
-  
+
+
   def new
     @travel = Travel.new
   end
@@ -20,10 +20,10 @@ class TravelsController < ApplicationController
       render :index
     end
   end
-  
+
   def update
   @travel = Travel.find(params[:id])
-  
+
   if @travel.update(travel_params)
     redirect_to @travel, notice: "編集が完了しました。"
   else
@@ -36,9 +36,19 @@ end
   end
 
   def index
-    @travels = Travel.all.page(params[:page]).per(5)
-    @travel = Travel.new
-    @user = current_user
+  @user = current_user
+  @travel = Travel.new
+  if params[:latest]
+    @travels = Travel.latest.page(params[:page]).per(6)
+  elsif params[:old]
+    @travels = Travel.old.page(params[:page]).per(6)
+  elsif params[:favorite]
+   @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
+   @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
+  else
+    @travels = Travel.all.page(params[:page]).per(6)
+  end
+
   end
 
   def edit
@@ -52,7 +62,7 @@ end
     travel.destroy
     redirect_to user_path(current_user)
   end
-  
+
 private
 
   def travel_params

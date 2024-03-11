@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
 
  def create
-  
    @travel = Travel.find(params[:travel_id])
    favorite = current_user.favorites.new(travel_id: @travel.id)
    favorite.save

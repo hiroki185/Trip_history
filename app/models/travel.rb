@@ -2,6 +2,9 @@ class Travel < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :travel_comments, dependent: :destroy
+
+  #通知機能
+  has_many :notifications, dependent: :destroy
   has_one_attached :image
 
 validates :category,
@@ -21,6 +24,11 @@ validates :category,
     end
   end
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }
+
+#フォロー機能
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
