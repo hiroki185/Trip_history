@@ -38,6 +38,11 @@ end
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
+    
+    member do
+     get :favorites 
+    end
+    
     collection do
       get 'search'
     end

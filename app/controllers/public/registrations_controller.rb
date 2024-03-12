@@ -8,7 +8,9 @@ before_action :configure_sign_up_params, only: [:create]
   # def new
   #   super
   # end
-
+  def after_sign_in_path_for(resource)
+    user_path(resource.id)
+  end
   # POST /resource
   # def create
   #   super

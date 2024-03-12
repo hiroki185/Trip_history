@@ -5,12 +5,16 @@ class Travel < ApplicationRecord
 
   #通知機能
   has_many :notifications, dependent: :destroy
+  
   has_one_attached :image
-
+  
+#タグについてのバリデーション
 validates :category,
   presence: true,
   format: { with:/(?:\A|[\p{Blank}\p{Punctuation}])＃|#/m, message: "は＃を含む必要があります" },
   allow_blank: true
+#投稿名のバリデーション  
+validates :title, presence: true
 
     attribute :amount_range, :string
     attribute :transportation, :string
@@ -24,6 +28,7 @@ validates :category,
     end
   end
 
+#いいねした投稿の並び替え
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
   scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }

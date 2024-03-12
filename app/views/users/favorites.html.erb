@@ -1,0 +1,12 @@
+<div class='container'>
+  <h2 class="my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">いいねした旅一覧</h2>
+  <p>
+    <%= link_to "新しい順", favorites_user_path(latest: true) %>
+    |<%= link_to "古い順", favorites_user_path(old: true) %>
+    |<%= link_to "いいね順", favorites_user_path(favorite: true) %>
+  </p>
+  <%= render 'travels/index', travels: @favorite_travels %>
+  <div class="flex justify-end">
+    <%= paginate @favorite_travels %>
+  </div>
+</div>

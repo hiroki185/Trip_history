@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
-  
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     @travels = @user.travels.page(params[:page]).per(6)
@@ -11,7 +12,7 @@ class UsersController < ApplicationController
     @user = current_user
     @users = User.search(params[:keyword]).page(params[:page]).per(6)
   end
-  
+
   def index
     @users = User.all.page(params[:page]).per(6)
     @user = current_user
@@ -32,10 +33,25 @@ class UsersController < ApplicationController
       render :edit
     end
   end
-  
+
+def favorites
+  if params[:latest]
+    @favorite_travels = current_user.favorite_travels.latest.page(params[:page]).per(6)
+  elsif params[:old]
+    @favorite_travels = current_user.favorite_travels.old.page(params[:page]).per(6)
+  elsif params[:favorite]
+    @favorite_travels = current_user.favorite_travels.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
+    @favorite_travels = Kaminari.paginate_array(@favorite_travels).page(params[:page]).per(6)
+  else
+    @favorite_travels = current_user.favorite_travels.page(params[:page]).per(6)
+  end
+end
+
+
+
   def unsubscribe
   end
-  
+
   def withdrawal
     @user = User.find(params[:id])
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
@@ -50,11 +66,17 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name,:profile_image)
   end
-  
+
     def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end 
+  end
+
+def is_matching_login_user
+  if current_user.nil? || params[:id].to_i != current_user.id
+    redirect_to root_path
+  end
+end
 end

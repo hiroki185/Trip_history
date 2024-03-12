@@ -47,6 +47,15 @@ def self.guest
   end
 end
 
+
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }
+
+  def favorite_travels
+    Travel.joins(:favorites).where(favorites: { user_id: self.id })
+  end
+  
 #退会機能
   # is_deletedがfalseならtrueを返すようにしている
   def active_for_authentication?

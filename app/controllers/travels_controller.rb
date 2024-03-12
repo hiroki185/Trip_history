@@ -1,4 +1,5 @@
 class TravelsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update]
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
@@ -17,7 +18,7 @@ class TravelsController < ApplicationController
     else
       @travels = Travel.all.page(params[:page]).per(5)
       @user = current_user
-      render :index
+      render :new
     end
   end
 
@@ -36,18 +37,18 @@ end
   end
 
   def index
-  @user = current_user
-  @travel = Travel.new
-  if params[:latest]
-    @travels = Travel.latest.page(params[:page]).per(6)
-  elsif params[:old]
-    @travels = Travel.old.page(params[:page]).per(6)
-  elsif params[:favorite]
-   @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-   @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
-  else
-    @travels = Travel.all.page(params[:page]).per(6)
-  end
+    @user = current_user
+    @travel = Travel.new
+    if params[:latest]
+      @travels = Travel.latest.page(params[:page]).per(6)
+    elsif params[:old]
+      @travels = Travel.old.page(params[:page]).per(6)
+    elsif params[:favorite]
+      @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
+      @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
+    else
+      @travels = Travel.all.page(params[:page]).per(6)
+    end
 
   end
 
@@ -68,4 +69,10 @@ private
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
+  
+  def is_matching_login_user
+  if current_user.nil? || params[:id].to_i != current_user.id
+    redirect_to root_path
+  end
+end
 end
