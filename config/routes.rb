@@ -10,9 +10,8 @@ devise_for :users,skip: [:passwords], controllers: {
 }
 
 scope module: :public do
-   resources :notifications, only: [:index]
+  resources :notifications, only: [:index, :destroy]
 end
-
 
   namespace :admin do
     root to: "homes#top"
