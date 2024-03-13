@@ -25,8 +25,7 @@ class User < ApplicationRecord
      has_many :travel_comments, dependent: :destroy
 
      #通知機能
-     has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
-     has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
+     has_many :notifications, dependent: :destroy
 
 
      validates :first_name, presence: true
@@ -47,6 +46,12 @@ def self.guest
   end
 end
 
+  def guest?
+    email == GUEST_USER_EMAIL
+    # もしくは以下のように一致するかどうかを判定する方法もあります
+    # email.downcase == GUEST_USER_EMAIL.downcase
+    # ただし、大文字と小文字の違いを無視して判定する場合にのみ使用してください
+  end
 
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}

@@ -2,9 +2,8 @@ class Travel < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :travel_comments, dependent: :destroy
-
-  #通知機能
-  has_many :notifications, dependent: :destroy
+  
+  has_one :notification, as: :subject, dependent: :destroy
   
   has_one_attached :image
   

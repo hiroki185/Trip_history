@@ -9,6 +9,11 @@ devise_for :users,skip: [:passwords], controllers: {
   sessions: 'public/sessions'
 }
 
+scope module: :public do
+   resources :notifications, only: [:index]
+end
+
+
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update]
@@ -48,6 +53,8 @@ end
     end
   end
 
+
+
   # 退会確認画面
   get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
   # 論理削除用のルーティング
@@ -69,4 +76,6 @@ end
 #rails db:migrate:status
 #rm -rf db/migrate/20240311065411_hoge.rb
 #touch db/migrate/20190915065320_hoge.rb 
-#rails db:migrate:down VERSION=20240311065411
+#rails db:migrate:down VERSION=20240313030026
+#rm -rf db/migrate/
+#rails destroy model モデル名

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_03_12_044349) do
+ActiveRecord::Schema.define(version: 2024_03_13_080723) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,20 @@ ActiveRecord::Schema.define(version: 2024_03_12_044349) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "favorites_count", default: 0
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "subject_type"
+    t.integer "subject_id"
+    t.integer "user_id"
+    t.integer "action_type", null: false
+    t.boolean "checked"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -133,6 +147,7 @@ ActiveRecord::Schema.define(version: 2024_03_12_044349) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "chats", "rooms"
   add_foreign_key "chats", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end
