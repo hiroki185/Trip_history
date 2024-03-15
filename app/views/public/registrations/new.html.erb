@@ -1,67 +1,56 @@
-<div class="container">
+<div style="text-align: center;">
+  <div class="container-fluid" style="width: 80%;">
 
-<h2 class="mt-3">新規登録</h2>
-<%= form_with model: @user, url: user_registration_path do |f| %>
+    <h2 class="mt-3">新規登録</h2>
 
-   <%= render "public/shared/error_messages", resource: resource %>
-  <table>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
 
-<tr>
-  <td class="mb-2">名前</td>
-<td class="field">
- <%= f.label :first_name, "(姓)", class: "mb-2" %>
- <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "mb-2 mx-3" %>
-</td>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :first_name, "名前(姓)", class: "mb-2" %>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control mb-2" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :last_name, "名前(名)", class: "mb-2" %>
+            <%= f.text_field :last_name, autofocus: false, autocomplete: "last_name", class: "form-control mb-2" %>
+          </div>
+        </div>
+      </div>
 
-<td class="field">
-  <%= f.label :last_name, "(名)", class: "mb-2" %>
-  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "mb-2 mx-3" %>
-</td>
-</tr>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :first_name_kana, "フリガナ(セイ)", class: "mb-2" %>
+            <%= f.text_field :first_name_kana, autofocus: false, autocomplete: "first_name_kana", class: "form-control mb-2" %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :last_name_kana, "フリガナ(メイ)", class: "mb-2" %>
+            <%= f.text_field :last_name_kana, autofocus: false, autocomplete: "last_name_kana", class: "form-control mb-2" %>
+          </div>
+        </div>
+      </div>
 
-<tr>
-  <td class="mb-2">フリガナ</td>
-  <td>
-  <%= f.label :first_name_kana, "(セイ)", class: "mb-2" %>
-  <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", class: "mb-2" %>
-  </td>
-  <td>
-      <%= f.label :last_name_kana, "(メイ)", class: "mb-2" %>
-  <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", class: "mb-2" %>
-  </td>
-</tr>
+      <div class="form-group">
+        <%= f.label :email, "メールアドレス", class: "mb-2" %>
+        <%= f.email_field :email, autofocus: false, autocomplete: "email", class: "form-control mb-2" %>
+      </div>
 
-<tr>
-  <td class="mb-2">メールアドレス</td>
-  <td class="field">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mb-2 ml-5" %>
-  </td>
-</tr>
+      <div class="form-group">
+        <%= f.label :password, "パスワード(6文字以上)", class: "mb-2" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "form-control mb-2" %>
+      </div>
 
-<tr>
-  <td class="mb-2">パスワード(6文字以上)</td>
-  <td class="field">
-    <%= f.password_field :password, autocomplete: "new-password", class: "mb-2 mx-5" %>
-  </td>
-</tr>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "パスワード(確認用)", class: "mb-2" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-2" %>
+      </div>
 
-<tr>
-  <td class="mb-2">パスワード(確認用)</td>
-  <td class="field">
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mb-2 mx-5" %>
-  </td>
-</tr>
+      <%= f.submit "新規登録", class: "btn btn-outline-success rounded-pill mb-2 btn-block" %>
 
- <tr>
-   <td></td>
-  <td class="actions">
-    <%= f.submit "新規登録", class: "btn btn-outline-success rounded-pill mb-2 mx-5" %>
-  </td>
-  </tr>
-</table>
-<% end %>
-
- <div>既に登録済みの方</div>
-<p><%= link_to "こちら", user_session_path %>　 からログインしてください。</p>
-
+    <% end %>
+    <div>既に登録済みの方</div>
+    <p><%= link_to "こちら", user_session_path %> からログインしてください。</p>
+  </div>
 </div>

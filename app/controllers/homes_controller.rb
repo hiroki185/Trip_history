@@ -1,7 +1,8 @@
 class HomesController < ApplicationController
   def top
+    
   end
-  
+
   def unsubscribe
     @user = User.find_by(name: params[:name])
   end

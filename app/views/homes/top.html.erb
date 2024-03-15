@@ -1,23 +1,33 @@
-<div class="container">
- <div class="row">
-  <div class="mx-auto">
-    <h3>お試しで使ってみよう</h3>
-    <h4>
-      <%= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, class: "btn btn-outline-success rounded-pill", method: :post %>
-    </h4>
-    　　<h3>会員の方はこちらから</h3>
-      <h4>
-      <%= link_to new_user_session_path ,class: "btn btn-outline-success rounded-pill" do %>
-        <i class="fas fa-sign-in-alt"></i> ログイン
-      <% end %>
+<div class="container mt-3">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h4 class="text-center">当サイトは、旅行好きの皆様が、自分の旅行写真を投稿したり、感想コメントを共有したりするためのSNSサイトです。<br>他の旅行好きなユーザーとの交流を通じて、新しい旅の目的地や穴場スポットを発見することができます。</h4>
+      <h3 class="text-center">お試しで使ってみよう</h3>
+      <h4 class="text-center">
+        <%= link_to "ゲストログイン（体験用）", users_guest_sign_in_path, class: "btn btn-outline-success rounded-pill", method: :post %>
       </h4>
-    <h3>新規登録の方はこちらから</h3>
-      <h4>
-      <%= link_to new_user_registration_path,class: "btn btn-outline-success rounded-pill" do %>
-        <i class="fas fa-user-plus"></i> 新規登録
-      <% end %>
-      </h4>
-
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
+          <h4 class="text-center">会員の方はこちら</h4>
+          <div class="text-center">
+            <h4 class="mb-0">
+              <%= link_to new_user_session_path, class: "btn btn-outline-success rounded-pill" do %>
+                <i class="fas fa-sign-in-alt"></i> ログイン
+              <% end %>
+            </h4>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <h4 class="text-center">新規登録の方はこちら</h4>
+          <div class="text-center">
+            <h4 class="mb-0">
+              <%= link_to new_user_registration_path, class: "btn btn-outline-success rounded-pill" do %>
+                <i class="fas fa-user-plus"></i> 新規登録
+              <% end %>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
- </div>
 </div>
