@@ -42,11 +42,11 @@ end
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-    
+
     member do
-     get :favorites 
+     get :favorites
     end
-    
+
     collection do
       get 'search'
     end
@@ -69,12 +69,12 @@ get 'tagsearches/search', to: 'tagsearches#search'
 #rails routes
 #ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.77.216.51
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
-end 
+end
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa
 #:wq
 #rails db:migrate:status
 #rm -rf db/migrate/20240311065411_hoge.rb
-#touch db/migrate/20190915065320_hoge.rb 
+#touch db/migrate/20190915065320_hoge.rb
 #rails db:migrate:down VERSION=20240313030026
 #rm -rf db/migrate/
 #rails destroy model モデル名

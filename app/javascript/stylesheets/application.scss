@@ -6,3 +6,53 @@
   font-style: normal;
 }
 
+nav {
+  border-bottom: 5px solid #b0c4de;
+  position: relative;
+
+  ul {
+    left: 10%;
+    display: table;
+    margin: 0 auto;
+    padding: 0;
+    width: 80%;
+    text-align: center;
+
+    li {
+  display: table-cell;
+  min-width: 50px;
+  width: calc(100% / 6); /* 幅を均等に分割 */
+
+
+      a {
+        display: block;
+        height: 100%;
+        padding: 10px 0;
+        text-decoration: none;
+        color: #aaa;
+
+        &:hover {
+          color: #0089BB;
+          background-color: #e0ffff;
+        }
+      }
+
+      &.current {
+        font-weight: bold;
+        border-top: 5px solid #00B0F0;
+
+        a {
+          color: #00B0F0;
+
+          &:hover {
+            background-color: #e0ffff;
+          }
+        }
+      }
+    }
+  }
+}
+
+body {
+  background-color: #f0ffff;
+}

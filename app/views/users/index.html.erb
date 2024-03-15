@@ -8,7 +8,7 @@
       <h2 class="col-8">旅人一覧</h2>
       <div class="col mt-3">
       <%= form_with(url: search_users_path, local: true, method: :get ) do |form| %>
-       <%= form.text_field :keyword %>
+       <%= form.text_field :keyword, placeholder: "旅人を探す" %>
       <%= form.submit "検索",class: 'btn-outline-success rounded-pill' %>
       <% end %>
       </div>

@@ -1,57 +1,43 @@
 
-<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-    <%= link_to root_path do %>
-      <div class="navbar-brand"><%= image_tag 'Untitled_logo_1_free-file.jpg', width:"50", height:"50" %></div>
+<nav class="navbar navbar-expand" style="background-color: #e3f2fd;">
+  <ul class="current nav justify-content-center">
+    <% if user_signed_in? %>
+<li class="border-radius">
+  <%= link_to notifications_path, class: "" do %>
+    <% if current_user.notifications.where(checked: false).exists? %>
+      <i class="fa-solid fa-bell fa-shake" style="color: #f2ee7d;"></i>
+    <% else %>
+      <i class="fa-sharp fa-solid fa-bell"></i>
     <% end %>
-  <% if user_signed_in? %>
-   <p class="mx-auto"><%= current_user.first_name %>さんようこそ</p>
+    通知一覧
   <% end %>
-  <ul class="navbar-nav ml-auto">
-     <% if user_signed_in? %>
-
-      <li class="nav-item">
-        <%= link_to notifications_path, class: "nav-link" do %>
-         <% if current_user.notifications.where(checked: false).exists? %>
-            <i class="fa-sharp fa-solid fa-bell fa-beat" style="color: #f2ee7d;"></i>
-          <% else %>
-            <i class="fa-sharp fa-solid fa-bell"></i>
-          <% end %>
-          通知一覧
+</li>
+      <li class="border-radius">
+        <%= link_to user_path(current_user), class: ""  do %>
+          <i class="fas fa-home"></i> マイページ
         <% end %>
       </li>
-
-          <li>
-            <%= link_to user_path(current_user),class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-              <i class="fas fa-home"></i> マイページ
-            <% end %>
-          </li>
-          <li>
-            <%=  link_to users_path,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-              <i class="fas fa-users"></i> 旅人一覧
-            <% end %>
-          </li>
-          <li>
-            <%=  link_to travels_path ,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-              <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-              <i class="fas fa-sign-out-alt"></i> ログアウト
-            <% end %>
-          </li>
-          <li>
-           <%= form_with(url: search_travels_path, local: true, method: :get ) do |form| %>
-              <%= form.text_field :keyword,class:  %>
-           <%= form.submit "検索",class: 'btn-outline-success rounded-pill mr-3 mt-1' %>
-           <% end %>
-          </li>
-          <li>
-            <%= link_to edit_user_path(current_user) do %>
-            <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle mr-3" %>
-            <% end %>
-          </li>
-       <% elsif admin_signed_in? %>
+      <li class="border-radius">
+        <%= link_to users_path, class: '' do %>
+          <i class="fas fa-users"></i> 旅人一覧
+        <% end %>
+      </li>
+      <li  class="border-radius">
+        <%= link_to travels_path, class: '' do %>
+          <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
+        <% end %>
+      </li>
+      <li class="border-radius">
+        <%= link_to favorites_user_path(current_user), class: '' do %>
+          <i class="fa-solid fa-thumbs-up"></i> いいねした旅
+        <% end %>
+      </li>
+      <li class="border-radius">
+        <%= link_to destroy_user_session_path, method: :delete, class: '' do %>
+          <i class="fas fa-sign-out-alt"></i> ログアウト
+        <% end %>
+      </li>
+    <% elsif admin_signed_in? %>
       <li>
         <%= link_to "投稿一覧", admin_travels_path %>
       </li>
@@ -61,28 +47,22 @@
       <li>
         <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
       </li>
-        <% else %>
-
-   <li>
-      <%= link_to root_path,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-        <i class="fas fa-home"></i> トップページ
-      <% end %>
-   </li>
-   <li>
-      <%= link_to new_user_registration_path,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-        <i class="fas fa-user-plus"></i> 新規登録
-      <% end %>
-   </li>
-   <li>
-      <%= link_to new_user_session_path ,class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-        <i class="fas fa-sign-in-alt"></i> ログイン
-      <% end %>
-   </li>
-             <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link btn btn-outline-success rounded-pill mr-3' do %>
-            <i class="fa-solid fa-right-from-bracket"></i> ログアウト
-            <% end %>
-          </li>
-          <% end %>
-</ul>
+    <% else %>
+      <li>
+        <%= link_to root_path, class: '' do %>
+          <i class="fas fa-home"></i> トップページ
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_registration_path, class: '' do %>
+          <i class="fas fa-user-plus"></i> 新規登録
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_user_session_path, class: '' do %>
+          <i class="fas fa-sign-in-alt"></i> ログイン
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </nav>
