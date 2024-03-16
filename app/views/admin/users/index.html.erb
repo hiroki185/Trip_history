@@ -1,12 +1,15 @@
 <div class="container">
-<h2 style="border-bottom-width: 6px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">ユーザー一覧</h2>
-<table class="table table-borderless">
-  <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
-    <th></th>
-    <th>登録名</th>
-    <th>プロフィール名</th>
-    <th>メールアドレス</th>
-  </tr>
+  <h2 style="border-bottom-width: 6px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">ユーザー一覧</h2>
+  <table class="table table-borderless">
+    <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+      <th></th>
+      <th>登録名</th>
+      <th>プロフィール名</th>
+      <th>メールアドレス</th>
+      <th>投稿総数</th>
+      <th>フォロワー総数</th>
+      <th>退会処理</th>
+    </tr>
     <% @users.each do |user| %>
       <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
         <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
@@ -15,7 +18,10 @@
         <td><%= user.email %></td>
         <td>投稿数： <%= user.travels.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
+        <td>
+          <%= link_to "退会させる", admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+        </td>
       </tr>
     <% end %>
-</table>
+  </table>
 </div>

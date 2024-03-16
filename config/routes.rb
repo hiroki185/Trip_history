@@ -15,7 +15,7 @@ end
 
   namespace :admin do
     root to: "homes#top"
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :travels, only: [:index, :show, :edit, :update, :destroy] do
     resources :travel_comments, only: [:destroy]
    end

@@ -1,23 +1,23 @@
-<div class="container">
-<h3><%= "#{@user.first_name}#{@user.last_name}" %>さんの会員詳細</h3>
-<table class="table table-borderless">
+<div class="container mt-3">
+  <h3><%= "#{@user.first_name}#{@user.last_name}" %>さんの会員詳細</h3>
+  <table class="table table-borderless">
+    <tr>
+      <td>会員 ID</td>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <td>登録名</td>
+      <td><%= "#{@user.first_name}　#{@user.last_name}" %></td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td><%= "#{@user.first_name_kana}　#{@user.last_name_kana}" %></td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
 
-  <tr>
-    <td>会員 ID</td>
-    <td><%= @user.id %></td>
-  </tr>
-  <tr>
-    <td>登録名</td>
-    <td><%= "#{@user.first_name}　#{@user.last_name}" %></td>
-  </tr>
-  <tr>
-    <td>フリガナ</td>
-    <td><%= "#{@user.first_name_kana}　#{@user.last_name_kana}" %></td>
-  </tr>
-  <tr>
-    <td>メールアドレス</td>
-    <td><%= @user.email %></td>
-  </tr>
-
-</table>
+  <%= link_to "退会させる", admin_user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
 </div>
