@@ -1,13 +1,7 @@
 <div class='container'>
-  
-
  <h2 class="col" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
   フォロワー一覧
   <%= link_to "フォロー一覧", user_followings_path,class: "btn btn-outline-success rounded-pill ml-4" %>
  </h2>
- 
-  
-
- 
   <%= render 'users/index',users: @users %>
 </div>

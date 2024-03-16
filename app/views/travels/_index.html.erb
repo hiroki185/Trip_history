@@ -3,79 +3,73 @@
     .scrollable {
       max-height: 600px;
       overflow-y: scroll;
-      scrollbar-width: thin; /* スクロールバーの幅を調整するためのプロパティ */
-      scrollbar-color: transparent transparent; /* スクロールバーの色を透明にするためのプロパティ */
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
     }
   </style>
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 600px;">
-<% travels.each do |travel| %>
-<div class="mb-3" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
- <div class="row">
-    <div class="col-2">
-     <% if current_user && travel.user == current_user %>
-      <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-     <% else %>
-      <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-     <% end %>
+  <% travels.each do |travel| %>
+    <div class="mb-3" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+      <div class="row">
+        <div class="col-2">
+          <% if current_user && travel.user == current_user %>
+            <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+          <% else %>
+            <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+          <% end %>
+        </div>
+        <h4 class="col">
+          <%= link_to travel.title.length > 10 ? travel.title[0..9] + "..." : travel.title, travel %>
+        </h4>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="row">
+            <h5 class="col-3" id="comment_counter">
+              <%= render "travel_comments/counter", travel: travel %>
+            </h5>
+            <h5 class="col-3">
+              <% if travel.category.present? %>
+                <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+              <% end %>
+            </h5>
+            <div class="col-3" id="favorite_btn_<%= travel.id %>">
+              <%= render "favorites/btn", travel: travel %>
+            </div>
+          </div>
+          <div class="col-12 rounded" style="background-color: lightgray;">
+            <%= travel.body %><br>
+            <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+          </div>
+        </div>
+        <div class="col-4">
+          <% if travel.image.attached? %>
+            <%= image_tag travel.image, class: "rounded", size: "300x200" %>
+          <% else %>
+            <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x200" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-2">
+          <% if current_user.following?(travel.user) %>
+            <%= link_to "フォローを外す", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :post %>
+          <% end %>
+        </div>
+        <div class="col-1">
+          <% if current_user && travel.user == current_user %>
+            <%= link_to "編集", edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+          <% end %>
+        </div>
+        <div class="col">
+          <% if current_user && travel.user == current_user %>
+            <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <h4 class="col">
-    <%= link_to travel.title.length > 10 ? travel.title[0..9] + "..." : travel.title, travel %>
-    </h4>
-    </div>
-
-  <div class="row">
-    <div class="col">
-   <div class="row">
-    <h5 class="col-3" id="comment_counter">
-      <%= render "travel_comments/counter", travel: travel %>
-    </h5>
-    <h5 class="col-3">
-      <% if travel.category.present? %>
-        <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
-      <% end %>
-    </h5>
-    <div class="col-3" id="favorite_btn_<%= travel.id %>">
-      <%= render "favorites/btn", travel: travel %>
-    </div>
-  </div>
-
-
-    <div class="col-12 rounded" style="background-color: lightgray">
-      <%= travel.body %> <br>
-      <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-   </div>
-  </div>
-
-    <div class="col-4">
-      <% if travel.image.attached? %>
-        <%= image_tag travel.image, class: "rounded", size: "300x200" %>
-      <% else %>
-        <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x200" %>
-      <% end %>
-    </div>
- </div>
-
-<div class="row mt-2">
-  <div class="col-2">
-    <% if current_user.following?(travel.user) %>
-      <%= link_to "フォローを外す", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete %>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :post %>
-    <% end %>
-  </div>
-  <div class="col-1">
-    <% if current_user && travel.user == current_user %>
-      <%= link_to "編集", edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
-    <% end %>
-  </div>
-  <div class="col">
-    <% if current_user && travel.user == current_user %>
-      <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
-    <% end %>
-  </div>
-</div>
-
-</div>
-<% end %>
+  <% end %>
 </div>

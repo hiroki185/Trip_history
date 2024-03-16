@@ -1,17 +1,16 @@
-
 <nav class="navbar navbar-expand" style="background-color: #e3f2fd;">
   <ul class="current nav justify-content-center">
     <% if user_signed_in? %>
-<li class="border-radius">
-  <%= link_to notifications_path, class: "" do %>
-    <% if current_user.notifications.where(checked: false).exists? %>
-      <i class="fa-solid fa-bell fa-shake" style="color: #f2ee7d;"></i>
-    <% else %>
-      <i class="fa-sharp fa-solid fa-bell"></i>
-    <% end %>
-    通知一覧
-  <% end %>
-</li>
+      <li class="border-radius">
+        <%= link_to notifications_path, class: "" do %>
+          <% if current_user.notifications.where(checked: false).exists? %>
+            <i class="fa-solid fa-bell fa-shake" style="color: #f2ee7d;"></i>
+          <% else %>
+            <i class="fa-sharp fa-solid fa-bell"></i>
+          <% end %>
+          通知一覧
+        <% end %>
+      </li>
       <li class="border-radius">
         <%= link_to user_path(current_user), class: ""  do %>
           <i class="fas fa-home"></i> マイページ
@@ -22,7 +21,7 @@
           <i class="fas fa-users"></i> 旅人一覧
         <% end %>
       </li>
-      <li  class="border-radius">
+      <li class="border-radius">
         <%= link_to travels_path, class: '' do %>
           <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
         <% end %>

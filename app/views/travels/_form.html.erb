@@ -1,39 +1,33 @@
-
 <%= form_with model: travel do |f| %>
   <div class="form-group">
     <%= f.label :場所や地名 %>
     <%= f.text_field :title, class: 'form-control travel_title' %>
   </div>
   <div class="form-group">
-  <%= f.label :住所 %>
-  <%= f.text_field :address, class: 'form-control' %>
-　</div>
-  <div class="form-group">
-  <%= f.label :画像 %>
-  <%= f.file_field :image, accept: "image/*" %>
+    <%= f.label :住所 %>
+    <%= f.text_field :address, class: 'form-control' %>
   </div>
   <div class="form-group">
-  <%= f.label :費用 %>
-  <%= f.select :amount_range, options_for_select(['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上'], :selected => '0円'), class: 'form-control' %>
-</div>
-
-<div class="form-group">
-  <%= f.label :交通手段 %>
-  <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], :selected => '徒歩'), class: 'form-control' %>
-</div>
-
-<div class="form-group">
-  <label>タグ</label>
-  <%= f.text_field :category,class: 'form-control book_category', placeholder: '＃をつけて投稿' %>
-</div>
-
+    <%= f.label :画像 %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :費用 %>
+    <%= f.select :amount_range, options_for_select(['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上'], selected: '0円'), class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :交通手段 %>
+    <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], selected: '徒歩'), class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <label>タグ</label>
+    <%= f.text_field :category, class: 'form-control book_category', placeholder: '＃をつけて投稿' %>
+  </div>
   <div class="form-group">
     <%= f.label :感想 %>
     <%= f.text_area :body, class: 'form-control travel_body' %>
   </div>
-
   <div class="form-group">
     <%= f.submit "投稿", class: 'btn btn-outline-success rounded-pill' %>
   </div>
-
 <% end %>

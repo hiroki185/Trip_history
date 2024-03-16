@@ -5,22 +5,20 @@
     }
 
     .table-borderless {
-  border-collapse: collapse;
-}
+      border-collapse: collapse;
+    }
 
-.table-borderless td, .table-borderless th {
-  border-bottom: 1px solid #dee2e6;
-}
-
+    .table-borderless td, .table-borderless th {
+      border-bottom: 1px solid #dee2e6;
+    }
   </style>
-
 </head>
 <div class='container'>
   <div class='row mt-3'>
     <div class='col-12'>
       <div class='row'>
-      <h3 class="col ml-3"><%= @travel.title %></h3>
-      <h3 class="col mr-5">感想</h3>
+        <h3 class="col ml-3"><%= @travel.title %></h3>
+        <h3 class="col mr-5">感想</h3>
       </div>
       <div class='row'>
         <% if @travel.image.attached? %>
@@ -29,12 +27,12 @@
           <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded mt-4 ml-4", size: "500x350" %>
         <% end %>
         <div class="col">
-        <% split_length = 36 %>
-        <% @travel.body.scan(/.{1,#{split_length.to_i}}/).each do |text| %>
-          <p class="break-text"><%= text %></p>
-        <% end %>
-       </div>
-         <table class="table table-borderless col-12 mt-4 ml-4">
+          <% split_length = 36 %>
+          <% @travel.body.scan(/.{1,#{split_length.to_i}}/).each do |text| %>
+            <p class="break-text"><%= text %></p>
+          <% end %>
+        </div>
+        <table class="table table-borderless col-12 mt-4 ml-4">
           <tr>
             <td></td>
           </tr>
@@ -50,18 +48,18 @@
           <tr>
             <td class="row" id="comment_counter">
               <%= render "travel_comments/counter", travel: @travel %>
-             <% if @travel.category.present? %>
-　　　　      <%=link_to @travel.category,tagsearches_search_path(content: @travel.category)%>
-　　         <% end %>
-　　         <div class="col" id="favorite_btn_<%= @travel.id %>">
-              <%= render "favorites/btn", travel: @travel %>
+              <% if @travel.category.present? %>
+                <%= link_to @travel.category, tagsearches_search_path(content: @travel.category) %>
+              <% end %>
+              <div class="col" id="favorite_btn_<%= @travel.id %>">
+                <%= render "favorites/btn", travel: @travel %>
               </div>
               <div>
                 <% if current_user && @travel.user == current_user %>
-                 <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+                  <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
                 <% end %>
                 <% if current_user && @travel.user == current_user %>
-                 <%= link_to "削除", travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+                  <%= link_to "削除", travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
                 <% end %>
               </div>
             </td>
@@ -69,22 +67,22 @@
         </table>
       </div>
     </div>
-<div class='container'>
-<div class='row'>
-  <div class='col-12'>
-    <div class='row'>
-    <div class="col-6" id="comment_index">
-    <%= render "travel_comments/index", travel: @travel %>
-   </div>
-   <div class="col-6">
-    <%= render "travel_comments/form", travel: @travel, travel_comment: @travel_comment %>
-    </div>
-      </div>
-   </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12'>
+          <div class='row'>
+            <div class="col-6" id="comment_index">
+              <%= render "travel_comments/index", travel: @travel %>
+            </div>
+            <div class="col-6">
+              <%= render "travel_comments/form", travel: @travel, travel_comment: @travel_comment %>
+            </div>
+          </div>
+       </div>
+     </div>
    </div>
   </div>
 </div>
-</div>
-<spon id="latitude" style="display: none"><%= @travel.latitude %></spon> <!-- style="display: none"で緯度経度を表示させないようにもできる-->
+<spon id="latitude" style="display: none"><%= @travel.latitude %></spon>
 <spon id="longitude" style="display: none"><%= @travel.longitude %></spon>
 <%= render "maps/show" %>

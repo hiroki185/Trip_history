@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+
   before_action :ensure_guest_user, only: [:edit]
+
   before_action :is_matching_login_user, only: [:edit, :update]
 
   def show
@@ -19,14 +21,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-   @user = User.find(params[:id])
-   @travel = @user
+    @user = User.find(params[:id])
+    @travel = @user
   end
 
   def update
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "You have updated user successfully."
+      redirect_to user_path(@user), notice: "ユーザー情報を更新しました。"
     else
       @travels = Travel.all
       @travel = Travel.new
@@ -34,49 +36,48 @@ class UsersController < ApplicationController
     end
   end
 
-def favorites
-  if params[:latest]
-    @favorite_travels = current_user.favorite_travels.latest.page(params[:page]).per(6)
-  elsif params[:old]
-    @favorite_travels = current_user.favorite_travels.old.page(params[:page]).per(6)
-  elsif params[:favorite]
-    @favorite_travels = current_user.favorite_travels.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-    @favorite_travels = Kaminari.paginate_array(@favorite_travels).page(params[:page]).per(6)
-  else
-    @favorite_travels = current_user.favorite_travels.page(params[:page]).per(6)
+  def favorites
+    if params[:latest]
+      @favorite_travels = current_user.favorite_travels.latest.page(params[:page]).per(6)
+    elsif params[:old]
+      @favorite_travels = current_user.favorite_travels.old.page(params[:page]).per(6)
+    elsif params[:favorite]
+      @favorite_travels = current_user.favorite_travels.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
+      @favorite_travels = Kaminari.paginate_array(@favorite_travels).page(params[:page]).per(6)
+    else
+      @favorite_travels = current_user.favorite_travels.page(params[:page]).per(6)
+    end
   end
-end
-
-
 
   def unsubscribe
+
   end
 
   def withdrawal
     @user = User.find(params[:id])
-    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    @user.update(is_deleted: true)
+    @user.update(is_deleted: true) # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
+    flash[:notice] = "退会処理を実行しました。"
     redirect_to root_path
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name,:profile_image)
+    params.require(:user).permit(:name, :profile_image)
   end
 
-    def ensure_guest_user
+  def ensure_guest_user
     @user = User.find(params[:id])
     if @user.email == "guest@example.com"
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 
-def is_matching_login_user
-  if current_user.nil? || params[:id].to_i != current_user.id
-    redirect_to root_path
+  def is_matching_login_user
+    if current_user.nil? || params[:id].to_i != current_user.id
+      redirect_to root_path
+    end
   end
-end
+
 end

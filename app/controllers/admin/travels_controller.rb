@@ -10,24 +10,22 @@ class Admin::TravelsController < ApplicationController
   end
 
   def edit
-   @travel = Travel.find(params[:id])
-   @amount_ranges = ['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上']
-   @transportations = ['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船']
-
+    @travel = Travel.find(params[:id])
+    @amount_ranges = ['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上']
+    @transportations = ['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船']
   end
 
- def update
-  @travel = Travel.find(params[:id])
-
-  if @travel.update(travel_params)
-    redirect_to admin_travels_path, notice: "編集が完了しました。"
-  else
-    render :edit
+  def update
+    @travel = Travel.find(params[:id])
+    if @travel.update(travel_params)
+      redirect_to admin_travels_path, notice: "編集が完了しました。"
+    else
+      render :edit
+    end
   end
- end
 
   def destroy
-    @comment = TravelComment.find(params[:id]).destroy
+    @comment = TravelComment.find(params[:id]).destro
     travel = Travel.find(params[:id])
     travel.destroy
     redirect_to admin_travels_path
@@ -37,9 +35,10 @@ class Admin::TravelsController < ApplicationController
     @comment = TravelComment.find(params[:id]).destroy
   end
 
-private
+  private
 
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
+
 end

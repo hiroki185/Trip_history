@@ -1,10 +1,11 @@
 class TravelsController < ApplicationController
+
   before_action :is_matching_login_user, only: [:edit, :update]
+
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
   end
-
 
   def new
     @travel = Travel.new
@@ -23,14 +24,13 @@ class TravelsController < ApplicationController
   end
 
   def update
-  @travel = Travel.find(params[:id])
-
-  if @travel.update(travel_params)
-    redirect_to @travel, notice: "編集が完了しました。"
-  else
-    render :edit
+    @travel = Travel.find(params[:id])
+    if @travel.update(travel_params)
+      redirect_to @travel, notice: "編集が完了しました。"
+    else
+      render :edit
+    end
   end
-end
 
   def search
     @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(5)
@@ -45,17 +45,16 @@ end
       @travels = Travel.old.page(params[:page]).per(6)
     elsif params[:favorite]
       @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-      @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
+     @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
     else
       @travels = Travel.all.page(params[:page]).per(6)
     end
-
   end
 
   def edit
-   @travel = Travel.find(params[:id])
-   @amount_ranges = ['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上']
-   @transportations = ['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船']
+    @travel = Travel.find(params[:id])
+    @amount_ranges = ['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上']
+    @transportations = ['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船']
   end
 
   def destroy
@@ -64,15 +63,18 @@ end
     redirect_to user_path(current_user)
   end
 
-private
+  private
 
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
+
   
+
   def is_matching_login_user
-  if current_user.nil? || params[:id].to_i != current_user.id
-    redirect_to root_path
+    if current_user.nil? || params[:id].to_i != current_user.id
+      redirect_to root_path
+    end
   end
-end
+
 end

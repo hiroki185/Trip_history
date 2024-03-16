@@ -1,77 +1,68 @@
 Rails.application.routes.draw do
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: "admin/sessions"
+  }
 
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
+  devise_for :users, skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
 
-devise_for :users,skip: [:passwords], controllers: {
-  registrations: "public/registrations",
-  sessions: 'public/sessions'
-}
-
-scope module: :public do
-  resources :notifications, only: [:index, :destroy]
-end
+  scope module: :public do
+    resources :notifications, only: [:index, :destroy]
+  end
 
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
     resources :travels, only: [:index, :show, :edit, :update, :destroy] do
-    resources :travel_comments, only: [:destroy]
-   end
+      resources :travel_comments, only: [:destroy]
+    end
   end
 
-root to: "homes#top"
+  root to: "homes#top"
 
-resources :travels do
-  resources :travel_comments, only: [:create, :destroy]
-  resource :favorite, only: [:create, :destroy]
-      collection do
-      get 'search'
+  resources :travels do
+    resources :travel_comments, only: [:create, :destroy]
+    resource :favorite, only: [:create, :destroy]
+    collection do
+      get "search"
     end
+  end
 
-end
-
-#ゲストログイン機能
-devise_scope :user do
+  devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
-end
+  end
 
-#ユーザー関連の機能、フォロー機能、ユーザー検索機能
   resources :users do
     resource :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
-
+    get "followings" => "relationships#followings", as: "followings"
+    get "followers" => "relationships#followers", as: "followers"
     member do
-     get :favorites
+      get :favorites
     end
-
     collection do
-      get 'search'
+      get "search"
     end
   end
-
+  
   resource :map, only: [:show]
 
+  get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
 
-  # 退会確認画面
-  get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
-  # 論理削除用のルーティング
-  patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
+  patch "/users/:id/withdrawal" => "users#withdrawal", as: "withdrawal"
 
-resources :chats, only: [:show, :create, :destroy]
+  resources :chats, only: [:show, :create, :destroy]
 
-get 'tagsearches/search', to: 'tagsearches#search'
-
-
+  get "tagsearches/search", to: "tagsearches#search"
+end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #rails db:migrate
 #cd Trip_history
 #rails routes
 #ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.77.216.51
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
-end
+
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa
 #:wq
 #rails db:migrate:status
