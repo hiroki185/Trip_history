@@ -52,6 +52,7 @@ end
     end
   end
 
+  resource :map, only: [:show]
 
 
   # 退会確認画面
@@ -65,6 +66,7 @@ get 'tagsearches/search', to: 'tagsearches#search'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+#rails db:migrate
 #cd Trip_history
 #rails routes
 #ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.77.216.51

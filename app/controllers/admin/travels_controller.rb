@@ -20,7 +20,7 @@ class Admin::TravelsController < ApplicationController
   @travel = Travel.find(params[:id])
 
   if @travel.update(travel_params)
-    redirect_to admin_travel_path(@travel), notice: "編集が完了しました。"
+    redirect_to admin_travels_path, notice: "編集が完了しました。"
   else
     render :edit
   end
@@ -32,7 +32,7 @@ class Admin::TravelsController < ApplicationController
     travel.destroy
     redirect_to admin_travels_path
   end
-  
+
   def destroy_comment
     @comment = TravelComment.find(params[:id]).destroy
   end

@@ -33,7 +33,7 @@
     </h5>
     <h5 class="col-3">
       <% if travel.category.present? %>
-        <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+        <%= travel.category %>
       <% end %>
     </h5>
   </div>

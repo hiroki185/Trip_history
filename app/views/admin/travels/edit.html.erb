@@ -1,5 +1,5 @@
 <div class='container'>
-<%= form_with model: @travel do |f| %>
+<%= form_with model: @travel,url: admin_travel_path(@travel.id) do |f| %>
   <div class="form-group">
     <%= f.label :場所や地名 %>
     <%= f.text_field :title, class: 'form-control travel_title' %>

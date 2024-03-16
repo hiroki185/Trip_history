@@ -11,7 +11,9 @@
 .table-borderless td, .table-borderless th {
   border-bottom: 1px solid #dee2e6;
 }
+
   </style>
+
 </head>
 <div class='container'>
   <div class='row mt-3'>
@@ -83,3 +85,6 @@
   </div>
 </div>
 </div>
+<spon id="latitude" style="display: none"><%= @travel.latitude %></spon> <!-- style="display: none"で緯度経度を表示させないようにもできる-->
+<spon id="longitude" style="display: none"><%= @travel.longitude %></spon>
+<%= render "maps/show" %>

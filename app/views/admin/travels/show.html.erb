@@ -60,7 +60,7 @@
             <td class="row" id="comment_counter">
               <%= render "travel_comments/counter", travel: @travel %>
              <% if @travel.category.present? %>
-　　　　      <%=link_to @travel.category,tagsearches_search_path(content: @travel.category)%>
+　　　　      <%= @travel.category %>
 　　         <% end %>
               <div>
                  <%= link_to "編集", edit_admin_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>

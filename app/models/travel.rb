@@ -7,6 +7,11 @@ class Travel < ApplicationRecord
   
   has_one_attached :image
   
+  
+
+  geocoded_by :address
+  after_validation :geocode
+  
 #タグについてのバリデーション
 validates :category,
   presence: true,
