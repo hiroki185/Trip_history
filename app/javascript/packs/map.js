@@ -6,21 +6,19 @@
 
 // ライブラリの読み込み
 let map;
+let marker;
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
-let latitude=parseFloat(document.getElementById("latitude").innerHTML);
-let longitude=parseFloat(document.getElementById("longitude").innerHTML);
-console.log(latitude)
-console.log(longitude)
-if (latitude == 0.0){
-  latitude = 35.681236
-}
-if (longitude == 0.0){
-  longitude = 139.767125
-}
-console.log(latitude)
-console.log(longitude)
+  let latitude = parseFloat(document.getElementById("latitude").innerHTML);
+  let longitude = parseFloat(document.getElementById("longitude").innerHTML);
+
+  if (latitude == 0.0) {
+    latitude = 35.681236;
+  }
+  if (longitude == 0.0) {
+    longitude = 139.767125;
+  }
 
   // 地図の中心と倍率は公式から変更しています。
   map = new Map(document.getElementById("map"), {
@@ -28,7 +26,17 @@ console.log(longitude)
     zoom: 15,
     mapTypeControl: false
   });
+
+  // マーカーの位置を設定
+  const markerPosition = { lat: latitude, lng: longitude };
+
+  // マーカーオブジェクトを作成して地図に追加
+  marker = new google.maps.Marker({
+    position: markerPosition,
+    map: map
+  });
 }
+
 window.document.addEventListener('turbolinks:load', function() {
-initMap();
+  initMap();
 });
