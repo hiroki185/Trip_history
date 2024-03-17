@@ -1,0 +1,89 @@
+<head>
+  <style>
+    .scrollable {
+      max-height: 600px;
+      overflow-y: scroll;
+      scrollbar-width: thin; /* スクロールバーの幅を調整するためのプロパティ */
+      scrollbar-color: transparent transparent; /* スクロールバーの色を透明にするためのプロパティ */
+    }
+  </style>
+</head>
+<div class='container'>
+  <% if @travels.present? %>
+  <div class="scrollable" style="overflow: auto; max-height: 600px;">
+    <% @travels.each do |travel| %>
+      <div class="mb-3" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+        <div class="row">
+          <div class="col-2">
+            <% if current_user && travel.user == current_user %>
+              <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+            <% else %>
+              <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+            <% end %>
+          </div>
+          <h4 class="col">
+            <%= link_to travel.title.length > 10 ? travel.title[0..9] + "..." : travel.title, admin_travel_path(travel) %>
+          </h4>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <h5 class="col-3" id="comment_counter">
+                <%= render "travel_comments/counter", travel: travel %>
+              </h5>
+              <h5 class="col-3">
+                <% if travel.category.present? %>
+                  <%= travel.category %>
+                <% end %>
+              </h5>
+            </div>
+            <div class="col-12 rounded" style="background-color: lightgray">
+              <%= travel.body %> <br>
+              <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+            </div>
+          </div>
+          <div class="col-4">
+            <% if travel.image.attached? %>
+              <%= image_tag travel.image, class: "", size: "300x200" %>
+            <% else %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x200" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-1">
+            <%= link_to "編集", edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
+          </div>
+          <div class="col">
+            <%= link_to "削除", admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+         </div>
+       </div>
+     </div>
+  <% end %>
+  <% else %>
+         <table class="table table-borderless">
+    <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+      <th></th>
+      <th>登録名</th>
+      <th>プロフィール名</th>
+      <th>メールアドレス</th>
+      <th>投稿総数</th>
+      <th>フォロワー総数</th>
+      <th>退会処理</th>
+    </tr>
+    <% @users.each do |user| %>
+      <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+        <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
+        <td><%= link_to "#{user.first_name}#{user.last_name}", admin_user_path(user) %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>投稿数： <%= user.travels.count %></td>
+        <td>フォロワー数: <%= user.followers.count %></td>
+        <td>
+          <%= link_to "退会させる", admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <% end %>
+</div>

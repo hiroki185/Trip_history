@@ -68,11 +68,12 @@ class User < ApplicationRecord
 
   def self.search(search)
     if search.present?
-      User.where('name LIKE ?', "%#{search}%")
+      User.where('name LIKE ? OR last_name LIKE ? OR first_name LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     else
       User.all
     end
   end
+
 
   # フォローしたときの処理
   def follow(user_id)

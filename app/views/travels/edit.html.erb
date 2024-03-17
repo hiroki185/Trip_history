@@ -1,4 +1,4 @@
-<div class='container mt-3'>
+<div class='container mt-3' style='width: 60%;'>
 <%= form_with model: @travel do |f| %>
   <div class="form-group">
     <%= f.label :場所や地名 %>
@@ -18,7 +18,7 @@
   <%= f.select :amount_range, options_for_select(@amount_ranges, @travel.amount_range), class: 'form-control' %>
 </div>
 <div class="form-group col">
-      <%= f.label :交通手段 %>
+      <%= f.label :交通手段 %> <br>
   <%= f.select :transportation, options_for_select(@transportations, @travel.transportation), class: 'form-control' %>
 </div>
 </div>
@@ -32,7 +32,7 @@
   <%= f.text_area :body, rows: 8, class: 'form-control' %>
 </div>
   <div class="form-group">
-    <%= f.submit "更新", class: 'btn btn-outline-success rounded-pill' %>
+    <%= f.submit "更新", class: 'btn btn-outline-success rounded-pill btn-block' %>
   </div>
 <% end %>
 </div>

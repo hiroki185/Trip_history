@@ -69,12 +69,12 @@ class TravelsController < ApplicationController
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
 
-  
 
-  def is_matching_login_user
-    if current_user.nil? || params[:id].to_i != current_user.id
-      redirect_to root_path
-    end
-  end
+
+def is_matching_login_user
+  @travel = Travel.find(params[:id])
+  return if @travel.present?
+  redirect_to root_path
+end
 
 end

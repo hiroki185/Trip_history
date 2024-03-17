@@ -4,16 +4,24 @@
       <%= image_tag 'Untitled_logo_1_free-file.jpg', width:"50", height:"50" %>
     </div>
   <% end %>
+
   <% if user_signed_in? %>
     <p class="mx-auto"><%= current_user.first_name %>さんようこそ</p>
   <% end %>
+
   <% if user_signed_in? %>
     <%= form_with(url: search_travels_path, local: true, method: :get ) do |form| %>
       <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "form-group" %>
       <%= form.submit "検索",class: 'btn-outline-success rounded-pill mr-3 mt-3' %>
     <% end %>
     <%= link_to edit_user_path(current_user) do %>
-    <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
+      <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
+    <% end %>
+  <% elsif admin_signed_in? %>
+    <p class="mx-auto">管理者さんようこそ</p>
+    <%= form_with(url: admin_search_path, local: true, method: :get ) do |form| %>
+      <%= form.text_field :keyword, placeholder: "キーワードを入力", class: "form-group" %>
+      <%= form.submit "検索",class: 'btn-outline-success rounded-pill mr-3 mt-3' %>
     <% end %>
   <% end %>
 </div>

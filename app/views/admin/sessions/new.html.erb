@@ -5,8 +5,8 @@
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
       <div class="row">
-        <div class="col-8 mx-auto"> <!-- 修正 -->
-          <div class="form-group text-center"> <!-- 修正 -->
+        <div class="col-8 mx-auto"> 
+          <div class="form-group text-center">
             <%= f.label :メールアドレス %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
           </div>
@@ -14,8 +14,8 @@
       </div>
 
       <div class="row">
-        <div class="col-8 mx-auto"> <!-- 修正 -->
-          <div class="form-group text-center"> <!-- 修正 -->
+        <div class="col-8 mx-auto"> 
+          <div class="form-group text-center"> 
             <%= f.label :パスワード %><br />
             <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
           </div>
@@ -23,9 +23,9 @@
       </div>
 
       <div class="row">
-        <div class="col-8 mx-auto"> <!-- 修正 -->
-          <div class="actions text-center"> <!-- 修正 -->
-            <%= f.submit "Log in", class: "btn btn-outline-success rounded-pill btn-block" %>
+        <div class="col-8 mx-auto"> 
+          <div class="actions text-center"> 
+            <%= f.submit "ログイン", class: "btn btn-outline-success rounded-pill btn-block" %>
           </div>
         </div>
       </div>
