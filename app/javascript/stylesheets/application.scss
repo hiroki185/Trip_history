@@ -61,3 +61,21 @@ body {
   width: 500px;
   height: 500px;
 }
+
+.navbar {
+  display: flex;
+  justify-content: center; /* 水平方向（横方向）に中央寄せ */
+  align-items: center; /* 垂直方向（縦方向）に中央寄せ */
+  
+  .center-align {
+    height: auto; /* 高さを要素の高さに自動調整 */
+  }
+}
+
+.centered-logo {
+  margin: 0 auto; /* 横方向に中央寄せ */
+}
+
+.right-align-item {
+  margin-left: auto; /* 自動的に左側に余白を作成 */
+}
