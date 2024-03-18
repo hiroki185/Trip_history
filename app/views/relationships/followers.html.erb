@@ -4,4 +4,5 @@
   <%= link_to "フォロー一覧", user_followings_path,class: "btn btn-outline-success rounded-pill ml-4" %>
  </h2>
   <%= render 'users/index',users: @users %>
+  <%= paginate @users %>
 </div>

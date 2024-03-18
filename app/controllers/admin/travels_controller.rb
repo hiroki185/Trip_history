@@ -6,7 +6,7 @@ class Admin::TravelsController < ApplicationController
   end
 
   def index
-    @travels = Travel.all
+    @travels = Travel.all.page(params[:page]).per(6)
   end
 
   def edit

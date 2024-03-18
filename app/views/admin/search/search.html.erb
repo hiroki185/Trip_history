@@ -60,6 +60,7 @@
        </div>
      </div>
   <% end %>
+  <%= paginate @travels %>
   <% else %>
          <table class="table table-borderless">
     <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
@@ -85,5 +86,6 @@
       </tr>
     <% end %>
   </table>
+  <%= paginate @users %>
   <% end %>
 </div>
