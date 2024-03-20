@@ -52,13 +52,15 @@
         </div>
       </div>
       <div class="row mt-2">
-        <div class="col-2">
-          <% if current_user.following?(travel.user) %>
-            <%= link_to "フォローを外す", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete %>
-          <% else %>
-            <%= link_to "フォローする", user_relationships_path(travel.user.id), class: "btn btn-outline-success rounded-pill", method: :post %>
-          <% end %>
+
+
+
+        <div class="col-2" id="follow-ajax_<%= travel.user.id %>">
+　　　　　<%= render "relationships/follow_button", user: travel.user %>
         </div>
+
+
+
         <div class="col-1">
           <% if current_user && travel.user == current_user %>
             <%= link_to "編集", edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
@@ -66,7 +68,7 @@
         </div>
         <div class="col">
           <% if current_user && travel.user == current_user %>
-            <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+            <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
           <% end %>
         </div>
       </div>

@@ -58,7 +58,7 @@
             <%= link_to "編集", edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
           </div>
           <div class="col">
-            <%= link_to "削除", admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+            <%= link_to "削除", admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
          </div>
        </div>
      </div>

@@ -59,7 +59,7 @@
                   <%= link_to "編集", edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
                 <% end %>
                 <% if current_user && @travel.user == current_user %>
-                  <%= link_to "削除", travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+                  <%= link_to "削除", travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
                 <% end %>
               </div>
             </td>

@@ -49,7 +49,7 @@ Rails.application.routes.draw do
       get "search"
     end
   end
-  
+
   resource :map, only: [:show]
 
   get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
@@ -64,7 +64,8 @@ end
 #rails db:migrate
 #cd Trip_history
 #rails routes
-#ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.77.216.51
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@13.112.198.238
+#rails s -e production
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
 
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa

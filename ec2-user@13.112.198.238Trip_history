@@ -1,0 +1,6 @@
+DB_USERNAME="root"
+DB_PASSWORD="kwkt1213"
+DB_HOST="rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com"
+DB_DATABASE="Trip_history"
+API_KEY='AIzaSyBRLNZADv1uufIulWj92jU9Eatavi5jf70'
+
