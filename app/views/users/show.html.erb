@@ -1,17 +1,17 @@
 <div class='container'>
   <div class="row mt-3">
- <div class="col-2">
-  <%= image_tag @user.get_profile_image, class: "rounded-circle", size:'100x100' %>
-</div>
-        <div class="col-8">
+    <div class="col-2">
+      <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>
+    </div>
+    <div class="col-8">
       <h4><%= @user.name %>さんの部屋
-          <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-      <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-outline-success rounded-pill mb-2" %>
-    <% end %>
-    </h4>
-         <%= @user.body %>
-         </div>
-</div>
+        <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+          <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-outline-success rounded-pill mb-2" %>
+        <% end %>
+      </h4>
+      <%= @user.body %>
+    </div>
+  </div>
   <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
     <h2 class="col"><%= @user.name %>さんの旅一覧</h2>
     <div class="col-8">
