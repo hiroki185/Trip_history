@@ -52,15 +52,6 @@
         </div>
       </div>
       <div class="row mt-2">
-
-
-
-        <div class="col-2" id="follow-ajax_<%= travel.user.id %>">
-　　　　　<%= render "relationships/follow_button", user: travel.user %>
-        </div>
-
-
-
         <div class="col-1">
           <% if current_user && travel.user == current_user %>
             <%= link_to "編集", edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
