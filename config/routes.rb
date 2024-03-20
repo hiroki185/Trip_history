@@ -64,7 +64,7 @@ end
 #rails db:migrate
 #cd Trip_history
 #rails routes
-#ssh -i ~/.ssh/practice-aws2.pem ec2-user@13.112.198.238
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@54.238.218.107
 #rails s -e production
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
 

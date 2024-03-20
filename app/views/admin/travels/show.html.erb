@@ -3,22 +3,22 @@
     .break-text {
       word-wrap: break-word;
     }
-    
+
     .table-borderless {
       border-collapse: collapse;
     }
-    
+
     .table-borderless td, .table-borderless th {
       border-bottom: 1px solid #dee2e6;
     }
-    
+
     .scrollable {
       max-height: 300px;
       overflow-y: scroll;
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
     }
-    
+
     .comment {
       word-wrap: break-word; /* 20文字で改行するためのプロパティ */
     }
@@ -64,7 +64,7 @@
               <% end %>
               <div>
                 <%= link_to "編集", edit_admin_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
-                <%= link_to "削除", admin_travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
+                <%= link_to "削除", admin_travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
               </div>
             </td>
           </tr>

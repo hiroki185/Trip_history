@@ -25,7 +25,6 @@ class Admin::TravelsController < ApplicationController
   end
 
   def destroy
-    @comment = TravelComment.find(params[:id]).destro
     travel = Travel.find(params[:id])
     travel.destroy
     redirect_to admin_travels_path
