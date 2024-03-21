@@ -34,13 +34,6 @@ class User < ApplicationRecord
 
   validates :body, presence: true, length: { maximum: 2000 }
   validates :name, presence: true, length: { maximum: 20 }
-  validate :check_body_length
-
-  def check_body_length
-    if body.to_s.length > 1000
-      errors.add(:body, "は1000文字以下で入力してください")
-    end
-  end
 
 
   # ゲストユーザーの処理
