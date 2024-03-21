@@ -63,6 +63,7 @@ Rails.application.routes.draw do
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #rails db:migrate
+#rails db:migrate:reset
 #cd Trip_history
 #rails routes
 #ssh -i ~/.ssh/practice-aws2.pem ec2-user@54.238.218.107

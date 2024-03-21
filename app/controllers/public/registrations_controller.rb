@@ -56,6 +56,7 @@ before_action :configure_sign_up_params, only: [:create]
   # def after_sign_up_path_for(resource)
   #   super(resource)
   # end
+  protected
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name,:first_name_kana,:last_name,:last_name_kana,:email,])
   end
