@@ -32,8 +32,16 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
 
-  validates :body, presence: true, length: { maximum: 1000 }, allow_blank: true
+  validates :body, presence: true, length: { maximum: 1000 }
   validates :name, presence: true, length: { maximum: 20 }
+  validate :check_body_length
+
+  def check_body_length
+    if body.to_s.length > 1000
+      errors.add(:body, "は1000文字以下で入力してください")
+    end
+  end
+  
 
   # ゲストユーザーの処理
   GUEST_USER_EMAIL = "guest@example.com"
