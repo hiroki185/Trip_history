@@ -22,7 +22,7 @@
             <%= link_to "フォローする", user_relationships_path(user.id), class: "btn btn-outline-success rounded-pill", method: :post, remote: true %>
           <% end %>
         </td>
-        <td><%= link_to 'この旅人の部屋へ', user %></td>
+        <td><%= link_to 'この旅人の部屋へ', user, class: "btn btn-outline-success rounded-pill" %></td>
       </tr>
     <% end %>
   </table>

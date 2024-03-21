@@ -2,14 +2,15 @@
   <h2 class="my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
     みんなの旅一覧
   </h2>
-  
+
   <p>
     <%= link_to '新しい順', { latest: true } %>
-    | <%= link_to '古い順', { old: true } %>
-    | <%= link_to 'いいね順', { favorite: true } %>
+    / <%= link_to '古い順', { old: true } %>
+    / <%= link_to 'いいね順', { favorite: true } %>
   </p>
-  
+
   <%= render 'index', travels: @travels %>
-  
+
   <%= paginate @travels %>
 </div>
+
