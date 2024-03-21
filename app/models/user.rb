@@ -32,7 +32,7 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
 
-  validates :body, presence: true, length: { maximum: 200 }, allow_blank: true
+  validates :body, presence: true, length: { maximum: 1000 }, allow_blank: true
   validates :name, presence: true, length: { maximum: 20 }
 
   # ゲストユーザーの処理

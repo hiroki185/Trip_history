@@ -1,4 +1,5 @@
 <div class='container mt-2'>
+  <%= render 'layouts/errors' %>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
 
@@ -14,7 +15,7 @@
       </div>
       <h4>自己紹介</h4>
         <%= f.text_area :body, class: "form-control mb-3" %>
-        
+
       <div class="form-group">
         <%= f.submit '内容を保存する', class: 'btn btn-outline-success rounded-pill btn-block' %>
       </div>
