@@ -35,13 +35,10 @@
         <% if @travel.image.attached? %>
           <%= image_tag @travel.image, class: "rounded ml-4", size: "500x350" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded mt-4 ml-4", size: "500x350" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded  ml-4", size: "500x350" %>
         <% end %>
         <div class="col">
-          <% split_length = 36 %>
-          <% @travel.body.scan(/.{1,#{split_length.to_i}}/).each do |text| %>
-            <p class="break-text"><%= text %></p>
-          <% end %>
+         <h4 class="break-text"><%= @travel.body %></h4>
         </div>
         <table class="table table-borderless col-12 mt-4 ml-4">
           <tr>
