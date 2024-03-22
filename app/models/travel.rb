@@ -12,8 +12,9 @@ class Travel < ApplicationRecord
     presence: true,
     format: { with: /(?:\A|[\p{Blank}\p{Punctuation}])＃|#/m, message: "は＃を含む必要があります" },
     allow_blank: true
-  validates :title, presence: true
 
+  validates :title, presence: true
+  validates :body, presence: true, length: { maximum: 600 }
   attribute :amount_range, :string
   attribute :transportation, :string
 
