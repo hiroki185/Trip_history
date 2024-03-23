@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #管理者ログインのルート
   namespace :admin do
     get 'search/search'
   end
@@ -6,15 +7,21 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+#ユーザーログインのルート
   devise_for :users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-
+#通知機能のルート
   scope module: :public do
     resources :notifications, only: [:index, :destroy]
   end
+  
+  get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
 
+  patch "/users/:id/withdrawal" => "users#withdrawal", as: "withdrawal"
+  
+#管理者のルート
   namespace :admin do
     root to: "homes#top"
     resources :users, only: [:index, :show, :edit, :update, :destroy]
@@ -24,8 +31,10 @@ Rails.application.routes.draw do
     get "search" => "search#search"
   end
 
+#トップページのルート
   root to: "homes#top"
 
+#投稿モデルのルート
   resources :travels do
     resources :travel_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
@@ -34,10 +43,12 @@ Rails.application.routes.draw do
     end
   end
 
+#ゲストユーザーのルート
   devise_scope :user do
     post "users/guest_sign_in", to: "users/sessions#guest_sign_in"
   end
 
+#ログインユーザーのルート
   resources :users do
     resource :relationships, only: [:create, :destroy]
     get "followings" => "relationships#followings", as: "followings"
@@ -50,12 +61,10 @@ Rails.application.routes.draw do
     end
   end
 
+#地図機能のルート
   resource :map, only: [:show]
 
-  get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
-
-  patch "/users/:id/withdrawal" => "users#withdrawal", as: "withdrawal"
-
+#DM機能のルート
   resources :chats, only: [:show, :create, :destroy]
 
   get "tagsearches/search", to: "tagsearches#search"

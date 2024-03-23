@@ -3,6 +3,7 @@ class TravelComment < ApplicationRecord
   belongs_to :travel
 
   has_one :notification, as: :subject, dependent: :destroy
+  
 
   after_create_commit :create_notifications
 

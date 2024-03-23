@@ -6,8 +6,9 @@ class TravelCommentsController < ApplicationController
     @comment.travel_id = travel.id
     @comment.save
   end
- 
+
   def destroy
+
     @comment = TravelComment.find(params[:id]).destroy
   end
 

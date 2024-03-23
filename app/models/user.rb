@@ -26,12 +26,12 @@ class User < ApplicationRecord
 
   # 通知機能
   has_many :notifications, dependent: :destroy
-
+  
+ #ユーザー情報のバリデーション
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
-
   validates :body, presence: true, length: { maximum: 300 }, allow_blank: true
   validates :name, presence: true, length: { maximum: 20 }
 
@@ -51,11 +51,9 @@ class User < ApplicationRecord
 
   def guest?
     email == GUEST_USER_EMAIL
-    # もしくは以下のように一致するかどうかを判定する方法もあります
-    # email.downcase == GUEST_USER_EMAIL.downcase
-    # ただし、大文字と小文字の違いを無視して判定する場合にのみ使用してください
   end
 
+#投稿の並び替えの処理
   scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
   scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }
@@ -70,6 +68,7 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
 
+#ユーザー検索の処理
   def self.search(search)
     if search.present?
       User.where('name LIKE ? OR last_name LIKE ? OR first_name LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
@@ -94,7 +93,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
-  # 画像
+  # 画像を扱う処理
   def get_profile_image
     profile_image.attached? ? profile_image : 'Untitled_logo_1_free-file.jpg'
   end

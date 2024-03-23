@@ -67,3 +67,6 @@ gem "net-pop"
 gem "net-imap"
 gem 'geocoder'
 
+group :development do
+  gem "rails-erd"
+end
