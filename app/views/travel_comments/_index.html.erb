@@ -26,7 +26,9 @@
         <td class="comment"><%= travel_comment.comment %></td>
         <td>
           <% if travel_comment.user == current_user %>
-            <%= link_to "削除", travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true %>
+            <%= link_to travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true do %>
+            削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+            <% end %>
           <% end %>
         </td>
       </tr>

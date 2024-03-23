@@ -6,7 +6,9 @@
     <div class="col-8">
       <h4><%= @user.name %>さんの部屋
         <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-          <%= link_to 'chatを始める', chat_path(@user.id), class: "btn btn-outline-success rounded-pill mb-2" %>
+          <%= link_to chat_path(@user.id), class: "btn btn-outline-success rounded-pill mb-2" do %>
+          <i class="fa-regular fa-comments"></i>&nbsp;&nbsp;chatを始める
+          <% end %>
         <% end %>
       </h4>
       <%= @user.body %>
@@ -16,9 +18,13 @@
     <h2 class="col"><%= @user.name %>さんの旅一覧</h2>
     <div class="col-8">
       <% if current_user && @user.name == current_user.name %>
-        <%= link_to "プロフィールを編集", edit_user_path(current_user), method: :get, class: "btn btn-outline-success rounded-pill" %>
+        <%= link_to edit_user_path(current_user), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+        <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
+        <% end %>
         &nbsp;&nbsp;
-        <%= link_to "新しく投稿する", new_travel_path, class: 'btn btn-outline-success rounded-pill' %>
+        <%= link_to new_travel_path, class: 'btn btn-outline-success rounded-pill' do %>
+        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -6,6 +6,14 @@
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
     }
+    .triangle{
+  width: 10px;
+  height: 10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid lightgray;
+  margin-left: 10px;
+}
   </style>
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 600px;">
@@ -38,6 +46,7 @@
               <%= render "favorites/btn", travel: travel %>
             </div>
           </div>
+          <div class="triangle"></div>
           <div class="col-12 rounded" style="background-color: lightgray;">
             <%= travel.body %><br>
             <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
@@ -52,14 +61,17 @@
         </div>
       </div>
       <div class="row mt-2">
-        <div class="col-1">
-          <% if current_user && travel.user == current_user %>
-            <%= link_to "編集", edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
-          <% end %>
-        </div>
         <div class="col">
           <% if current_user && travel.user == current_user %>
-            <%= link_to "削除", travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+            編集&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+          <% end %>
+          &nbsp;&nbsp;
+          <% if current_user && travel.user == current_user %>
+            <%= link_to travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
+            削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+            <% end %>
           <% end %>
         </div>
       </div>

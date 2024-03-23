@@ -54,11 +54,14 @@
         </div>
 
         <div class="row mt-2">
-          <div class="col-1">
-            <%= link_to "編集", edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
-          </div>
           <div class="col">
-            <%= link_to "削除", admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+            編集&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+            &nbsp;&nbsp;
+            <%= link_to admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
+            削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+            <% end %>
          </div>
        </div>
      </div>

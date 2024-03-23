@@ -1,11 +1,10 @@
-<div class='container px-5 px-sm-0'>
-  <div class='row'>
-    <div class='col-md-3'>
-      <%= render 'info', user: @user %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
+<div class="container mx-auto">
+  <div class="row justify-content-center">
+    <%= render 'info', user: @user %>
+    &nbsp;&nbsp;
+    <div class="col-8">
       <div class="row" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
-        <h2 class="col-8">旅人一覧</h2>
+        <h2 class="col-8 text-center">旅人一覧</h2>
         <div class="col mt-3">
           <%= form_with(url: search_users_path, local: true, method: :get ) do |form| %>
             <%= form.text_field :keyword, placeholder: "旅人を探す" %>
@@ -14,7 +13,7 @@
         </div>
       </div>
       <%= render 'users/index',users: @users %>
-      <div class='justify-content-center'>
+      <div class="d-flex justify-content-center">
         <%= paginate @users %>
       </div>
     </div>
