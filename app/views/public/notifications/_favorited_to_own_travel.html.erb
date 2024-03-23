@@ -1,6 +1,6 @@
 <%= link_to transition_path(notification) do %>
   <div>
-    <%= link_to notification.subject.user.first_name, user_path(notification.subject.user) %>
+    <%= link_to notification.subject.user.name, user_path(notification.subject.user) %>
     があなたの
     <%= link_to '投稿', travel_path(notification.subject.travel) %>
     にいいねしました

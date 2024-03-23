@@ -78,6 +78,7 @@ end
 #ssh -i ~/.ssh/practice-aws2.pem ec2-user@54.238.218.107
 #rails s -e production
 #kill $(cat tmp/pids/puma.pid)
+#bundle exec rails assets:precompile RAILS_ENV=production
 #mysql -u root -p -h rds-mysql-server.cxgo4cy0wddj.ap-northeast-1.rds.amazonaws.com
 
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa
