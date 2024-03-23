@@ -26,14 +26,14 @@ class User < ApplicationRecord
 
   # 通知機能
   has_many :notifications, dependent: :destroy
-  
+
  #ユーザー情報のバリデーション
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :body, presence: true, length: { maximum: 300 }, allow_blank: true
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 15 }
 
 
   # ゲストユーザーの処理

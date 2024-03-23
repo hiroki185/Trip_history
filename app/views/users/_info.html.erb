@@ -12,7 +12,7 @@
   <div id="container" class="parent-container">
     <%= image_tag user.get_profile_image, class: "rounded-circle mt-3", size:'200x200' %>
     <h4 class="text-align: center; mt-3">
-      <%= user.name %>
+      <%= user.name.truncate(7) %>
     </h4>
     <table class="table table-borderless">
   <tr>

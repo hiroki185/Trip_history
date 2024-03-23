@@ -13,7 +13,7 @@
     <% users.each do |user| %>
       <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
         <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
-        <td><%= user.name %></td>
+        <td><%= user.name.truncate(7) %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
         <td id="follow-ajax_<%= user.id %>">
           <% if current_user.following?(user) %>
