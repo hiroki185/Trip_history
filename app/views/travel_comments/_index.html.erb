@@ -23,10 +23,14 @@
             <%= travel_comment.user.first_name %>
           <% end %>
         </td>
-        <td class="comment"><%= travel_comment.comment %></td>
+        <td>
+          <div class="comment" style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;">
+          <%= travel_comment.comment %>
+          </div>
+        </td>
         <td>
           <% if travel_comment.user == current_user %>
-            <%= link_to travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true do %>
+            <%= link_to travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill btn-sm ml-2", remote: true do %>
             削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
             <% end %>
           <% end %>
