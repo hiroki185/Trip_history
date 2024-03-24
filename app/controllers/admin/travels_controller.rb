@@ -18,7 +18,7 @@ class Admin::TravelsController < ApplicationController
   def update
     @travel = Travel.find(params[:id])
     if @travel.update(travel_params)
-      redirect_to admin_travels_path, notice: "編集が完了しました。"
+      redirect_to admin_travel_path(@travel.id), notice: "編集が完了しました。"
     else
       render :edit
     end
