@@ -1,12 +1,12 @@
 class Admin::TravelsController < ApplicationController
-
+before_action :authenticate_admin!
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
   end
 
   def index
-    @travels = Travel.all.page(params[:page]).per(6)
+    @travels = Travel.all.page(params[:page]).per(10)
   end
 
   def edit

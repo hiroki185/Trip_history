@@ -61,7 +61,10 @@
     <% end %>
   </div>
     <div class="triangle ml-3 mt-2"></div>
-    <h5 class="break-text rounded" style="background-color: lightgray; padding: 8px"><%= @travel.body %></h5>
+    <h5 class="break-text rounded" style="background-color: lightgray; padding: 8px">
+      <%= @travel.body %> <br>
+      <%= @travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+    </h5>
   </div>
 </div>
 <div class="container">
