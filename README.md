@@ -20,7 +20,8 @@
 ・自分が旅行してよかったと思うところを他のユーザーの方に紹介したいとき。  
 ​
 ## 設計書
-後ほど作成予定
+[ER図並びにテーブル定義書](https://docs.google.com/spreadsheets/d/1_7RvjguEL8reAxb5p7jz8qwezXVAb-QWTo6Qiut7E94/edit?usp=sharing)  
+[テスト仕様書](https://docs.google.com/spreadsheets/d/1f9uTSczxkBznD1brHDPnnr2fm-r3iR8k/edit?usp=sharing&ouid=117866166545920543530&rtpof=true&sd=true)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
