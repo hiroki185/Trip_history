@@ -3,7 +3,7 @@ before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
 
   before_action :is_matching_login_user, only: [:edit, :update]
-  
+
   def show
     @user = User.find(params[:id])
     @travels = @user.travels.page(params[:page]).per(6)
@@ -55,7 +55,7 @@ before_action :authenticate_user!
 
   def withdrawal
     @user = User.find(params[:id])
-    @user.update(is_deleted: true) # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true) #is_deletedカラムをtrueに変更することにより削除フラグを立てる
     reset_session
     flash[:notice] = "退会処理を実行しました。"
     redirect_to root_path
