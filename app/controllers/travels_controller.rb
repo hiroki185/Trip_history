@@ -1,7 +1,6 @@
 class TravelsController < ApplicationController
-
+before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
-
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new

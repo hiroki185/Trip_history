@@ -42,9 +42,12 @@
                 <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
               <% end %>
             </h5>
+           <% if current_admin %>
+            <% else %>
             <div class="col-3" id="favorite_btn_<%= travel.id %>">
-              <%= render "favorites/btn", travel: travel %>
+             <%= render "favorites/btn", travel: travel %>
             </div>
+           <% end %>
           </div>
           <div class="triangle"></div>
           <div class="col-12 rounded" style="background-color: lightgray; padding: 8px">

@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-
+before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
 
   before_action :is_matching_login_user, only: [:edit, :update]
-
+  
   def show
     @user = User.find(params[:id])
     @travels = @user.travels.page(params[:page]).per(6)
@@ -79,5 +79,6 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
   end
+
 
 end

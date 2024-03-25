@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   #管理者ログインのルート
   namespace :admin do
     get 'search/search'
