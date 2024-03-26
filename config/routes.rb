@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   #管理者ログインのルート
   namespace :admin do
     get 'search/search'
@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :notifications, only: [:index, :destroy]
   end
-  
+
   get "/users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe"
 
   patch "/users/:id/withdrawal" => "users#withdrawal", as: "withdrawal"
-  
+
 #管理者のルート
   namespace :admin do
     root to: "homes#top"
@@ -69,7 +69,7 @@ Rails.application.routes.draw do
   resources :chats, only: [:show, :create, :destroy]
 
   get "tagsearches/search", to: "tagsearches#search"
-  
+
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #rails db:migrate

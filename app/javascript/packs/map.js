@@ -37,6 +37,4 @@ async function initMap() {
   });
 }
 
-window.document.addEventListener('turbolinks:load', function() {
-  initMap();
-});
+initMap()
