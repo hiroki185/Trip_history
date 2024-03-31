@@ -1,0 +1,49 @@
+<head>
+  <style>
+    .swiper-slide {
+      opacity: .3; /* 左右のスライドを薄くする */
+      transition: .7s; /* ゆっくり小さくさせる */
+      border-bottom: 1px solid #b0c4de;
+    }
+
+    .swiper-slide:not(.swiper-slide-active) {
+      transform: scale(.8); /* 左右のスライドを小さくする */
+    }
+
+    .swiper-slide .swiper-image {
+      height: 300px;
+      width: 100%;
+    }
+
+    .swiper-slide-active {
+      opacity: 1; /* 中央のスライドは薄くしない */
+      transform: scale(1); /* 中央のスライドは小さくしない */
+      z-index: 1; /* 中央のスライドを一番上にする */
+    }
+  </style>
+</head>
+
+<div class="swiper mt-3">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      <%= image_tag 'スクリーンショット 2024-03-31 183245.png', class: "swiper-image" %>
+    </div>
+    <div class="swiper-slide">
+      <%= image_tag 'スクリーンショット 2024-03-31 183758.png', class: "swiper-image" %>
+    </div>
+    <div class="swiper-slide">
+      <%= image_tag 'スクリーンショット 2024-03-31 203417.png', class: "swiper-image" %>
+    </div>
+    <div class="swiper-slide">
+      <%= image_tag 'スクリーンショット 2024-03-31 211700.png', class: "swiper-image" %>
+    </div>
+    <div class="swiper-slide">
+      <%= image_tag 'スクリーンショット 2024-03-31 213756.png', class: "swiper-image" %>
+    </div>
+  </div>
+  <!-- ページネーション -->
+
+  <!-- 前後の矢印 -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>

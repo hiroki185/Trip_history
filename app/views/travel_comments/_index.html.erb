@@ -9,37 +9,28 @@
   .comment {
     word-wrap: break-word; /* 20文字で改行するためのプロパティ */
   }
-
 </style>
 
 <div class="scrollable" style="overflow: auto; max-height: 300px;">
-  <table>
-    <tbody>
-      <% travel.travel_comments.each do |travel_comment| %>
-      <tr>
-        <td>
-          <%= link_to user_path(travel_comment.user) do %>
-            <%= image_tag travel_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %><br>
-            <%= travel_comment.user.first_name %>
-          <% end %>
-        </td>
-        <td>
-          <div class="comment" style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px;">
-          <%= travel_comment.comment %>
-          </div>
-        </td>
-        <td>
-          <% if travel_comment.user == current_user %>
-            <%= link_to travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill btn-sm ml-2", remote: true do %>
-            削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
-            <% end %>
-          <% end %>
-        </td>
-      </tr>
+  <% travel.travel_comments.each do |travel_comment| %>
+    <div class="line__balloon_l">
+      <%= link_to user_path(travel_comment.user) do %>
+        <%= image_tag travel_comment.user.get_profile_image, size: "50x50", class: "rounded-circle" %><br>
       <% end %>
-    </tbody>
-  </table>
+      <div class="balloon__content">
+        <div class="comment line__balloon_text">
+          <%= travel_comment.comment %>
+        </div>
+      </div>
+      <% if travel_comment.user == current_user %>
+        <%= link_to travel_travel_comment_path(travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill btn-sm ml-2 mt-3", remote: true do %>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
+
 <script>
   const comments = document.getElementsByClassName("comment");
   Array.from(comments).forEach((comment) => {

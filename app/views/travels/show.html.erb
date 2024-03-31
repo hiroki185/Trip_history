@@ -21,7 +21,7 @@
 }
   </style>
 </head>
-<div class='container'>
+<div class='container' style="width: 80%">
   <div class='row mt-3'>
     <div class='col-12'>
       <div class='row'>
@@ -30,15 +30,15 @@
       </div>
       <div class='row'>
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded ml-4", size: "500x350" %>
+          <%= image_tag @travel.image, class: "rounded ml-4", size: "400x300" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded ml-4", size: "500x350" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded ml-4", size: "400x300" %>
         <% end %>
         <div class="col">
           <spon id="latitude" style="display: none"><%= @travel.latitude %></spon>
           <spon id="longitude" style="display: none"><%= @travel.longitude %></spon>
           <%= render "maps/show" %>
-          <p class="ml-3">地図が表示されない場合
+          <p class="ml-3">表示されない場合
           <%= link_to travel_path(@travel.id) do %>
           こちら<i class="fa-solid fa-rotate-right fa-xs"></i>
           <% end %>
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-<div class="col-12 mt-3">
+<div class="col-12">
   <div class="ml-1">
     <% if current_user && @travel.user == current_user %>
       <%= image_tag current_user.get_profile_image, size: '60x60', class: 'rounded-circle' %>
@@ -67,7 +67,7 @@
     </h5>
   </div>
 </div>
-<div class="container">
+<div class="container" style="width: 80%">
 <div class="row">
 <table class="table table-borderless col-12 mt-4">
   <tr>
@@ -115,7 +115,7 @@
 </table>
 </div>
 </div>
-<div class='container'>
+<div class='container' style="width: 80%">
   <div class='row'>
     <div class='col-12'>
       <div class='row'>

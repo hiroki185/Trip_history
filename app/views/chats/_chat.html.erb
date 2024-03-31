@@ -1,7 +1,11 @@
 
-<div class="right-container d-flex justify-content-end">
-  <p id="chat_<%= chat.id %>" style="background-color: rgba(0, 185, 0, 0.6); padding: 5px; border-radius: 10px; "><%= chat.message %></p>
-  <%= button_to chat_path(chat), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger rounded-pill btn-sm ml-2", remote: true, id: "delete_chat_#{chat.id}" do %>
-  削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+<div class="line__balloon_r" id="chat_<%= chat.id %>">
+  <%= image_tag current_user.get_profile_image, size: '70x70', style: 'border-radius: 50%' %>
+  <div class="balloon__content">
+  <p class="line__balloon_text" id="chat_<%= chat.id %>"><%= chat.message %></p>
+  </div>
+      <%= button_to chat_path(chat), method: :delete, class: "btn btn-outline-danger rounded-pill btn-sm mr-1 mt-3", remote: true, id: "delete_chat_#{chat.id}" do %>
+    <i class="fa-solid fa-trash-can"></i>
   <% end %>
 </div>
+

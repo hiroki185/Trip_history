@@ -18,17 +18,10 @@
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 600px;">
   <% travels.each do |travel| %>
-    <div class="mb-3" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+    <div class="mb-3 mx-auto" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
       <div class="row">
-        <div class="col-2">
-          <% if current_user && travel.user == current_user %>
-            <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-          <% else %>
-            <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-          <% end %>
-        </div>
         <h4 class="col">
-          <%= link_to travel.title.length > 10 ? travel.title[0..9] + "..." : travel.title, travel %>
+          <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
         </h4>
       </div>
       <div class="row">
@@ -42,25 +35,35 @@
                 <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
               <% end %>
             </h5>
-           <% if current_admin %>
+            <% if current_admin %>
             <% else %>
-            <div class="col-3" id="favorite_btn_<%= travel.id %>">
-             <%= render "favorites/btn", travel: travel %>
+              <div class="col-3" id="favorite_btn_<%= travel.id %>">
+                <%= render "favorites/btn", travel: travel %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <% if current_user && travel.user == current_user %>
+                <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>&nbsp;&nbsp;<%= travel.user.name %>
+              <% else %>
+                <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>&nbsp;&nbsp;<%= travel.user.name %>
+              <% end %>
+              <div class="triangle"></div>
+              <p class="col rounded" style="background-color: lightgray; padding: 8px">
+                <%= travel.body.truncate(204) %><br>
+                <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </p>
             </div>
-           <% end %>
+            <div class="col-4">
+              <% if travel.image.attached? %>
+                <%= image_tag travel.image, class: "rounded", size: "260x200" %>
+              <% else %>
+                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "260x200" %>
+              <% end %>
+            </div>
           </div>
-          <div class="triangle"></div>
-          <div class="col-12 rounded" style="background-color: lightgray; padding: 8px">
-            <%= travel.body %><br>
-            <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-          </div>
-        </div>
-        <div class="col-4">
-          <% if travel.image.attached? %>
-            <%= image_tag travel.image, class: "rounded", size: "300x200" %>
-          <% else %>
-            <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x200" %>
-          <% end %>
         </div>
       </div>
       <div class="row mt-2">

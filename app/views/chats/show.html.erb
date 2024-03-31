@@ -1,26 +1,39 @@
-<div class='container px-5 px-sm-0'>
-  <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.first_name %> さんとのチャット</h2>
-  <div class='row'>
-    <div class='col-md-3'>
-      <div class="message" style="width: 400px;">
-        <% @chats.each do |chat| %>
-          <% if chat.user_id == current_user.id %>
-            <%= render "chats/chat", chat: chat %>
-          <% else %>
-            <div class="left-container d-flex">
-              <%= image_tag @user.get_profile_image, size: '30x30', style: 'border-radius: 50%' %>
-              <p class=ml-1 style="text-align: left;"><span style="background-color: #F5F5DC; padding: 5px; border-radius: 10px;"><%= chat.message %></span></p>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
+<head>
+  <style>
+    .scrollable {
+      max-height: 500px;
+      overflow-y: scroll;
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+    }
+  </style>
+</head>
 
+<div class='container mt-3' style="width: 80%">
+  <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
+    <%= @user.first_name %> さんとのチャット
+  </h2>
+  <div class='row'>
+    <div class="message col-8 scrollable">
+      <% @chats.each do |chat| %>
+        <% if chat.user_id == current_user.id %>
+          <%= render "chats/chat", chat: chat %>
+        <% else %>
+          <div class="line__balloon_l">
+            <%= image_tag @user.get_profile_image, size: '70x70', style: 'border-radius: 50%' %>
+            <div class="balloon__content">
+              <p class="line__balloon_text"><span><%= chat.message %></span></p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-4">
       <%= form_with model: @chat, data: {remote: true} do |f| %>
         <%= f.text_field :message %>
         <%= f.submit "送信", class: "btn btn-dark btn-sm" %>
         <%= f.hidden_field :room_id %>
       <% end %>
-
     </div>
   </div>
 </div>
