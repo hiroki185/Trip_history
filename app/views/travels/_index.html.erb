@@ -16,70 +16,65 @@
 }
   </style>
 </head>
-<div class="scrollable" style="overflow: auto; max-height: 600px;">
-  <% travels.each do |travel| %>
-    <div class="mb-3 mx-auto" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
-      <div class="row">
-        <h4 class="col">
-          <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
-        </h4>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="row">
-            <h5 class="col-3" id="comment_counter">
-              <%= render "travel_comments/counter", travel: travel %>
-            </h5>
-            <h5 class="col-3">
-              <% if travel.category.present? %>
-                <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
-              <% end %>
-            </h5>
-            <% if current_admin %>
-            <% else %>
-              <div class="col-3" id="favorite_btn_<%= travel.id %>">
-                <%= render "favorites/btn", travel: travel %>
-              </div>
-            <% end %>
-          </div>
+<div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
+  <% travels.each_slice(3) do |travels_slice| %>
+    <div class="container">
+      <div class="row justify-content-start" style="margin-left: 40px;">
 
-          <div class="row">
-            <div class="col">
-              <% if current_user && travel.user == current_user %>
-                <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>&nbsp;&nbsp;<%= travel.user.name %>
-              <% else %>
-                <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>&nbsp;&nbsp;<%= travel.user.name %>
-              <% end %>
-              <div class="triangle"></div>
-              <p class="col rounded" style="background-color: lightgray; padding: 8px">
-                <%= travel.body.truncate(204) %><br>
+        <% travels_slice.each do |travel| %>
+          <div class="mt-4 mr-3 border" style="width: 280px; display: inline-block;">
+            
+            <% if travel.image.attached? %>
+              <%= image_tag travel.image, class: "rounded", size: "280x200" %>
+            <% else %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded", size: "280x200" %>
+            <% end %>
+            
+
+              <h4 class=" text-center">
+                <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
+              </h4>
+              <div style="padding: 0px 20px 20px 20px">
+              <div class="">
+                <% if current_user && travel.user == current_user %>
+                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
+                <% else %>
+                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
+                <% end %>
+              </div>
+              <div class="row">
+                <p class="col" id="comment_counter">
+                  <%= render "travel_comments/counter", travel: travel %>
+                </p>
+                <div class="col" id="favorite_btn_<%= travel.id %>">
+                  <%= render "favorites/btn", travel: travel %>
+                </div>
+              </div>
+
+                <p class="col">
+                  <% if travel.category.present? %>
+                    <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                  <% end %>
+                </p>
+
+              <div class="col">
                 <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-              </p>
-            </div>
-            <div class="col-4">
-              <% if travel.image.attached? %>
-                <%= image_tag travel.image, class: "rounded", size: "260x200" %>
-              <% else %>
-                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "260x200" %>
-              <% end %>
+
+                <% if current_user && travel.user == current_user %>
+                  <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill float-right" do %>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  <% end %>
+                <% end %>
+
+                <% if current_user && travel.user == current_user %>
+                  <%= link_to travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill float-right", "data-confirm" => "本当に削除しますか？" do %>
+                    <i class="fa-solid fa-trash-can"></i>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col">
-          <% if current_user && travel.user == current_user %>
-            <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
-            編集&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>
-            <% end %>
-          <% end %>
-          &nbsp;&nbsp;
-          <% if current_user && travel.user == current_user %>
-            <%= link_to travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
-            削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
-            <% end %>
-          <% end %>
-        </div>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -1,67 +1,74 @@
-<nav class="navbar navbar-expand" style="background-color: #e3f2fd;">
-  <ul class="current nav justify-content-center">
-    <% if user_signed_in? %>
-      <li class="border-radius">
-        <%= link_to notifications_path, class: "" do %>
-          <% if current_user.notifications.where(checked: false).exists? %>
-            <i class="fa-solid fa-bell fa-shake" style="color: #f2ee7d;"></i>
-          <% else %>
-            <i class="fa-sharp fa-solid fa-bell"></i>
+<head>
+    <style>
+      .nav-item{
+        margin : 0px 10px 0px 10px;
+
+      }
+
+.nav-item:hover {
+  text-decoration: underline; /* 下線を表示する */
+}
+    </style>
+  </head>
+<nav class="navbar navbar-expand-lg navbar-light rounded-pill" style="background-color: #afeeee; width: 80%; margin: 0 auto;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+ <div class="collapse navbar-collapse text-center" id="navbarNav">
+    <ul class="navbar-nav mx-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to user_path(current_user), class: "nav-link"  do %>
+            <i class="fas fa-home"></i> 旅人の部屋
           <% end %>
-          通知一覧
-        <% end %>
-      </li>
-      <li class="border-radius">
-        <%= link_to user_path(current_user), class: ""  do %>
-          <i class="fas fa-home"></i> 旅人の部屋
-        <% end %>
-      </li>
-      <li class="border-radius">
-        <%= link_to users_path, class: '' do %>
-          <i class="fas fa-users"></i> 旅人一覧
-        <% end %>
-      </li>
-      <li class="border-radius">
-        <%= link_to travels_path, class: '' do %>
-          <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
-        <% end %>
-      </li>
-      <li class="border-radius">
-        <%= link_to favorites_user_path(current_user), class: '' do %>
-          <i class="fa-solid fa-thumbs-up"></i> いいねした旅
-        <% end %>
-      </li>
-      <li class="border-radius">
-        <%= link_to destroy_user_session_path, method: :delete, class: '' do %>
-          <i class="fas fa-sign-out-alt"></i> ログアウト
-        <% end %>
-      </li>
-    <% elsif admin_signed_in? %>
-      <li>
-        <%= link_to "投稿一覧", admin_travels_path %>
-      </li>
-      <li>
-        <%= link_to "ユーザー一覧", admin_users_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to root_path, class: '' do %>
-          <i class="fas fa-home"></i> トップページ
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_user_registration_path, class: '' do %>
-          <i class="fas fa-user-plus"></i> 新規登録
-        <% end %>
-      </li>
-      <li>
-        <%= link_to new_user_session_path, class: '' do %>
-          <i class="fas fa-sign-in-alt"></i> ログイン
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+        </li>
+        <li class="nav-item">
+          <%= link_to users_path, class: 'nav-link' do %>
+            <i class="fas fa-users"></i> 旅人一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to travels_path, class: 'nav-link' do %>
+            <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to favorites_user_path(current_user), class: 'nav-link' do %>
+            <i class="fa-solid fa-thumbs-up"></i> いいねした旅
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
+            <i class="fas fa-sign-out-alt"></i> ログアウト
+          <% end %>
+        </li>
+      <% elsif admin_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "投稿一覧", admin_travels_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to root_path, class: 'nav-link' do %>
+            <i class="fas fa-home"></i> トップページ
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_registration_path, class: 'nav-link' do %>
+            <i class="fas fa-user-plus"></i> 新規登録
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_user_session_path, class: 'nav-link' do %>
+            <i class="fas fa-sign-in-alt"></i> ログイン
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </nav>

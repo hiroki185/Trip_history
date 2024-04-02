@@ -16,7 +16,7 @@ before_action :authenticate_user!
     if @travel.save
       redirect_to travel_path(@travel), notice: "You have created book successfully."
     else
-      @travels = Travel.all.page(params[:page]).per(5)
+      @travels = Travel.all.page(params[:page]).per(12)
       @user = current_user
       render :new
     end
@@ -32,21 +32,21 @@ before_action :authenticate_user!
   end
 
   def search
-    @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(5)
+    @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(12)
   end
 
   def index
     @user = current_user
     @travel = Travel.new
     if params[:latest]
-      @travels = Travel.latest.page(params[:page]).per(6)
+      @travels = Travel.latest.page(params[:page]).per(12)
     elsif params[:old]
-      @travels = Travel.old.page(params[:page]).per(6)
+      @travels = Travel.old.page(params[:page]).per(12)
     elsif params[:favorite]
       @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-     @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(6)
+     @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(12)
     else
-      @travels = Travel.all.page(params[:page]).per(6)
+      @travels = Travel.all.page(params[:page]).per(12)
     end
   end
 

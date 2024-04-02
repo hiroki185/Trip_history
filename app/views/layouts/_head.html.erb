@@ -1,23 +1,32 @@
-<div class="navbar center-align" style="background-color: #008b8b; height: 75px; display: flex; flex-direction: row;">
-  <% if user_signed_in? %>
-    <div class="center-align">
-      <%= link_to edit_user_path(current_user) do %>
-        <%= image_tag current_user.get_profile_image, size:'40x40',class: "rounded-circle" %>
-      <% end %>
-    </div>
-  <% end %>
+ <head>
+   <style>
+     .navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.center-align {
+  /* 真ん中に配置するためのスタイル定義 */
+}
+
+.centered-logo {
+  margin-left: auto;
+  margin-right: auto;
+}
+   </style>
+ </head>
+
+<div class="navbar center-align" style="background-color: #008b8b;">
 
   <%= link_to root_path do %>
     <%= image_tag 'Trip_history - MarkMaker Logo.png', width:"200", height:"100%", class: "centered-logo" %>
   <% end %>
 
+
   <% if user_signed_in? %>
-    <div class="navbar right-align-item">
-      <%= form_with(url: search_travels_path, local: true, method: :get ) do |form| %>
-        <%= form.text_field :keyword, placeholder: "投稿を検索する", class: "form-group" %>
-        <%= form.submit "検索",class: 'btn-outline-success rounded-pill mt-3' %>
-      <% end %>
-    </div>
+<%= render 'layouts/nav' %>
   <% elsif admin_signed_in? %>
     <div class="navbar right-align-item">
       <%= form_with(url: admin_search_path, local: true, method: :get ) do |form| %>

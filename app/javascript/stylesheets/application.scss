@@ -1,56 +1,19 @@
 @use '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
+
+#app-container {
+  transform: scale(0.95) !important;
+}
 .zen-kurenaido-regular {
   font-family: "Zen Kurenaido", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
-nav {
-  border-bottom: 5px solid #b0c4de;
-  position: relative;
-
-  ul {
-    left: 10%;
-    display: table;
-    margin: 0 auto;
-    padding: 0;
-    width: 80%;
-    text-align: center;
-
-    li {
-  display: table-cell;
-  min-width: 50px;
-  width: calc(100% / 8); /* 幅を均等に分割 */
 
 
-      a {
-        display: block;
-        height: 100%;
-        padding: 10px 0;
-        text-decoration: none;
-        color: #aaa;
-
-        &:hover {
-          color: #0089BB;
-          background-color: #e0ffff;
-        }
-      }
-
-      &.current {
-        font-weight: bold;
-        border-top: 5px solid #00B0F0;
-
-        a {
-          color: #00B0F0;
-
-          &:hover {
-            background-color: #e0ffff;
-          }
-        }
-      }
-    }
-  }
+.pagination {
+  justify-content: center;
 }
 
 body {
@@ -60,28 +23,6 @@ body {
 #map {
   width: 100%;
   height: 300px;
-}
-
-.navbar {
-  display: flex;
-  justify-content: center; /* 水平方向（横方向）に中央寄せ */
-  align-items: center; /* 垂直方向（縦方向）に中央寄せ */
-
-  .center-align {
-    height: auto; /* 高さを要素の高さに自動調整 */
-  }
-}
-
-.centered-logo {
-  margin: 0 auto; /* 横方向に中央寄せ */
-}
-
-.right-align-item {
-  margin-left: auto; /* 自動的に左側に余白を作成 */
-}
-
-.pagination {
-  justify-content: center;
 }
 
 
@@ -168,3 +109,4 @@ body {
   box-shadow: inset 3px -15px 0 -5px #98fb98;/* rgb(133,226,73)は右吹き出し背景色と同色 */
   border-radius: 0 40px 40px 0;
 }
+

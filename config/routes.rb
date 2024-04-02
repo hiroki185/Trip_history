@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+  
 #通知機能のルート
   scope module: :public do
     resources :notifications, only: [:index, :destroy]
@@ -76,7 +77,7 @@ end
 #rails db:migrate:reset
 #cd Trip_history
 #rails routes
-#ssh -i ~/.ssh/practice-aws2.pem ec2-user@3.115.5.219
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@18.183.124.132
 #rails s -e production
 #kill $(cat tmp/pids/puma.pid)
 #bundle exec rails assets:precompile RAILS_ENV=production

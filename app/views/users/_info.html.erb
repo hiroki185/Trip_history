@@ -10,20 +10,14 @@
   </style>
 </head>
   <div id="container" class="parent-container">
-    <%= image_tag user.get_profile_image, class: "rounded-circle mt-3", size:'200x200' %>
+    <%= image_tag user.get_profile_image, class: "rounded-circle mt-3 mr-1", size:'150x150' %>
     <h4 class="text-align: center; mt-3">
       <%= user.name.truncate(7) %>
     </h4>
-    <table class="table table-borderless">
-  <tr>
-    <th>
+   <div class="col ml-3">
       <%= link_to "フォロー一覧", user_followings_path(user), class: "btn btn-outline-success rounded-pill" %>
-    </th>
-  </tr>
-  <tr>
-    <th>
+&nbsp;&nbsp;
       <%= link_to "フォロワー一覧", user_followers_path(user), class: "btn btn-outline-success rounded-pill" %>
-    </th>
-  </tr>
-</table>
+   </div>
+
 </div>

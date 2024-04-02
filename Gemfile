@@ -70,3 +70,6 @@ gem 'geocoder'
 group :development do
   gem "rails-erd"
 end
+
+
+
