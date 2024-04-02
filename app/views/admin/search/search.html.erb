@@ -10,57 +10,63 @@
 </head>
 <div class='container'>
   <% if @travels.present? %>
-  <div class="scrollable" style="overflow: auto; max-height: 600px;">
-    <% @travels.each do |travel| %>
-      <div class="mb-3" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
-        <div class="row">
-          <div class="col-2">
-            <% if current_user && travel.user == current_user %>
-              <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-            <% else %>
-              <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-            <% end %>
-          </div>
-          <h4 class="col">
-            <%= link_to travel.title.length > 10 ? travel.title[0..9] + "..." : travel.title, admin_travel_path(travel) %>
-          </h4>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="row">
-              <h5 class="col-3" id="comment_counter">
-                <%= render "travel_comments/counter", travel: travel %>
-              </h5>
-              <h5 class="col-3">
-                <% if travel.category.present? %>
-                  <%= travel.category %>
-                <% end %>
-              </h5>
-            </div>
-            <div class="col-12 rounded" style="background-color: lightgray">
-              <%= travel.body %> <br>
-              <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-            </div>
-          </div>
-          <div class="col-4">
+<div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
+  <h3 class="text-center">投稿一覧</h3>
+  <% @travels.each_slice(3) do |travels_slice| %>
+    <div class="container">
+      <div class="row justify-content-start" style="margin-left: 105px;">
+
+        <% travels_slice.each do |travel| %>
+          <div class="mt-4 mr-3 border" style="width: 280px; display: inline-block;">
+
             <% if travel.image.attached? %>
-              <%= image_tag travel.image, class: "", size: "300x200" %>
+              <%= image_tag travel.image, class: "rounded", size: "280x200" %>
             <% else %>
-              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded-circle", size: "300x200" %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded", size: "280x200" %>
             <% end %>
+
+
+              <h4 class=" text-center">
+                <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, admin_travel_path(travel) %>
+              </h4>
+              <div style="padding: 0px 20px 0px 20px">
+              <div class="">
+                <% if current_user && travel.user == current_user %>
+                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
+                <% else %>
+                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
+                <% end %>
+              </div>
+              <div class="row">
+                <p class="col" id="comment_counter">
+                  <%= render "travel_comments/counter", travel: travel %>
+                </p>
+              </div>
+
+                <p class="col">
+                  <% if travel.category.present? %>
+                    <%= travel.category %>
+                  <% end %>
+                </p>
+
+              <div class="col">
+                <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+
+            <%= link_to edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+
+            <%= link_to admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
+            <i class="fa-solid fa-trash-can"></i>
+            <% end %>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="row mt-2">
-          <div class="col-1">
-            <%= link_to "編集", edit_admin_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill" %>
-          </div>
-          <div class="col">
-            <%= link_to "削除", admin_travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill" %>
-         </div>
-       </div>
-     </div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-  <%= paginate @travels %>
+<%= paginate @travels %>
   <% else %>
          <table class="table table-borderless">
     <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">

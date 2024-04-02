@@ -24,7 +24,7 @@
     }
   </style>
 </head>
-<div class='container'>
+<div class='container'style="width: 80%">
   <div class='row mt-3'>
     <div class='col-12'>
       <div class='row'>
@@ -33,9 +33,9 @@
       </div>
       <div class='row'>
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded ml-4", size: "500x350" %>
+          <%= image_tag @travel.image, class: "rounded ml-4", size: "400x350" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded  ml-4", size: "500x350" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded  ml-4", size: "400x350" %>
         <% end %>
         <div class="col">
          <h5 class="break-text" style="background-color: lightgray;"><%= @travel.body %></h5>

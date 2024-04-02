@@ -29,8 +29,6 @@
             <% else %>
               <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded", size: "280x200" %>
             <% end %>
-            
-
               <h4 class=" text-center">
                 <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
               </h4>
@@ -50,16 +48,13 @@
                   <%= render "favorites/btn", travel: travel %>
                 </div>
               </div>
-
                 <p class="col">
                   <% if travel.category.present? %>
                     <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
                   <% end %>
                 </p>
-
               <div class="col">
                 <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-
                 <% if current_user && travel.user == current_user %>
                   <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill float-right" do %>
                     <i class="fa-solid fa-pen-to-square"></i>

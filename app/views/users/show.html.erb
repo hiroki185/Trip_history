@@ -12,25 +12,24 @@
           <% end %>
         <% end %>
         &nbsp;&nbsp;
-              <% if current_user && @user.name == current_user.name %>
-        <%= link_to edit_user_path(current_user), method: :get, class: "btn btn-outline-success rounded-pill" do %>
-        <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
+        <% if current_user && @user.name == current_user.name %>
+          <%= link_to edit_user_path(current_user), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+          <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
+          <% end %>
         <% end %>
-      <% end %>
       </h4>
-      
       <p class="rounded">
-      <%= @user.body %>
+        <%= @user.body %>
       </p>
     </div>
   </div>
   <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
     <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
     <div class="col">
-            <%= link_to new_travel_path, class: 'btn btn-outline-success rounded-pill' do %>
-        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
-        <% end %>
-        </div>
+      <%= link_to new_travel_path, class: 'btn btn-outline-success rounded-pill' do %>
+      <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
+      <% end %>
+    </div>
   </div>
   <%= render 'travels/index', travels: @travels %>
   <%= paginate @travels %>
