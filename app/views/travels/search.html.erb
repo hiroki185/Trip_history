@@ -7,23 +7,7 @@
 </form>
 </div>
 
-<div class="dropdown mt-3">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    並び替え
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-    <button class="dropdown-item" type="button"><%= link_to '新しい順', { latest: true } %></button>
-    <button class="dropdown-item" type="button"><%= link_to '古い順', { old: true } %></button>
-    <button class="dropdown-item" type="button"><%= link_to 'いいね順', { favorite: true } %></button>
-  </div>
-<script>
-  $(document).ready(function() {
-  $('.dropdown-item').click(function() {
-    var link = $(this).children('a').attr('href');
-    window.location.href = link;
-  });
-});
-</script>
+
   <%= render 'index', travels: @travels_searches %>
     <%= paginate @travels_searches %>
 </div>
