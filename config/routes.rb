@@ -40,10 +40,12 @@ Rails.application.routes.draw do
   resources :travels do
     resources :travel_comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
+    delete :destroy_all, on: :collection
     collection do
       get "search"
     end
   end
+  
 
 #ゲストユーザーのルート
   devise_scope :user do
@@ -77,7 +79,7 @@ end
 #rails db:migrate:reset
 #cd Trip_history
 #rails routes
-#ssh -i ~/.ssh/practice-aws2.pem ec2-user@18.183.124.132
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.78.177.241
 #rails s -e production
 #kill $(cat tmp/pids/puma.pid)
 #bundle exec rails assets:precompile RAILS_ENV=production

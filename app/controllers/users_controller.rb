@@ -6,7 +6,7 @@ before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
-    @travels = @user.travels.page(params[:page]).per(6)
+    @travels = @user.travels.page(params[:page]).per(12)
     @travel = Travel.new
   end
 
@@ -16,7 +16,7 @@ before_action :authenticate_user!
   end
 
   def index
-    @users = User.all.page(params[:page]).per(10)
+    @users = User.all.page(params[:page]).per(12)
     @user = current_user
   end
 
@@ -38,14 +38,14 @@ before_action :authenticate_user!
 
   def favorites
     if params[:latest]
-      @favorite_travels = current_user.favorite_travels.latest.page(params[:page]).per(6)
+      @favorite_travels = current_user.favorite_travels.latest.page(params[:page]).per(12)
     elsif params[:old]
-      @favorite_travels = current_user.favorite_travels.old.page(params[:page]).per(6)
+      @favorite_travels = current_user.favorite_travels.old.page(params[:page]).per(12)
     elsif params[:favorite]
       @favorite_travels = current_user.favorite_travels.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-      @favorite_travels = Kaminari.paginate_array(@favorite_travels).page(params[:page]).per(6)
+      @favorite_travels = Kaminari.paginate_array(@favorite_travels).page(params[:page]).per(12)
     else
-      @favorite_travels = current_user.favorite_travels.page(params[:page]).per(6)
+      @favorite_travels = current_user.favorite_travels.page(params[:page]).per(12)
     end
   end
 
