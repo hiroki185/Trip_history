@@ -19,6 +19,7 @@
   border-right: 15px solid transparent;
   border-bottom: 15px solid lightgray;
 }
+
   </style>
 </head>
 <div class='container' style="width: 80%">
@@ -29,11 +30,20 @@
         <h3 class="col mr-5">周辺の地図</h3>
       </div>
       <div class='row'>
+
+        <div class="">
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded ml-4", size: "400x300" %>
+          <%= image_tag @travel.image, class: "rounded", size: "400x300" %>
         <% else %>
           <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded ml-4", size: "400x300" %>
         <% end %>
+       <div class="tag-box">
+         <% @travel.tags.each do |tag| %>
+          <span class="label"><%= tag.name %></span>
+         <% end %>
+       </div>
+       </div>
+
         <div class="col">
           <spon id="latitude" style="display: none"><%= @travel.latitude %></spon>
           <spon id="longitude" style="display: none"><%= @travel.longitude %></spon>

@@ -1,5 +1,5 @@
 class TravelsController < ApplicationController
-before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :is_matching_login_user, only: [:edit, :update]
   def show
     @travel = Travel.find(params[:id])
@@ -13,7 +13,11 @@ before_action :authenticate_user!
   def create
     @travel = Travel.new(travel_params)
     @travel.user_id = current_user.id
+    tags = Vision.get_image_data(travel_params[:image])
     if @travel.save
+      tags.each do |tag|
+        @travel.tags.create(name: tag)
+      end
       redirect_to travel_path(@travel), notice: "You have created book successfully."
     else
       @travels = Travel.all.page(params[:page]).per(12)

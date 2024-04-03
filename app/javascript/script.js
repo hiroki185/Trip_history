@@ -1,4 +1,4 @@
-$(document).ready(function() {
+  $(document).ready(function() {
   let swiper = new Swiper('.swiper', {
     centeredSlides: true,
     loop: true,
@@ -18,4 +18,3 @@ $(document).ready(function() {
     },
   });
 });
-

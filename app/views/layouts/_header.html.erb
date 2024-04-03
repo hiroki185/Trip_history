@@ -1,74 +1,37 @@
 <head>
-    <style>
-      .nav-item{
-        margin : 0px 10px 0px 10px;
+  <style>
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70px;
+    }
 
-      }
+    .center-align {
+      /* 真ん中に配置するためのスタイル定義 */
+    }
 
-.nav-item:hover {
-  text-decoration: underline; /* 下線を表示する */
-}
-    </style>
-  </head>
-<nav class="navbar navbar-expand-lg navbar-light rounded-pill" style="background-color: #afeeee; width: 80%; margin: 0 auto;">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- <div class="collapse navbar-collapse text-center" id="navbarNav">
-    <ul class="navbar-nav mx-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to user_path(current_user), class: "nav-link"  do %>
-            <i class="fas fa-home"></i> 旅人の部屋
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to users_path, class: 'nav-link' do %>
-            <i class="fas fa-users"></i> 旅人一覧
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to travels_path, class: 'nav-link' do %>
-            <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to favorites_user_path(current_user), class: 'nav-link' do %>
-            <i class="fa-solid fa-thumbs-up"></i> いいねした旅
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link' do %>
-            <i class="fas fa-sign-out-alt"></i> ログアウト
-          <% end %>
-        </li>
-      <% elsif admin_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "投稿一覧", admin_travels_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ユーザー一覧", admin_users_path, class: 'nav-link' %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link' %>
-        </li>
-      <% else %>
-        <li class="nav-item">
-          <%= link_to root_path, class: 'nav-link' do %>
-            <i class="fas fa-home"></i> トップページ
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_user_registration_path, class: 'nav-link' do %>
-            <i class="fas fa-user-plus"></i> 新規登録
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= link_to new_user_session_path, class: 'nav-link' do %>
-            <i class="fas fa-sign-in-alt"></i> ログイン
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</nav>
+    .centered-logo {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<div class="navbar center-align" style="background-color: #008b8b;">
+
+  <%= link_to root_path do %>
+    <%= image_tag 'Trip_history - MarkMaker Logo.png', width:"200", height:"100%", class: "centered-logo" %>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= render 'layouts/nav' %>
+  <% elsif admin_signed_in? %>
+    <div class="navbar right-align-item">
+      <form class="form-inline my-2 my-lg-0" action="<%= admin_search_path %>" method="get">
+        <input class="form-control mr-sm-2 rounded-pill" type="search" name="keyword" placeholder="キーワードを入力" aria-label="Search">
+        <button class="btn btn-light rounded-pill mr-3" type="submit">検索</button>
+      </form>
+    </div>
+  <% end %>
+</div>

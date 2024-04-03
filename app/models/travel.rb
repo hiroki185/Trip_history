@@ -11,6 +11,7 @@ class Travel < ApplicationRecord
   has_one :notification, as: :subject, dependent: :destroy
   
   #画像を扱う
+  has_many :tags, dependent: :destroy
   has_one_attached :image
   
 #地図機能の記述
