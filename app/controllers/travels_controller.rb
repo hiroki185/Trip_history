@@ -16,10 +16,14 @@ class TravelsController < ApplicationController
   def create
     @travel = Travel.new(travel_params)
     @travel.user_id = current_user.id
-    tags = Vision.get_image_data(travel_params[:image])
+    if travel_params[:image].present?
+      tags = Vision.get_image_data(travel_params[:image])
+    end
     if @travel.save
-      tags.each do |tag|
-        @travel.tags.create(name: tag)
+      if travel_params[:image].present?
+        tags.each do |tag|
+          @travel.tags.create(name: tag)
+        end
       end
       redirect_to travel_path(@travel), notice: "You have created book successfully."
     else
@@ -31,7 +35,16 @@ class TravelsController < ApplicationController
 
   def update
     @travel = Travel.find(params[:id])
+    if travel_params[:image].present?
+      tags = Vision.get_image_data(travel_params[:image])
+    end
     if @travel.update(travel_params)
+      if travel_params[:image].present?
+        @travel.tags.destroy_all
+        tags.each do |tag|
+          @travel.tags.create(name: tag)
+        end
+      end
       redirect_to @travel, notice: "編集が完了しました。"
     else
       render :edit
@@ -80,7 +93,7 @@ class TravelsController < ApplicationController
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end
-  
+
   def is_matching_login_user
     @travel = Travel.find(params[:id])
     return if @travel.present?
