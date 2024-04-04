@@ -8,7 +8,7 @@
       <th>メールアドレス</th>
       <th>投稿総数</th>
       <th>フォロワー総数</th>
-      <th>退会処理</th>
+      <th>会員ステータス</th>
     </tr>
     <% @users.each do |user| %>
       <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
@@ -18,9 +18,7 @@
         <td><%= user.email %></td>
         <td>投稿数： <%= user.travels.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
-        <td>
-          <%= link_to "退会させる", admin_user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger btn-sm" %>
-        </td>
+        <td><%= user.user_status %></td>
       </tr>
     <% end %>
   </table>

@@ -57,6 +57,22 @@ class User < ApplicationRecord
   scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
   scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }
+  
+  def full_name
+    last_name + '' + first_name
+  end
+  
+  def full_name_kana
+    last_name_kana + '' + first_name_kana
+  end
+  
+  def user_status
+    if is_deleted == true
+      "退会"
+    else
+      "有効"
+    end
+  end
 
   def favorite_travels
     Travel.joins(:favorites).where(favorites: { user_id: self.id })

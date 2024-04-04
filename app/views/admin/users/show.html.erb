@@ -21,6 +21,10 @@
     <td class="col-md-5">フォロワー数</td>
     <td class="col-md-5"><%= @user.followers.count %></td>
  </tr>
+ <tr>
+   <td class="col-md-5">会員ステータス</td>
+   <td class="col-md-5"><%= @user.user_status %></td>
+ </tr>
 </table>
-  <%= link_to "退会させる", admin_user_path(@user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<%= link_to "編集する", edit_admin_user_path, class:"btn btn-success" %>
 </div>
