@@ -6,7 +6,7 @@ before_action :authenticate_admin!
   end
 
   def index
-    @travels = Travel.all.page(params[:page]).per(10)
+    @travels = Travel.all.page(params[:page]).per(12)
   end
 
   def edit

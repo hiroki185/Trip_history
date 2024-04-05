@@ -2,15 +2,46 @@
     <style>
       .nav-item{
         margin : 0px 10px 0px 10px;
-
       }
 
-.nav-item:hover {
-  text-decoration: underline; /* 下線を表示する */
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 45px;
+  width: 200px;
+  padding: 20px 0;
+  border-radius: 6px;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    to right,
+    #a48c61 0%,
+    #a48c61 50%,
+    #eee8aa 50%,
+    #eee8aa 100%
+  );
+  box-shadow: 0 3px 10px rgb(0 0 0 / 16%);
+  transition: background-position ease 0.4s;
+  text-align: center;
+  color: #778899;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 17px;
 }
+
+.nav-link:hover {
+  background-position: 0 0;
+  text-decoration: none;
+  color: #fff;
+}
+
     </style>
   </head>
-<nav class="navbar navbar-expand-lg navbar-light rounded-pill" style="background-color: #afeeee; width: 80%; margin: 0 auto;">
+<nav class="navbar navbar-expand-lg" style="width: 80%; margin: 0 auto;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

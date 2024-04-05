@@ -22,7 +22,7 @@
       <div class="row justify-content-start" style="margin-left: 40px;">
 
         <% travels_slice.each do |travel| %>
-          <div class="mt-4 mr-3 border" style="width: 280px; display: inline-block; background-color: #f0fff0;">
+          <div class="mt-4 mr-3 border" style="width: 280px; display: inline-block; background-color: #f0fff0;" id="app-container">
 
             <% if travel.image.attached? %>
               <%= image_tag travel.image, class: "rounded", size: "280x200" %>

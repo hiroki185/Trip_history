@@ -22,3 +22,4 @@ function initSwiper() {
 $(document).on('turbolinks:load', function() {
   initSwiper();
 });
+

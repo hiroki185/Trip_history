@@ -1,3 +1,77 @@
+<head>
+  <style>
+.loading {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading.is-active {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-animation {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: #20a3ea;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-animation.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+  </style>
+</head>
+
+<div class="loading">
+  <div class="loading-animation"> <img src="https://web-creates.com/wp/wp-content/uploads/2021/06/logo.png" alt="ロゴ"> </div>
+</div>
+
+<script>
+$(function () {
+  var webStorage = function () {
+    if (sessionStorage.getItem('access')) {
+      /*
+        2回目以降アクセス時の処理
+      */
+      $(".loading").addClass('is-active');
+    } else {
+      /*
+        初回アクセス時の処理
+      */
+      sessionStorage.setItem('access', 'true'); // sessionStorageにデータを保存
+      $(".loading-animation").addClass('is-active'); // loadingアニメーションを表示
+      setTimeout(function () {
+        // ローディングを数秒後に非表示にする
+        $(".loading").addClass('is-active');
+        $(".loading-animation").removeClass('is-active');
+      }, 3000); // ローディングを表示する時間
+    }
+  }
+  // ログアウト時にsessionStorageの"access"キーを削除
+  var logout = function () {
+    sessionStorage.removeItem('access');
+  }
+  webStorage();
+  logout();
+});
+</script>
 <div class='container' style="width: 90%">
   <div class="row mt-3">
     <div class="col">
