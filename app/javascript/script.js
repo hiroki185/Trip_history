@@ -1,4 +1,4 @@
-  $(document).ready(function() {
+function initSwiper() {
   let swiper = new Swiper('.swiper', {
     centeredSlides: true,
     loop: true,
@@ -17,4 +17,8 @@
       prevEl: ".swiper-button-prev",
     },
   });
+}
+
+$(document).on('turbolinks:load', function() {
+  initSwiper();
 });
