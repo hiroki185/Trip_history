@@ -1,46 +1,73 @@
 <head>
   <style>
-.loading {
-  width: 100vw;
-  height: 100vh;
-  transition: all 1s;
-  background-color: #FFF;
-  position: fixed;
-  top: 0;
+.animation{
+  width:100%;
+  height:300px;
+  position:fixed;
+  bottom:0;
+  right:0;
+  transform: translateX(calc(20% + 10px));
+}
+/*フォント*/
+.bound span{
+  font-family: Consolas, 'Courier New', Courier, Monaco, monospace;
+  position: absolute;
   left: 0;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
+  right: 0;
+  top:0;
+  bottom: 0px;
+  margin: auto;
+  font-size:5em;
+  font-weight:bold;
+  color:#0091EA;
+  text-align:center;
+  width:100px;
+  height:100px;
 }
 
-.loading.is-active {
-  opacity: 0;
-  visibility: hidden;
-}
 
-.loading-animation {
-  width: 100vw;
-  height: 100vh;
-  transition: all 1s;
-  background-color: #20a3ea;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-}
+/*アニメーション指定
+文字数に合わせてleftや開始時間（2つ目のs）を設定する*/
+.bound span:nth-child(1){ left:-4.2em; animation: bound-anim 0.8s 0.0s infinite;}
+.bound span:nth-child(2){ left:-2.8em; animation: bound-anim 0.8s 0.1s infinite;}
+.bound span:nth-child(3){ left:-1.4em; animation: bound-anim 0.8s 0.2s infinite;}
 
-.loading-animation.is-active {
-  opacity: 1;
-  visibility: visible;
-}
+.bound span:nth-child(4){ left: 0.0em; animation: bound-anim 0.8s 0.3s infinite;}
 
+.bound span:nth-child(5){ left: 1.4em; animation: bound-anim 0.8s 0.4s infinite;}
+
+.bound span:nth-child(6){ left: 2.8em; animation: bound-anim 0.8s 0.5s infinite;}
+
+.bound span:nth-child(7){ left: 4.2em; animation: bound-anim 0.8s 0.6s infinite;}
+
+.bound span:nth-child(8){ left: 6.0em; animation: bound-anim 0.8s 0.7s infinite;}
+/*アニメーションキーフレーム
+小さいフォントサイズの場合はtopの数値も縮小すると飛び過ぎない*/
+@keyframes bound-anim {
+  0%,100% {top: 0;transform: scale(1);}
+  30% {top: -25%;}
+  50% {transform: scale(1);}
+  90% {top: 0;transform: scale(1.2,0.8);}
+}
   </style>
 </head>
 
 <div class="loading">
-  <div class="loading-animation"> <img src="https://web-creates.com/wp/wp-content/uploads/2021/06/logo.png" alt="ロゴ"> </div>
+  <div class="loading-animation">テスト</div>
+  <div class="container animation">
+  <p class="bound">
+    <span>l</span>
+    <span>o</span>
+    <span>a</span>
+    <span>d</span>
+    <span>i</span>
+    <span>n</span>
+    <span>g</span>
+    <span>
+    <i class="fa-solid fa-suitcase-rolling"></i>
+    </span>
+  </p>
+</div>
 </div>
 
 <script>
@@ -72,7 +99,10 @@ $(function () {
   logout();
 });
 </script>
-<div class='container' style="width: 90%">
+
+
+
+<div class='container main-content' style="width: 90%">
   <div class="row mt-3">
     <div class="col">
       <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>

@@ -21,24 +21,28 @@
 
 .scale:hover {
   box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.2);
-  transform: translateY(-15px) scale(1);
+  transform: scale(1.1);
+}
+
+.img{
+  border-radius: 40px 40px 0px 0px;
 }
   </style>
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
   <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
-      <div class="row justify-content-start" style="margin-left: 40px;">
+      <div class="row justify-content-start" style="margin-left: 70px;">
 
         <% travels_slice.each do |travel| %>
-          <div class="mt-4 mr-3 border scale" style="width: 280px; display: inline-block; background-color: #f0fff0;">
+          <div class="mt-4 mr-5 mb-4 border scale" style="width: 240px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
 
             <% if travel.image.attached? %>
-              <%= image_tag travel.image, class: "rounded", size: "280x200" %>
+              <%= image_tag travel.image, class: "img", size: "240x150" %>
             <% else %>
-              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded", size: "280x200" %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "240x150" %>
             <% end %>
-              <h4 class=" text-center">
+              <h4 class="text-center">
                 <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
               </h4>
               <div style="padding: 0px 20px 20px 20px">
@@ -50,20 +54,20 @@
                 <% end %>
               </div>
               <div class="row">
-                <p class="col" id="comment_counter">
+                <p class="col-8" id="comment_counter">
                   <%= render "travel_comments/counter", travel: travel %>
                 </p>
-                <div class="col" id="favorite_btn_<%= travel.id %>">
+                <div class="col-4" id="favorite_btn_<%= travel.id %>">
                   <%= render "favorites/btn", travel: travel %>
                 </div>
               </div>
+              <div class="row">
                 <p class="col">
                   <% if travel.category.present? %>
                     <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
                   <% end %>
                 </p>
               <div class="col">
-                <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
                 <% if current_user && travel.user == current_user %>
                   <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill float-right" do %>
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -76,6 +80,8 @@
                   <% end %>
                 <% end %>
               </div>
+              </div>
+              <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
             </div>
           </div>
         <% end %>

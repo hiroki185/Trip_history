@@ -1,0 +1,115 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap");
+@use '~bootstrap/scss/bootstrap';
+#app-container {
+  transform: scale(0.95) !important; }
+
+.zen-kurenaido-regular {
+  font-family: "Zen Kurenaido", sans-serif;
+  font-weight: 400;
+  font-style: normal; }
+
+.pagination {
+  justify-content: center; }
+
+body {
+  background-color: #f0ffff; }
+
+#map {
+  width: 380px;
+  height: 300px;
+  border-radius: 30px 30px 30px 30px; }
+
+.line__balloon_l,
+.line__balloon_r {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px 0; }
+
+.line__balloon_r {
+  flex-direction: row-reverse; }
+
+.line__balloon_img {
+  flex-shrink: 0;
+  position: relative;
+  width: 15%;
+  max-width: 70px;
+  border-radius: 50%;
+  border: 1px solid #c8c8c8;
+  background: white;
+  /* アイコン背景色不要ならこの一行削除(PNG画像に配慮) */ }
+
+.line__balloon_img::before {
+  content: "";
+  display: block;
+  padding-top: 100%; }
+
+/* W150 H150 程度の正方形を推奨 */
+.line__balloon_img img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; }
+
+.line__balloon_l .balloon__content {
+  margin: 0 0 0 10px; }
+
+.line__balloon_r .balloon__content {
+  margin: 0 10px 0 0; }
+
+.line__balloon_name {
+  margin: 0 0 -.6em;
+  color: #505050;
+  font-weight: bold;
+  font-size: 13px;
+  /* 名前フォントサイズ */ }
+
+.line__balloon_r .line__balloon_name {
+  text-align: right; }
+
+.line__balloon_text {
+  position: relative;
+  max-width: 500px;
+  /* 最大横幅 不要ならこの一行削除 */
+  margin: .6em 0 0 0 !important;
+  padding: .6em 1em;
+  border-radius: 25px;
+  color: black;
+  /* 吹き出し テキスト色 */
+  font-size: 16px;
+  /* テキストフォントサイズ */ }
+
+.line__balloon_l .line__balloon_text {
+  background: #98fb98;
+  /* 右吹き出し 背景色 */ }
+
+.line__balloon_r .line__balloon_text {
+  background: #98fb98;
+  /* 左吹き出し 背景色 */ }
+
+.line__balloon_text::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 35px;
+  width: 18px;
+  background: 0 0;
+  border: 0;
+  top: -20px; }
+
+.line__balloon_l .line__balloon_text::before {
+  left: -8px;
+  box-shadow: inset -3px -15px 0 -5px #98fb98;
+  /* rgb(245,245,245)は左吹き出し背景色と同色 */
+  border-radius: 40px 0 0 40px; }
+
+.line__balloon_r .line__balloon_text::before {
+  right: -8px;
+  box-shadow: inset 3px -15px 0 -5px #98fb98;
+  /* rgb(133,226,73)は右吹き出し背景色と同色 */
+  border-radius: 0 40px 40px 0; }
+
+/*# sourceMappingURL=application.css.map */

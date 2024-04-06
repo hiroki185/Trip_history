@@ -12,30 +12,36 @@
     .table-borderless td, .table-borderless th {
       border-bottom: 1px solid #dee2e6;
     }
-.triangle{
-  width: 10px;
-  height: 10px;
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid lightgray;
-}
+
+    .triangle {
+      width: 10px;
+      height: 10px;
+      border-left: 25px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 20px solid lightgray;
+    }
+
+    .img {
+      border-radius: 30px 30px 30px 30px;
+    }
 
   </style>
 </head>
-<div class='container' style="width: 80%">
+
+<div class='container' style="width: 75%;">
   <div class='row mt-3'>
     <div class='col-12'>
       <div class='row'>
         <h3 class="col ml-3"><%= @travel.title %></h3>
-        <h3 class="col mr-5">周辺の地図</h3>
+        <h3 class="col mr-6">周辺の地図</h3>
       </div>
       <div class='row'>
 
-        <div class="">
+        <div class="col-6">
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded", size: "400x300" %>
+          <%= image_tag @travel.image, class: "img", size: "380x300" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded ml-4", size: "400x300" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "380x300" %>
         <% end %>
        <div class="tag-box">
          <% @travel.tags.each do |tag| %>
@@ -43,20 +49,22 @@
          <% end %>
        </div>
        </div>
-
-        <div class="col">
+        <div class="col-6">
           <spon id="latitude" style="display: none"><%= @travel.latitude %></spon>
           <spon id="longitude" style="display: none"><%= @travel.longitude %></spon>
           <%= render "maps/show" %>
-          <p class="ml-3">表示されない場合
+          <p class="ml-3">表示されない場合は
           <%= link_to travel_path(@travel.id) do %>
           こちら<i class="fa-solid fa-rotate-right fa-xs"></i>
           <% end %>
-          をクリックしてください</p>
+          をクリック
+          </p>
         </div>
       </div>
     </div>
   </div>
+
+
 <div class="col-12">
   <div class="ml-1">
     <% if current_user && @travel.user == current_user %>
@@ -71,13 +79,13 @@
     <% end %>
   </div>
     <div class="triangle ml-3 mt-2"></div>
-    <h5 class="break-text rounded" style="background-color: lightgray; padding: 8px">
+    <h5 class="break-text" style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;">
       <%= @travel.body %> <br>
       <%= @travel.created_at.strftime('%Y/%m/%d %H:%M') %>
     </h5>
   </div>
 </div>
-<div class="container" style="width: 80%">
+<div class="container" style="width: 75%;">
 <div class="row">
 <table class="table table-borderless col-12 mt-4">
   <tr>
