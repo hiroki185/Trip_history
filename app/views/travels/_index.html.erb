@@ -14,6 +14,15 @@
   border-bottom: 10px solid lightgray;
   margin-left: 10px;
 }
+
+.scale {
+  transition: transform 0.3s ease-in-out;
+}
+
+.scale:hover {
+  box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.2);
+  transform: translateY(-15px) scale(1);
+}
   </style>
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
@@ -22,7 +31,7 @@
       <div class="row justify-content-start" style="margin-left: 40px;">
 
         <% travels_slice.each do |travel| %>
-          <div class="mt-4 mr-3 border" style="width: 280px; display: inline-block; background-color: #f0fff0;" id="app-container">
+          <div class="mt-4 mr-3 border scale" style="width: 280px; display: inline-block; background-color: #f0fff0;">
 
             <% if travel.image.attached? %>
               <%= image_tag travel.image, class: "rounded", size: "280x200" %>
