@@ -1,10 +1,10 @@
 <% if current_user.following?(user) %>
-  <%= link_to user_relationships_path(user.id), class: "btn btn-outline-success rounded-pill", method: :delete, remote: true do %>
+  <%= link_to user_relationships_path(user.id), class: "button-hover", method: :delete, remote: true do %>
     フォローを外す&nbsp;&nbsp;<i class="fa-solid fa-user-minus"></i>
   <% end %>
 <% else %>
-  <%= link_to user_relationships_path(user.id), class: "btn btn-outline-success rounded-pill", method: :post, remote: true do %>
-    フォローする&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>
+  <%= link_to user_relationships_path(user.id), class: "button-hover", method: :post, remote: true do %>
+    フォローする&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>
   <% end %>
 <% end %>
 

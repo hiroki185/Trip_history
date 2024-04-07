@@ -136,3 +136,114 @@ body {
   visibility: visible;
 }
 
+/*ボタンのホバー*/
+.button-hover{
+  display: block;
+  width: 200px;
+  line-height: 35px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: uppercase;
+  transition: all .35s;
+}
+
+
+.button-hover {
+  color: green;
+  border: 3px solid green;
+}
+
+.button-hover:before,
+.button-hover:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: seagreen;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.button-hover:before{
+  opacity: .5;
+}
+
+.button-hover:after{
+  transition-delay: .2s;
+}
+
+.button-hover:hover{
+  color: #fff;
+}
+
+.button-hover:hover:before,
+.button-hover:hover:after{
+  top: 0;
+}
+
+.button-hover.show{
+  width: 80px;
+}
+
+
+
+/*削除ボタンのホバー*/
+.button{
+  display: block;
+  width: 200px;
+  line-height: 35px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  text-transform: uppercase;
+  transition: all .35s;
+}
+
+
+.button {
+  color: red;
+  border: 3px solid red;
+}
+
+.button:before,
+.button:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: red;
+  z-index: -1;
+  transition: all .35s;
+}
+
+.button:before{
+  opacity: .5;
+}
+
+.button:after{
+  transition-delay: .2s;
+}
+
+.button:hover{
+  color: #fff;
+}
+
+.button:hover:before,
+.button:hover:after{
+  top: 0;
+}
+
+.button.show{
+  width: 80px;
+}

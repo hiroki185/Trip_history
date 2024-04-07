@@ -66,18 +66,21 @@
 
 
 <div class="col-12">
-  <div class="ml-1">
+  <div class="row">
+  <div class="ml-4">
     <% if current_user && @travel.user == current_user %>
       <%= image_tag current_user.get_profile_image, size: '60x60', class: 'rounded-circle' %>
     <% else %>
       <%= image_tag @travel.user.get_profile_image, size: '60x60', class: 'rounded-circle' %>
     <% end %>
-    &nbsp;&nbsp;
-    <%= link_to user_path(@travel.user), class: "btn btn-outline-success rounded-pill" do %>
+  </div>
+  <div class="col">
+    <%= link_to user_path(@travel.user), class: "button-hover" do %>
       <%= @travel.user.name %>さんの部屋へ
       <i class="fa-solid fa-door-open"></i>
     <% end %>
-  </div>
+    </div>
+    </div>
     <div class="triangle ml-3 mt-2"></div>
     <h5 class="break-text" style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;">
       <%= @travel.body %> <br>
@@ -108,23 +111,25 @@
     </td>
     <td id="follow-ajax_<%= @travel.user.id %>">
       <% if current_user.following?(@travel.user) %>
-        <%= link_to user_relationships_path(@travel.user.id), class: "btn btn-outline-success rounded-pill", method: :delete, remote: true do %>
+        <%= link_to user_relationships_path(@travel.user.id), class: "button-hover", method: :delete, remote: true do %>
         フォローを外す&nbsp;&nbsp;<i class="fa-solid fa-user-minus"></i>
         <% end %>
       <% else %>
-        <%= link_to user_relationships_path(@travel.user.id), class: "btn btn-outline-success rounded-pill", method: :post, remote: true do %>
+        <%= link_to user_relationships_path(@travel.user.id), class: "button-hover", method: :post, remote: true do %>
         フォローする&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>
         <% end %>
       <% end %>
     </td>
     <td>
       <% if current_user && @travel.user == current_user %>
-        <%= link_to edit_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+        <%= link_to edit_travel_path(@travel.id), method: :get, class: "button-hover show" do %>
         編集&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>
         <% end %>
       <% end %>
-      <% if current_user && @travel.user == current_user %>
-        <%= link_to travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
+    </td>
+    <td>
+            <% if current_user && @travel.user == current_user %>
+        <%= link_to travel_path(@travel.id), method: :delete, class: "button show", "data-confirm" => "本当に削除しますか？" do %>
         削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
         <% end %>
       <% end %>

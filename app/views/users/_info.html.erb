@@ -14,9 +14,7 @@
   <h4 class="text-align: center; mt-3">
     <%= user.name.truncate(7) %>
   </h4>
-  <div class="col ml-3">
-    <%= link_to "フォロー一覧", user_followings_path(user), class: "btn btn-outline-success rounded-pill" %>
-    &nbsp;&nbsp;
-    <%= link_to "フォロワー一覧", user_followers_path(user), class: "btn btn-outline-success rounded-pill" %>
-  </div>
+      <%= link_to "フォロー一覧", user_followings_path(user), class: "button-hover" %>
+       &nbsp;&nbsp;
+      <%= link_to "フォロワー一覧", user_followers_path(user), class: "button-hover" %>
 </div>

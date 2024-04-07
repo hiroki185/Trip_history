@@ -27,7 +27,7 @@ class TravelsController < ApplicationController
       end
       redirect_to travel_path(@travel), notice: "You have created book successfully."
     else
-      @travels = Travel.all.page(params[:page]).per(12)
+      @travels = Travel.all.page(params[:page]).per(50)
       @user = current_user
       render :new
     end
@@ -52,22 +52,22 @@ class TravelsController < ApplicationController
   end
 
   def search
-    @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(12)
+    @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(50)
   end
 
   def index
     @user = current_user
     @travel = Travel.new
     if params[:latest]
-      @travels = Travel.latest.page(params[:page]).per(12)
+      @travels = Travel.latest.page(params[:page]).per(50)
     elsif params[:old]
-      @travels = Travel.old.page(params[:page]).per(12)
+      @travels = Travel.old.page(params[:page]).per(50)
     elsif params[:favorite]
       @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
-      @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(12)
+      @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(50)
 
     else
-      @travels = Travel.all.page(params[:page]).per(12)
+      @travels = Travel.all.page(params[:page]).per(50)
     end
   end
 
@@ -84,7 +84,7 @@ class TravelsController < ApplicationController
   end
 
   def destroy_all
-    current_user.travels.delete_all
+    current_user.travels.destroy_all
     redirect_to user_path(current_user)
   end
 
@@ -100,3 +100,4 @@ class TravelsController < ApplicationController
     redirect_to root_path
   end
 end
+

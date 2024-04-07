@@ -1,8 +1,12 @@
 <div class='container' style="width: 85%">
-<h2 style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
+ <div class="row" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px;">
+ <h2 class="col-4">
   フォロー一覧
-  <%= link_to "フォロワー一覧", user_followers_path,class: "btn btn-outline-success rounded-pill ml-3" %>
   </h2>
+  <div class="col">
+  <%= link_to "フォロワー一覧", user_followers_path,class: "button-hover col" %>
+   </div>
+ </div>
 <%= render 'users/index',users: @users %>
 <%= paginate @users %>
 </div>

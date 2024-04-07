@@ -29,7 +29,8 @@
 }
   </style>
 </head>
-<div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
+
+<div class="scrollable" style="overflow: auto; max-height: 800px;" id="app-container">
   <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
       <div class="row justify-content-start" style="margin-left: 70px;">
@@ -73,10 +74,9 @@
                     <i class="fa-solid fa-pen-to-square"></i>
                   <% end %>
                 <% end %>
-
                 <% if current_user && travel.user == current_user %>
-                  <%= link_to travel_path(travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill float-right", "data-confirm" => "本当に削除しますか？" do %>
-                    <i class="fa-solid fa-trash-can"></i>
+                  <%= link_to travel_path(travel.id), method: :delete, remote: true, class: "btn btn-outline-danger rounded-pill float-right delete-link", "data-confirm" => "本当に削除しますか？" do %>
+                   <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 <% end %>
               </div>

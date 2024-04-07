@@ -1,33 +1,43 @@
-<%= render 'layouts/loading' %>
-<div class='container main-content' style="width: 90%">
+<head>
+  <style>
+
+
+  </style>
+</head>
+<div class='container' style="width: 90%">
   <div class="row mt-3">
-    <div class="col">
+    <div class="col-1 mr-4">
       <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>
     </div>
-    <div class="col-11">
-      <h4>
+    <div class="col">
+      <div class-"row">
+      <h4 class="col">
         <%= @user.name %>さんの部屋
+      </h4>
+      <div class="col">
         <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-          <%= link_to chat_path(@user.id), class: "btn btn-outline-success rounded-pill mb-2" do %>
-          <i class="fa-regular fa-comments"></i>&nbsp;&nbsp;chatを始める
+          <%= link_to chat_path(@user.id), class: "button-hover" do %>
+          <i class="fa-regular fa-comments"></i>&nbsp;&nbsp;DMする
           <% end %>
         <% end %>
         &nbsp;&nbsp;
         <% if current_user && @user.name == current_user.name %>
-          <%= link_to edit_user_path(current_user), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+          <%= link_to edit_user_path(current_user), method: :get, class: "button-hover" do %>
           <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
           <% end %>
         <% end %>
-      </h4>
-      <p class="rounded">
+        </div>
+      </div>
+      </div>
+      <p class="mt-2">
         <%= @user.body %>
       </p>
-    </div>
   </div>
   <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
-    <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
+    <h3 class="col-6"><%= @user.name %>さんの旅一覧</h3>
+      <%= link_to "全て削除", destroy_all_travels_path, method: :delete, data: { confirm: "本当に全ての旅行データを削除しますか？" }, class: "button" %>
     <div class="col">
-      <%= link_to new_travel_path, class: 'btn btn-outline-success rounded-pill' do %>
+      <%= link_to new_travel_path, class: 'button-hover' do %>
       <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
       <% end %>
     </div>
