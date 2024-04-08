@@ -17,10 +17,10 @@
           <%= f.text_area :body, class: "form-control body", rows: '10' %>
         </div>
         <div class="form-group">
-          <%= f.submit '内容を保存する', class: 'btn btn-outline-success rounded-pill btn-block' %>
+          <%= f.button '内容を保存する', class: 'button-hover edit' %>
         </div>
       <% end %>
-      <%= link_to "退会する", unsubscribe_path, class: "btn btn-outline-danger rounded-pill btn-block" %>
+      <%= link_to "退会する", unsubscribe_path, class: "button edit" %>
     </div>
   </div>
 </div>

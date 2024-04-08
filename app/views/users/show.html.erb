@@ -1,9 +1,4 @@
-<head>
-  <style>
-
-
-  </style>
-</head>
+<%= render 'layouts/loading' %>
 <div class='container' style="width: 90%">
   <div class="row mt-3">
     <div class="col-1 mr-4">
@@ -14,6 +9,7 @@
       <h4 class="col">
         <%= @user.name %>さんの部屋
       </h4>
+
       <div class="col">
         <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
           <%= link_to chat_path(@user.id), class: "button-hover" do %>
@@ -28,20 +24,22 @@
         <% end %>
         </div>
       </div>
+
       </div>
       <p class="mt-2">
         <%= @user.body %>
       </p>
   </div>
   <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
-    <h3 class="col-6"><%= @user.name %>さんの旅一覧</h3>
-      <%= link_to "全て削除", destroy_all_travels_path, method: :delete, data: { confirm: "本当に全ての旅行データを削除しますか？" }, class: "button" %>
+    <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
+
     <div class="col">
       <%= link_to new_travel_path, class: 'button-hover' do %>
       <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
       <% end %>
     </div>
   </div>
+  <%= link_to "全て削除", destroy_all_travels_path, method: :delete, data: { confirm: "本当に全ての旅行データを削除しますか？" }, class: "button" %>
   <%= render 'travels/index', travels: @travels %>
   <%= paginate @travels %>
 </div>

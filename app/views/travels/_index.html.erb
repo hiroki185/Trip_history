@@ -68,17 +68,20 @@
                     <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
                   <% end %>
                 </p>
-              <div class="col">
+                <div class="col">
+              <div class="row">
                 <% if current_user && travel.user == current_user %>
-                  <%= link_to edit_travel_path(travel.id), method: :get, class: "btn btn-outline-success rounded-pill float-right" do %>
+                  <%= link_to edit_travel_path(travel.id), method: :get, class: "button-hover index col" do %>
                     <i class="fa-solid fa-pen-to-square"></i>
                   <% end %>
                 <% end %>
+                &nbsp;&nbsp;
                 <% if current_user && travel.user == current_user %>
-                  <%= link_to travel_path(travel.id), method: :delete, remote: true, class: "btn btn-outline-danger rounded-pill float-right delete-link", "data-confirm" => "本当に削除しますか？" do %>
+                  <%= link_to travel_path(travel.id), method: :delete, remote: true, class: "button index col", "data-confirm" => "本当に削除しますか？" do %>
                    <i class="fa-solid fa-trash-can"></i>
                   <% end %>
                 <% end %>
+              </div>
               </div>
               </div>
               <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>

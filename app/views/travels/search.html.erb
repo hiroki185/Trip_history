@@ -3,7 +3,7 @@
     <h2 class="col">みんなの旅一覧</h2>
     <form class="form-inline my-2 my-lg-0" action="<%= search_travels_path %>" method="get">
       <input class="form-control mr-sm-2 rounded-pill" type="search" name="keyword" placeholder="投稿を検索する" aria-label="Search">
-      <button class="btn btn-outline-success rounded-pill" type="submit">検索</button>
+      <button class="button-hover search" type="submit">検索</button>
     </form>
   </div>
   <%= render 'index', travels: @travels_searches %>
