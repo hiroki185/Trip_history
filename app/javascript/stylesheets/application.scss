@@ -192,9 +192,9 @@ body {
 }
 
 .button-hover.new,
-.button-hover.comment,
 .button-hover.edit,
-.button-hover.home{
+.button-hover.home,
+.button-hover.dm{
   width: 100%;
 }
 
@@ -209,6 +209,11 @@ body {
 .button-hover.guest{
   width: 270px;
 }
+
+.button-hover.comment{
+  width: 200px;
+}
+
 /*削除ボタンのホバー*/
 .button{
   display: block;

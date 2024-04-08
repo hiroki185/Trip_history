@@ -1,7 +1,7 @@
 <head>
   <style>
     .scrollable {
-      max-height: 500px;
+      max-height: 400px;
       overflow-y: scroll;
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
@@ -13,8 +13,8 @@
   <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>">
     <%= @user.first_name %> さんとのチャット
   </h2>
-  <div class='row'>
-    <div class="message col-8 scrollable">
+  <div class='row' style="height: 400px;">
+    <div class="message col-9 scrollable">
       <% @chats.each do |chat| %>
         <% if chat.user_id == current_user.id %>
           <%= render "chats/chat", chat: chat %>
@@ -28,12 +28,21 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-4">
-      <%= form_with model: @chat, data: {remote: true} do |f| %>
-        <%= f.text_field :message %>
-        <%= f.submit "送信", class: "btn btn-dark btn-sm" %>
-        <%= f.hidden_field :room_id %>
-      <% end %>
-    </div>
   </div>
+
+  <%= form_with model: @chat, data: {remote: true} do |f| %>
+    <div style="overflow: hidden;">
+      <%= f.text_area :message, placeholder: "メッセージをここに", class: "form-control col-9", style: "float: left; height: 100px;", id: "chat_textarea" %>
+      <%= f.button "送信", class: "button-hover mx-auto mb-3", style: "margin-right: 50px; float: right;" %>
+      <%= f.hidden_field :room_id %>
+      <button class="button-hover ml-auto"id="clear">入力内容をクリア</button>
+      <script>
+        $(function(){
+          $("#clear").click(function(){
+            $("#chat_textarea").val("");
+          });
+        });
+      </script>
+    </div>
+  <% end %>
 </div>
