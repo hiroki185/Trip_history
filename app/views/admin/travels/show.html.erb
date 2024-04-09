@@ -22,6 +22,10 @@
     .comment {
       word-wrap: break-word; /* 20文字で改行するためのプロパティ */
     }
+
+    .img {
+      border-radius: 30px 30px 30px 30px;
+    }
   </style>
 </head>
 <div class='container'style="width: 80%">
@@ -33,12 +37,12 @@
       </div>
       <div class='row'>
         <% if @travel.image.attached? %>
-          <%= image_tag @travel.image, class: "rounded ml-4", size: "400x350" %>
+          <%= image_tag @travel.image, class: "img ml-4", size: "400x350" %>
         <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "rounded  ml-4", size: "400x350" %>
+          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img  ml-4", size: "400x350" %>
         <% end %>
         <div class="col">
-         <h5 class="break-text" style="background-color: lightgray;"><%= @travel.body %></h5>
+         <h5 class="break-text" style="background-color: lightgray; padding:10px; border-radius: 30px 30px 30px 30px;"><%= @travel.body %></h5>
         </div>
         <table class="table table-borderless col-12 mt-4 ml-4">
           <tr>
@@ -60,14 +64,13 @@
                 <%= @travel.category %>
               <% end %>
               &nbsp;&nbsp;
-              <div>
-                <%= link_to edit_admin_travel_path(@travel.id), method: :get, class: "btn btn-outline-success rounded-pill" do %>
+                <%= link_to edit_admin_travel_path(@travel.id), method: :get, class: "button-hover show" do %>
                 編集&nbsp;&nbsp;<i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-                <%= link_to admin_travel_path(@travel.id), method: :delete, class: "btn btn-outline-danger rounded-pill", "data-confirm" => "本当に削除しますか？" do %>
+                &nbsp;&nbsp;
+                <%= link_to admin_travel_path(@travel.id), method: :delete, class: "button show", "data-confirm" => "本当に削除しますか？" do %>
                 削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
                 <% end %>
-              </div>
             </td>
           </tr>
         </table>
@@ -89,7 +92,7 @@
                   </td>
                   <td class="comment"><%= travel_comment.comment %></td>
                   <td>
-                    <%= link_to admin_travel_travel_comment_path(@travel, travel_comment), method: :delete, class: "btn btn-outline-danger rounded-pill", remote: true do %>
+                    <%= link_to admin_travel_travel_comment_path(@travel, travel_comment), method: :delete, class: "button show", remote: true do %>
                     除除<i class="fa-solid fa-trash-can"></i>
                     <% end %>
                   </td>
