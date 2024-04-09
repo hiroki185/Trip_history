@@ -79,7 +79,7 @@ end
 #rails db:migrate:reset
 #cd Trip_history
 #rails routes
-#ssh -i ~/.ssh/practice-aws2.pem ec2-user@35.78.177.241
+#ssh -i ~/.ssh/practice-aws2.pem ec2-user@18.181.246.3
 #rails s -e production
 #kill $(cat tmp/pids/puma.pid)
 #bundle exec rails assets:precompile RAILS_ENV=production
