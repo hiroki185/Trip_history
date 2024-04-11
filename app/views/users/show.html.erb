@@ -15,33 +15,34 @@
 
   </style>
 </head>
-<%= render 'layouts/loading' %>
-<div class='container' style="width: 90%">
-  <div class="row mt-3">
-    <div class="col-1 mr-4">
-      <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>
-    </div>
-    <div class="col">
-      <div class-"row">
-        <h4 class="col">
-          <%= @user.name %>さんの部屋
-        </h4>
+<form action="<%= destroy_selected_travels_travels_path %>" method="post" id="delete_selected_form" data-turbo-frame="false">
+  <%= render 'layouts/loading' %>
+  <div class='container' style="width: 90%">
+    <div class="row mt-3">
+      <div class="col-1 mr-4">
+        <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>
+      </div>
+      <div class="col">
+        <div class-"row">
+          <h4 class="col">
+            <%= @user.name %>さんの部屋
+          </h4>
 
-        <div class="col">
-          <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
-            <%= link_to chat_path(@user.id), class: "button-hover" do %>
-              <i class="fa-regular fa-comments"></i>&nbsp;&nbsp;DMする
+          <div class="col">
+            <% if current_user != @user && current_user.following?(@user) && @user.following?(current_user) %>
+              <%= link_to chat_path(@user.id), class: "button-hover" do %>
+                <i class="fa-regular fa-comments"></i>&nbsp;&nbsp;DMする
+              <% end %>
             <% end %>
-          <% end %>
-          &nbsp;&nbsp;
-          <% if current_user && @user.name == current_user.name %>
-            <%= link_to edit_user_path(current_user), method: :get, class: "button-hover" do %>
-              <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
+            &nbsp;&nbsp;
+            <% if current_user && @user.name == current_user.name %>
+              <%= link_to edit_user_path(current_user), method: :get, class: "button-hover" do %>
+                <i class="fa-regular fa-address-card"></i>&nbsp;&nbsp;プロフィールを編集
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
-    </div>
       <% if @user.body.present? %>
         <div>
           <div class="triangle ml-4 mt-2"></div>
@@ -50,24 +51,27 @@
           </p>
         </div>
       <% end %>
-  </div>
-  <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
-    <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
+    </div>
+    <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
+      <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
 
-    <div class="col">
-      <%= link_to new_travel_path, class: 'button-hover' do %>
-        <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
-      <% end %>
+      <div class="col">
+        <%= link_to new_travel_path, class: 'button-hover' do %>
+          <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
+        <% end %>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <%= link_to "全て削除", destroy_all_travels_path, method: :delete, data: { confirm: "本当に全ての旅行データを削除しますか？" }, class: "button" %>
-    &nbsp;&nbsp;
-    <form action="<%= destroy_selected_travels_travels_path %>" method="post" id="delete_selected_form">
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <button type="submit" class="button">選択項目を削除</button>
-    </div>
+    <% if current_user == @user %>
+      <div class="row">
+        <%= link_to destroy_all_travels_path, method: :delete, data: { confirm: '本当に全ての旅行データを削除しますか？' }, class: "button" do %>
+          全て削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
+        <% end %>
+        &nbsp;&nbsp;
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button type="submit" class="button" data-turbo-frame="false">選択項目を削除<i class="fa-solid fa-trash-can"></i></button>
+      </div>
+    <% end %>
     <%= render 'travels/index', travels: @travels %>
-    </form>
-  <%= paginate @travels %>
-</div>
+  </div>
+</form>
+<%= paginate @travels %>

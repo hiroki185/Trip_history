@@ -4,9 +4,9 @@
   width:100%;
   height:300px;
   position:fixed;
-  bottom:0;
+  bottom:0;を
   right:0;
-  transform: translateX(calc(20% + 10px));
+  transform: translateX(calc(55% + 10px));
 }
 /*フォント*/
 .bound span{
@@ -50,6 +50,7 @@
   90% {top: 0;transform: scale(1.2,0.8);}
 }
   </style>
+
 </head>
 <div class="loading">
   <div class="loading-animation"></div>
@@ -71,7 +72,7 @@
 
 <script>
 // ロード時の処理を実行する
-$(document).on('turbolinks:load', function() {
+$(document).ready(function() {
   var webStorage = function() {
     if (sessionStorage.getItem('access')) {
       // 2回目以降アクセス時の処理
@@ -87,11 +88,9 @@ $(document).on('turbolinks:load', function() {
       }, 3000);
     }
   }
-
   var logout = function() {
     sessionStorage.removeItem('access');
   }
-
   webStorage();
   logout();
 });

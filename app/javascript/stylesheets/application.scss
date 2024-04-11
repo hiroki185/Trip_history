@@ -4,6 +4,7 @@
 #app-container {
   transform: scale(0.95) !important;
 }
+
 .zen-kurenaido-regular {
   font-family: "Zen Kurenaido", sans-serif;
   font-weight: 400;
@@ -18,13 +19,14 @@ body {
   background-color: #f0ffff;
 }
 
+/*地図*/
 #map {
   width: 380px;
   height: 300px;
   border-radius: 30px 30px 30px 30px;
 }
 
-
+/*コメントやDMのメッセージの吹き出し*/
 .line__balloon_l,
 .line__balloon_r {
   display: flex;
@@ -136,7 +138,7 @@ body {
   visibility: visible;
 }
 
-/*ボタンのホバー*/
+/*ボタンの緑色の緑色のホバー*/
 .button-hover{
   display: block;
   width: 200px;
@@ -214,7 +216,7 @@ body {
   width: 200px;
 }
 
-/*削除ボタンのホバー*/
+/*削除ボタンの赤色のホバー*/
 .button{
   display: block;
   width: 200px;
