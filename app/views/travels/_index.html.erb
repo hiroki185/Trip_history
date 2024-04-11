@@ -6,7 +6,7 @@
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
     }
-    .triangle{
+.triangle{
   width: 10px;
   height: 10px;
   border-left: 10px solid transparent;
@@ -37,13 +37,16 @@
 
         <% travels_slice.each do |travel| %>
           <div class="mt-4 mr-5 mb-4 border scale" style="width: 240px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
-
             <% if travel.image.attached? %>
               <%= image_tag travel.image, class: "img", size: "240x150" %>
             <% else %>
               <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "240x150" %>
             <% end %>
+
               <h4 class="text-center">
+                <% if current_user && travel.user == current_user %>
+                <%= check_box_tag "selected_travels[]", travel.id %>
+                <% end %>
                 <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
               </h4>
               <div style="padding: 0px 20px 20px 20px">

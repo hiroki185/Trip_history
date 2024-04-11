@@ -88,6 +88,12 @@ class TravelsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+   def destroy_selected
+     selected_ids = params[:selected_travels] || []
+     Travel.where(id: selected_ids).destroy_all
+     redirect_to user_path(current_user), notice: "選択した項目を削除しました。"
+   end
+
   private
 
   def travel_params

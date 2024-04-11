@@ -44,6 +44,9 @@ Rails.application.routes.draw do
     collection do
       get "search"
     end
+    collection do
+       post 'destroy_selected', to: 'travels#destroy_selected', as: 'destroy_selected_travels'
+     end
   end
   
 
