@@ -26,6 +26,9 @@ class User < ApplicationRecord
 
   # 通知機能
   has_many :notifications, dependent: :destroy
+  
+  #
+  has_many :view_counts, dependent: :destroy
 
  #ユーザー情報のバリデーション
   validates :first_name, presence: true
@@ -85,13 +88,22 @@ class User < ApplicationRecord
   end
 
 #ユーザー検索の処理
-  def self.search(search)
-    if search.present?
-      User.where('name LIKE ? OR last_name LIKE ? OR first_name LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-    else
-      User.all
-    end
+def self.search(search)
+  if search.present?
+    User.where('name LIKE ?', "%#{search}%")
+  else
+    User.all
   end
+end
+
+# 管理者検索の処理
+def self.admin_search(search)
+  if search.present?
+    User.where('name LIKE ? OR last_name LIKE ? OR first_name LIKE ? OR last_name_kana LIKE ? OR first_name_kana LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+  else
+    User.all
+  end
+end
 
 
   # フォローしたときの処理

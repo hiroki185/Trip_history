@@ -27,25 +27,28 @@
 .img{
   border-radius: 40px 40px 0px 0px;
 }
+
+
+
   </style>
 </head>
 
-<div class="scrollable" style="overflow: auto; max-height: 800px;" id="app-container">
+<div class="row">
+<div class="scrollable col-10" style="overflow: auto; max-height: 800px;" id="app-container">
   <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
-      <div class="row justify-content-start" style="margin-left: 70px;">
-
+      <div class="row justify-content-start">
         <% travels_slice.each do |travel| %>
-          <div class="mt-4 mr-5 mb-4 border scale" style="width: 240px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
+          <div class="mt-4 mr-4 mb-4  scale border" style="width: 220px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
             <% if travel.image.attached? %>
-              <%= image_tag travel.image, class: "img", size: "240x150" %>
+              <%= image_tag travel.image, class: "img", size: "220x150" %>
             <% else %>
-              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "240x150" %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x150" %>
             <% end %>
 
               <h4 class="text-center">
-                <% if current_user && travel.user == current_user %>
-                <%= check_box_tag "selected_travels[]", travel.id %>
+               <% if current_user && travel.user == current_user %>
+                <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
                 <% end %>
                 <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
               </h4>
@@ -94,4 +97,14 @@
       </div>
     </div>
   <% end %>
+</div>
+<div class="col-2">
+<div class="mt-4" style="border: 3px solid; border-radius: 15px; height: 300px;">
+  <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>
+  <%= render 'travels/tag', travels: @travels %>
+</div>
+<div class="text-center mt-2">閲覧数が多い旅</div>
+<%= render 'travels/view', travels: @travel_detail %>
+
+</div>
 </div>

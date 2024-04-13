@@ -14,6 +14,10 @@ class Travel < ApplicationRecord
   has_many :tags, dependent: :destroy
   has_one_attached :image
   
+  #投稿数
+  has_many :view_counts, dependent: :destroy
+
+  
 #地図機能の記述
   geocoded_by :address
   after_validation :geocode

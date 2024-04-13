@@ -1,0 +1,57 @@
+<style>
+  .gray-overlay {
+    position: relative;
+  }
+
+  .gray-overlay::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    border-radius: 0px 0px 20px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .overlay-title {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 50%
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+    z-index: 1;
+  }
+
+  .image{
+  border-radius: 20px 20px 20px 20px;
+}
+</style>
+
+<div class="mx-auto">
+  <% travels.each do |travel| %>
+    <% if travel.image.attached? %>
+      <div class="gray-overlay">
+        <%= image_tag travel.image, class: "mt-2 image", size: "136x130" %>
+        <p class="overlay-title">
+          <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
+        </p>
+      </div>
+    <% else %>
+      <div class="gray-overlay">
+        <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "mt-2 image", size: "136x130" %>
+        <p class="overlay-title">
+          <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, travel %>
+        </p>
+      </div>
+    <% end %>
+  <% end %>
+</div>

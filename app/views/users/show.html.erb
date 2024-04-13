@@ -52,6 +52,7 @@
         </div>
       <% end %>
     </div>
+
     <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
       <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
 
@@ -71,7 +72,8 @@
         <button type="submit" class="button" data-turbo-frame="false">選択項目を削除<i class="fa-solid fa-trash-can"></i></button>
       </div>
     <% end %>
-    <%= render 'travels/index', travels: @travels %>
+    <%= render 'travels/index', travels: @user_travels %>
   </div>
 </form>
-<%= paginate @travels %>
+<%= paginate @user_travels %>
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_03_025141) do
+ActiveRecord::Schema.define(version: 2024_04_12_113207) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(version: 2024_04_03_025141) do
     t.string "category"
     t.float "latitude", default: 0.0, null: false
     t.float "longitude", default: 0.0, null: false
+    t.integer "view_count"
   end
 
   create_table "user_rooms", force: :cascade do |t|
@@ -152,6 +153,13 @@ ActiveRecord::Schema.define(version: 2024_04_03_025141) do
     t.text "body"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "view_counts", force: :cascade do |t|
+    t.integer "travel_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

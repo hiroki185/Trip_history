@@ -7,6 +7,9 @@ class TravelsController < ApplicationController
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
+    unless ViewCount.find_by(user_id: current_user.id, travel_id: @travel.id)
+      current_user.view_counts.create(travel_id: @travel.id)
+    end
   end
 
   def new
@@ -53,9 +56,13 @@ class TravelsController < ApplicationController
 
   def search
     @travels_searches = Travel.search(params[:keyword]).page(params[:page]).per(50)
+    @travels = Travel.all.page(params[:page]).per(50)
+    @travel_detail  = Travel.joins(:view_counts).group(:id).order('COUNT(view_counts.id) DESC').page(params[:page]).per(50).limit(4)
   end
 
+
   def index
+
     @user = current_user
     @travel = Travel.new
     if params[:latest]
@@ -69,6 +76,7 @@ class TravelsController < ApplicationController
     else
       @travels = Travel.all.page(params[:page]).per(50)
     end
+    @travel_detail  = Travel.joins(:view_counts).group(:id).order('COUNT(view_counts.id) DESC').page(params[:page]).per(50).limit(4)
   end
 
   def edit

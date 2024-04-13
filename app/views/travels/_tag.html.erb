@@ -1,0 +1,7 @@
+
+<% travels.limit(100).each do |travel| %>
+   <% if travel.category.present? %>
+    <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+   <% end %>
+<% end %>
+
