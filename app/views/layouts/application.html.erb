@@ -8,16 +8,28 @@
     <script src="https://kit.fontawesome.com/2b7c6e9815.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+  .background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    /* 背景のスタイルを追加 */
+  }
+</style>
   </head>
-   <body class="zen-kurenaido-regular">
-
+  <body class="zen-kurenaido-regular">
     <%= render 'layouts/header' %>
     <%= render 'layouts/headernav' %>
     <%= render 'layouts/scroll' %>
     <div class='container'>
-    <%= yield %>
-
-    <%= render 'layouts/footer' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+    </div>
+  <div class="background">
+    <%= render 'layouts/background' %>
     </div>
   </body>
 </html>

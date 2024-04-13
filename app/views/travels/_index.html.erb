@@ -37,7 +37,7 @@
 <div class="scrollable col-10" style="overflow: auto; max-height: 800px;" id="app-container">
   <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
-      <div class="row justify-content-start">
+      <div class="row justify-content-start" style="margin-left: 35px;">
         <% travels_slice.each do |travel| %>
           <div class="mt-4 mr-4 mb-4  scale border" style="width: 220px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
             <% if travel.image.attached? %>

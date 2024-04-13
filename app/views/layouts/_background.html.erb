@@ -1,0 +1,163 @@
+<head>
+  <style>
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    font-family: 'Exo', sans-serif;
+}
+
+
+.context {
+    width: 100%;
+    position: absolute;
+    top:50vh;
+
+}
+
+.context h1{
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+}
+
+
+.area{
+    background: #add8e6;
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+    width: 100%;
+    height:100vh;
+
+
+}
+
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    animation: animate 25s linear infinite;
+    bottom: -180px;
+
+}
+
+.circles li:nth-child(1){
+    left: 25%;
+    animation-delay: 0s;
+    font-size: 80px;
+}
+
+
+.circles li:nth-child(2){
+    left: 10%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+    font-size: 20px;
+}
+
+.circles li:nth-child(3){
+    left: 70%;
+    animation-delay: 4s;
+    font-size: 20px;
+}
+
+.circles li:nth-child(4){
+    left: 40%;
+    animation-delay: 0s;
+    animation-duration: 18s;
+    font-size: 60px;
+}
+
+.circles li:nth-child(5){
+    left: 65%;
+    animation-delay: 0s;
+    font-size: 20px;
+}
+
+.circles li:nth-child(6){
+    left: 75%;
+    animation-delay: 3s;
+    font-size: 110px;
+}
+
+.circles li:nth-child(7){
+    left: 35%;
+    animation-delay: 7s;
+    font-size: 150px;
+}
+
+.circles li:nth-child(8){
+    left: 50%;
+    animation-delay: 15s;
+    animation-duration: 45s;
+     font-size: 25px;
+}
+
+.circles li:nth-child(9){
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 35s;
+    font-size: 15px;
+}
+
+.circles li:nth-child(10){
+    left: 85%;
+    animation-delay: 0s;
+    animation-duration: 11s;
+    font-size: 150px;
+}
+
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+  </style>
+</head>
+<div class="context">
+
+</div>
+<div class="area">
+    <ul class="circles">
+        <li><i class="fa-solid fa-suitcase-rolling"></i></li>
+        <li><i class="fa-solid fa-car"></i></li>
+        <li><i class="fa-solid fa-camera"></i></li>
+        <li><i class="fa-solid fa-plane"></i></li>
+        <li><i class="fa-solid fa-bicycle"></i></li>
+        <li><i class="fa-solid fa-train-subway"></i></li>
+        <li><i class="fa-solid fa-thermometer"></i></li>
+        <li><i class="fa-solid fa-mobile-screen"></i></li>
+        <li><i class="fa-solid fa-map-location"></i></li>
+        <li><i class="fa-solid fa-kitchen-set"></i></li>
+    </ul>
+</div>
+<script>
+  /*
+  Background Gradients From --
+  https://uigradients.com
+  */
+</script>

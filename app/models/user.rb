@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   # 通知機能
   has_many :notifications, dependent: :destroy
-  
+
   #
   has_many :view_counts, dependent: :destroy
 
@@ -60,15 +60,15 @@ class User < ApplicationRecord
   scope :latest, -> { order(created_at: :desc) }
   scope :old, -> { order(created_at: :asc) }
   scope :favorite, -> { joins(:favorites).order("favorites.count DESC") }
-  
+
   def full_name
     first_name + '' + last_name
   end
-  
+
   def full_name_kana
     first_name_kana + '' + last_name_kana
   end
-  
+
   def user_status
     if is_deleted == true
       "退会"

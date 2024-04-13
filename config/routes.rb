@@ -73,9 +73,7 @@ Rails.application.routes.draw do
 
 #DM機能のルート
   resources :chats, only: [:show, :create, :destroy]
-
   get "tagsearches/search", to: "tagsearches#search"
-
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 #rails db:migrate
