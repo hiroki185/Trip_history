@@ -94,3 +94,4 @@ end
 #rails db:migrate:down VERSION=20240313030026
 #rm -rf db/migrate/
 #rails destroy model モデル名
+#git reset --hard
