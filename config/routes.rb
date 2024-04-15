@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
-  
+
 #通知機能のルート
   scope module: :public do
     resources :notifications, only: [:index, :destroy]
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
        post 'destroy_selected', to: 'travels#destroy_selected', as: 'destroy_selected_travels'
      end
   end
-  
+
 
 #ゲストユーザーのルート
   devise_scope :user do
@@ -91,7 +91,7 @@ end
 #rails db:migrate:status
 #rm -rf db/migrate/20240311065411_hoge.rb
 #touch db/migrate/20190915065320_hoge.rb
-#rails db:migrate:down VERSION=20240313030026
+#rails db:migrate:down VERSION=20240306031245
 #rm -rf db/migrate/
 #rails destroy model モデル名
 #git reset --hard

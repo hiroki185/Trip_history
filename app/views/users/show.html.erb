@@ -56,21 +56,20 @@
 
     <div class="row my-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
       <h3 class="col-9"><%= @user.name %>さんの旅一覧</h3>
-
-      <div class="col">
-        <%= link_to new_travel_path, class: 'button-hover' do %>
-          <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
-        <% end %>
-      </div>
     </div>
     <% if current_user == @user %>
       <div class="row">
         <%= link_to destroy_all_travels_path, method: :delete, data: { confirm: '本当に全ての旅行データを削除しますか？' }, class: "button" do %>
           全て削除&nbsp;&nbsp;<i class="fa-solid fa-trash-can"></i>
         <% end %>
-        &nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button type="submit" class="button" data-turbo-frame="false">選択項目を削除<i class="fa-solid fa-trash-can"></i></button>
+              <div class="col">
+        <%= link_to new_travel_path, class: 'button-hover' do %>
+          <i class="fa-solid fa-plus"></i>&nbsp;&nbsp;新しく投稿する
+        <% end %>
+      </div>
       </div>
     <% end %>
     <%= render 'travels/index', travels: @user_travels %>
