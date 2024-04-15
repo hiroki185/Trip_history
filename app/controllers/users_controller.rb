@@ -7,7 +7,7 @@ before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
     @user_travels = @user.travels.page(params[:page]).per(12)
-    @travels = Travel.all
+    @categories = Travel.unique_categories
     @travel_detail  = Travel.joins(:view_counts).group(:id).order('COUNT(view_counts.id) DESC').page(params[:page]).per(50).limit(4)
   end
 
@@ -48,7 +48,7 @@ before_action :authenticate_user!
     else
       @favorite_travels = current_user.favorite_travels.page(params[:page]).per(12)
     end
-     @travels = Travel.all
+    @categories = Travel.unique_categories
     @travel_detail  = Travel.joins(:view_counts).group(:id).order('COUNT(view_counts.id) DESC').page(params[:page]).per(50).limit(4)
   end
 

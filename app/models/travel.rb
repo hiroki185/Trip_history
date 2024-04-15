@@ -33,6 +33,10 @@ class Travel < ApplicationRecord
   attribute :amount_range, :string
   attribute :transportation, :string
   
+  def self.unique_categories
+    distinct.pluck(:category)
+  end
+  
 #投稿検索の処理
   def self.search(search)
     if search != ""
