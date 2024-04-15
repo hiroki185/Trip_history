@@ -1,0 +1,3 @@
+class TravelWorkoutTag < ApplicationRecord
+
+end

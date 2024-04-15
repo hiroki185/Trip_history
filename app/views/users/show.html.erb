@@ -16,8 +16,9 @@
   </style>
 </head>
 <form action="<%= destroy_selected_travels_travels_path %>" method="post" id="delete_selected_form" data-turbo-frame="false">
-  <%= render 'layouts/loading' %>
-  <div class='container' style="width: 90%">
+  <div class="row">
+  <div class="col-9">
+  <div class='container'>
     <div class="row mt-3">
       <div class="col-1 mr-4">
         <%= image_tag @user.get_profile_image, class: "rounded-circle", size: '100x100' %>
@@ -73,7 +74,19 @@
       </div>
     <% end %>
     <%= render 'travels/index', travels: @user_travels %>
+    <%= paginate @user_travels %>
   </div>
+  </div>
+
+      <div class="col-3">
+    <div class="mt-4" style="border: 3px solid; border-radius: 15px; height: 300px;">
+      <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>
+  <%= render 'travels/tag', travels: @travels %>
+</div>
+<div class="text-center mt-2">閲覧数が多い旅</div>
+<%= render 'travels/view', travels: @travel_detail %>
+</div>
+</div>
 </form>
-<%= paginate @user_travels %>
+
 

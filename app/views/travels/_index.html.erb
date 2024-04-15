@@ -127,10 +127,10 @@
 
 
 <div class="row">
-  <div class="scrollable col-10" style="overflow: auto; max-height: 800px;" id="app-container">
+  <div class="scrollable col" style="overflow: auto; max-height: 800px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
-      <div class="row justify-content-start" style="margin-left: 35px;">
+      <div class="row justify-content-start">
         <% travels_slice.each do |travel| %>
         <div class="scale mt-3 mr-4 mb-3 photo01">
         <div class="handle"><div class="box"></div></div>
@@ -192,12 +192,5 @@
     </div>
     <% end %>
   </div>
-  <div class="col-2">
-    <div class="mt-4" style="border: 3px solid; border-radius: 15px; height: 300px;">
-      <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>
-  <%= render 'travels/tag', travels: @travels %>
-</div>
-<div class="text-center mt-2">閲覧数が多い旅</div>
-<%= render 'travels/view', travels: @travel_detail %>
-</div>
+
 </div>
