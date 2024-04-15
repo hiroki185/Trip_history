@@ -1,3 +1,0 @@
-class WorkoutTag < ApplicationRecord
-
-end

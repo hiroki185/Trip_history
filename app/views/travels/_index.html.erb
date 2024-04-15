@@ -31,14 +31,8 @@
 
 
 .photo01 {
-  animation: slideIn01 3s 1;
+  animation: slideIn01 8s 1;
 }
-
-.photo02 {
-  animation: slideIn02 3s 1;
-}
-
-
 
 @keyframes slideIn01 {
   0% {
@@ -51,47 +45,8 @@
   }
 }
 
-@keyframes slideIn02 {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 0;
-    transform: translateX(1000px);
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 
-@keyframes slideIn03 {
-  0% {
-    opacity: 0;
-  }
-  20% {
-    opacity: 0;
-    transform: translateY(500px);
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes slideIn04 {
-  0% {
-    opacity: 0;
-  }
-  30% {
-    opacity: 0;
-    transform: translateY(-500px);
-  }
-  90% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 .handle {
   width: 100px;
@@ -123,9 +78,7 @@
 }
   </style>
 </head>
-
-
-
+<%= render 'layouts/loading' %>
 <div class="row">
   <div class="scrollable col" style="overflow: auto; max-height: 800px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
@@ -150,12 +103,9 @@
           <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
           <% end %>
           <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
-
           <div style="padding: 0px 10px 10px 10px;">
             <div class="bg-dark rounded-pill" style="height: 10px;"></div>
           </div>
-
-
             <div class="row">
             <p class="col ml-3" style="height: 20px;">
               <% if travel.category.present? %>
@@ -166,7 +116,6 @@
           <div style="padding: 0px 10px 10px 10px;">
             <div class="bg-dark rounded-pill" style="height: 10px;"></div>
           </div>
-
           <div class="row" style="padding: 0px 10px;">
             <p class="col-5" id="comment_counter">
               <%= render "travel_comments/counter", travel: travel %>
@@ -174,9 +123,7 @@
             <div class="" id="favorite_btn_<%= travel.id %>">
               <%= render "favorites/btn", travel: travel %>
             </div>
-
           </div>
-
           <div class="text-center">
           <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
           </div>
@@ -192,5 +139,4 @@
     </div>
     <% end %>
   </div>
-
 </div>

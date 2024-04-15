@@ -1,4 +1,6 @@
 <% categories.each do |category| %>
-<% count = Travel.where(category: category).count %>
-  <%= link_to "#{category} (#{count})", tagsearches_search_path(content: category) %>
+  <% count = category.present? ? Travel.where(category: category).count : 0 %>
+  <% if count > 0 %>
+    <%= link_to "#{category} (#{count})", tagsearches_search_path(content: category) %>
+  <% end %>
 <% end %>

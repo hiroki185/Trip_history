@@ -45,9 +45,27 @@
   box-shadow: none;
   transform: scale(1.1);
 }
+
+.photo02 {
+  animation: slideIn02 7s 1;
+}
+
+@keyframes slideIn02 {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0;
+    transform: translateX(1000px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 </style>
 
-<div class="mx-auto">
+<div class="mx-auto photo02">
   <% travels.each do |travel| %>
     <% if travel.image.attached? %>
     <div class="mt-3">
