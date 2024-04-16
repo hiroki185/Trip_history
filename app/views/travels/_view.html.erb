@@ -92,7 +92,7 @@
           <% else %>
           <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
           <% end %>
-          <%= link_to travel.title.length > 10 ? "#{travel.title[0..9]}..." : travel.title, travel, class: "text-white mr-4" %>
+          <%= link_to travel.title.length > 8 ? "#{travel.title[0..7]}..." : travel.title, travel, class: "text-white mr-4" %>
         </p>
       </div>
       </div>
