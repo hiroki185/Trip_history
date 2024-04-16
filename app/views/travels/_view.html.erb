@@ -46,6 +46,7 @@
   transform: scale(1.1);
 }
 
+
 .photo02 {
   animation: slideIn02 7s 1;
 }
@@ -72,7 +73,12 @@
       <div class="gray-overlay scale">
         <%= image_tag travel.image, class: "image" %>
         <p class="overlay-title">
-          <%= link_to travel.title.length > 10 ? "#{travel.title[0..9]}..." : travel.title, travel, class: "text-white" %>
+           <% if current_user && travel.user == current_user %>
+          <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+          <% else %>
+          <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+          <% end %>
+          <%= link_to travel.title.length > 10 ? "#{travel.title[0..9]}..." : travel.title, travel, class: "text-white mr-4" %>
         </p>
       </div>
       </div>
@@ -81,7 +87,12 @@
       <div class="gray-overlay scale">
         <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "image" %>
         <p class="overlay-title">
-          <%= link_to travel.title.length > 10 ? "#{travel.title[0..9]}..." : travel.title, travel, class: "text-white" %>
+          <% if current_user && travel.user == current_user %>
+          <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+          <% else %>
+          <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+          <% end %>
+          <%= link_to travel.title.length > 10 ? "#{travel.title[0..9]}..." : travel.title, travel, class: "text-white mr-4" %>
         </p>
       </div>
       </div>
