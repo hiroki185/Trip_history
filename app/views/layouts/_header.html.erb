@@ -20,8 +20,8 @@
 
 <div class="navbar center-align" style="background-color: #008b8b;">
 
-  <%= link_to root_path do %>
-    <%= image_tag 'Trip_history - MarkMaker Logo.png', width:"200", height:"100%", class: "centered-logo" %>
+    <%= link_to root_path do %>
+    <%= render 'layouts/logo' %>
   <% end %>
 
   <% if user_signed_in? %>
