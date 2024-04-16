@@ -7,6 +7,8 @@ class TravelsController < ApplicationController
   def show
     @travel = Travel.find(params[:id])
     @travel_comment = TravelComment.new
+    @categories = Travel.unique_categories
+    @travel_detail  = Travel.joins(:view_counts).group(:id).order('COUNT(view_counts.id) DESC').page(params[:page]).per(50).limit(4)
     unless ViewCount.find_by(user_id: current_user.id, travel_id: @travel.id)
       current_user.view_counts.create(travel_id: @travel.id)
     end

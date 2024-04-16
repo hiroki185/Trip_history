@@ -1,7 +1,6 @@
 <%= form_with model: [travel, travel_comment], local: false do |f| %>
   <%= f.text_area :comment, rows:'10', cols:'50', placeholder: "コメントをここに", class: "form-control col", id: "comment_textarea" %>
-    <div class="row ml-1 mt-2">
-    <%= f.button "送信", class: 'button-hover comment' %>
+    <%= f.button "送信", class: 'button-hover comment mt-3' %>
     &nbsp;&nbsp;
     <% end %>
        <button class="button-hover comment"id="clear">入力内容をクリア</button>
@@ -12,5 +11,5 @@
           });
         });
       </script>
-      </div>
-  </div>
+
+

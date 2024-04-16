@@ -1,6 +1,6 @@
 <style>
   .scrollable {
-    max-height: 300px;
+    max-height: 600px;
     overflow-y: scroll;
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
@@ -11,7 +11,7 @@
   }
 </style>
 
-<div class="scrollable" style="overflow: auto; max-height: 300px;">
+<div class="scrollable" style="overflow: auto; max-height: 500px;">
   <% travel.travel_comments.each do |travel_comment| %>
     <div class="line__balloon_l">
       <%= link_to user_path(travel_comment.user) do %>
