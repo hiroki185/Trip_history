@@ -21,64 +21,65 @@
 }
   </style>
 </head>
+<form action="<%= admin_destroy_selected_travels_path %>" method="post" id="delete_selected_form" data-turbo-frame="false">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <button type="submit" class="button" data-turbo-frame="false">選択項目を削除<i class="fa-solid fa-trash-can"></i></button>
 
-<div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
-  <h3 class="text-center">投稿一覧</h3>
-  <% @travels.each_slice(3) do |travels_slice| %>
-    <div class="container">
-      <div class="row justify-content-start" style="margin-left: 120px;">
-
-        <% travels_slice.each do |travel| %>
-          <div class="mt-4 mr-5 mb-4 border scale" style="width: 240px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
-            <% if travel.image.attached? %>
-              <%= image_tag travel.image, class: "img", size: "240x150" %>
-            <% else %>
-              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "240x150" %>
-            <% end %>
-
-            <h4 class="text-center">
-              <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, admin_travel_path(travel) %>
-            </h4>
-            <div style="padding: 0px 20px 0px 20px">
-              <div class="">
-                <% if current_user && travel.user == current_user %>
-                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
-                <% else %>
-                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
-                <% end %>
-              </div>
-              <div class="row">
-                <p class="col" id="comment_counter">
-                  <%= render "travel_comments/counter", travel: travel %>
-                </p>
-              </div>
-
-              <div class="row">
-                <p class="col">
-                  <% if travel.category.present? %>
-                    <%= travel.category %>
+  <div class="scrollable" style="overflow: auto; max-height: 600px;" id="app-container">
+    <h3 class="text-center">投稿一覧</h3>
+    <% @travels.each_slice(3) do |travels_slice| %>
+      <div class="container">
+        <div class="row justify-content-start" style="margin-left: 120px;">
+          <% travels_slice.each do |travel| %>
+            <div class="mt-4 mr-5 mb-4 border scale" style="width: 240px; display: inline-block; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
+              <% if travel.image.attached? %>
+                <%= image_tag travel.image, class: "img", size: "240x150" %>
+              <% else %>
+                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "240x150" %>
+              <% end %>
+              <h4 class="text-center">
+                <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
+                <%= link_to (travel.title.length > 10) ? "#{travel.title[0..9]}..." : travel.title, admin_travel_path(travel) %>
+              </h4>
+              <div style="padding: 0px 20px 0px 20px">
+                <div class="">
+                  <% if current_user && travel.user == current_user %>
+                    <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
+                  <% else %>
+                    <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %><%= travel.user.name %>
                   <% end %>
-                </p>
-                <div class="col">
-                  <div class="row">
-                    <%= link_to edit_admin_travel_path(travel.id), method: :get, class: "button-hover index col" do %>
-                      <i class="fa-solid fa-pen-to-square"></i>
+                </div>
+                <div class="row">
+                  <p class="col" id="comment_counter">
+                    <%= render "travel_comments/counter", travel: travel %>
+                  </p>
+                </div>
+                <div class="row">
+                  <p class="col">
+                    <% if travel.category.present? %>
+                      <%= travel.category %>
                     <% end %>
-
-                    <%= link_to admin_travel_path(travel.id), method: :delete, class: "button index col", "data-confirm" => "本当に削除しますか？" do %>
-                      <i class="fa-solid fa-trash-can"></i>
-                    <% end %>
+                  </p>
+                  <div class="col">
+                    <div class="row">
+                      <%= link_to edit_admin_travel_path(travel.id), method: :get, class: "button-hover index col" do %>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                      <% end %>
+                      <%= link_to admin_travel_path(travel.id), method: :delete, class: "button index col", "data-confirm" => "本当に削除しますか？" do %>
+                        <i class="fa-solid fa-trash-can"></i>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col">
-                <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+                <div class="col">
+                  <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+                </div>
               </div>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
-    </div>
-  <% end %>
-  <%= paginate @travels %>
-</div>
+    <% end %>
+    <%= paginate @travels %>
+  </div>
+</form>

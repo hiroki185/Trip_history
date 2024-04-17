@@ -30,6 +30,12 @@ before_action :authenticate_admin!
     redirect_to admin_travels_path
   end
 
+def destroy_selected
+  selected_ids = params[:selected_travels] || []
+  Travel.where(id: selected_ids).destroy_all
+  redirect_to admin_travels_path, notice: "選択した項目を削除しました。"
+end
+
   def destroy_comment
     @comment = TravelComment.find(params[:id]).destroy
   end

@@ -11,16 +11,17 @@
 </head>
 <div id="container" class="parent-container">
   <div class="row">
-  <div class="col">
-  <%= image_tag user.get_profile_image, class: "rounded-circle mt-3 mr-1", size: '150x150' %>
-  <h4 class="text-align: center; mt-3">
-    <%= user.name %>
-  </h4>
-  </div>
-<div class="col">
+    <div class="col">
+      <%= image_tag user.get_profile_image, class: "rounded-circle mt-3 mr-1", size: '150x150' %>
+      <h4 class="text-align: center; mt-3">
+        <%= user.name %>
+      </h4>
+    </div>
+    <div class="col">
       <%= link_to "フォロー一覧", user_followings_path(user), class: "button-hover mt-5" %>
-       &nbsp;&nbsp;
+      &nbsp;&nbsp;
       <%= link_to "フォロワー一覧", user_followers_path(user), class: "button-hover" %>
-      </div>
-      </div>
+    </div>
+  </div>
 </div>
+

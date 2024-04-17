@@ -6,7 +6,6 @@
    再度ご利用をいただく場合には、新規登録のお手続きが必要になります。<br>
    本当に退会してよろしいですか？
  </h3>
-
 <div class="row">
  <div class="col-6">
   <%= link_to "退会する", withdrawal_path, method: :patch, data: { confirm: "本当に退会しますか？" },class: 'button ml-auto mt-2' %>
@@ -15,8 +14,6 @@
 <%= link_to "退会しない", edit_user_path(current_user),class: 'button-hover mr-auto mt-2' %>
 </div>
 </div>
-
 </div>
-
   </div>
 </div>

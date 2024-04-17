@@ -29,7 +29,7 @@
   </style>
 </head>
 <%= render 'layouts/loading' %>
-<div class="row">
+<div class="row" style="margin-left:70px;">
   <div class="col">
     <div class="row">
       <div class="col-md-8">
@@ -127,7 +127,7 @@
           </tr>
         </table>
         <h3>コメント</h3>
-              <div class="col" id="comment_index">
+        <div class="col" id="comment_index">
         <%= render "travel_comments/index", travel: @travel %>
       </div>
       </div>
@@ -136,16 +136,13 @@
           <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>
           <%= render 'travels/tag', categories: @categories %>
         </div>
-        <div class="text-center mt-2">閲覧数が多い旅</div>
+        <h4 class="text-center mt-2">閲覧数が多い旅</h4>
         <%= render 'travels/view', travels: @travel_detail %>
-
       <div class="mt-3 mx-auto">
         <%= render "travel_comments/form", travel: @travel, travel_comment: @travel_comment %>
       </div>
-
       </div>
     </div>
-
   </div>
 </div>
 

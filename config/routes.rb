@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       resources :travel_comments, only: [:destroy]
     end
     get "search" => "search#search"
+    post 'destroy_selected', to: 'travels#destroy_selected', as: 'destroy_selected_travels'
   end
 
 #トップページのルート

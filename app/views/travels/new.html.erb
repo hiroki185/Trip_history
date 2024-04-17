@@ -1,53 +1,58 @@
-
 <head>
   <style>
     .required {
-    color: #fff;
-    background: #f14668;
-    padding: 3px 4px;
-    border-radius: 2px;
-    margin-left: 8px;
-     }
+      color: #fff;
+      background: #f14668;
+      padding: 3px 4px;
+      border-radius: 2px;
+      margin-left: 8px;
+    }
   </style>
 </head>
 
 <div class='container mt-3' style='width: 60%;'>
-      <%= render 'layouts/errors' %>
-      <h2 class="text-center">新規投稿</h2>
-      <%= form_with model: @travel do |f| %>
-        <div class="form-group">
-          <%= f.label :場所や地名 %>
-          <span class="required" data-v-7e4aabda="">必須</span>
-          <%= f.text_field :title, class: 'form-control travel_title' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :住所 %>
-          <%= f.text_field :address, class: 'form-control' %>
-        </div>
-        <div class="form-row">
-         <div class="form-group mr-5">
-        <%= f.label :画像 %> <br>
-        <%= f.file_field :image, accept: "image/*" %>
-        </div>
-          <div class="form-group mr-5">
-            <%= f.label :費用 %> <br>
-            <%= f.select :amount_range, options_for_select(['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上'], :selected => '0円'), class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :交通手段 %> <br>
-            <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], :selected => '徒歩'), class: 'form-control' %>
-          </div>
-        </div>
-        <div class="form-group">
-        <label>タグ</label>
-          <%= f.text_field :category, class: 'form-control', placeholder: '＃をつけて投稿' %>
-        </div>
-        <div class="form-group">
-          <%= f.label :感想 %>
-          <span class="required" data-v-7e4aabda="">必須</span>
-          <%= f.text_area :body, rows: 8, class: 'form-control' %>
-        </div>
-          <%= f.button "投稿", class: 'button-hover new' %>
-      <% end %>
+  <%= render 'layouts/errors' %>
+  <h2 class="text-center">新規投稿</h2>
+  <%= form_with model: @travel do |f| %>
+    <div class="form-group">
+      <%= f.label :場所や地名, for: 'travel_title' %>
+      <span class="required" data-v-7e4aabda="">必須</span>
+      <%= f.text_field :title, class: 'form-control travel_title', id: 'travel_title' %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :住所, for: 'travel_address' %>
+      <%= f.text_field :address, class: 'form-control', id: 'travel_address' %>
+    </div>
+
+    <div class="row">
+      <div class="form-group mr-5 col">
+        <%= f.label :画像, for: 'travel_image' %> <br>
+        <%= f.file_field :image, accept: "image/*", id: 'travel_image' %>
+      </div>
+
+      <div class="form-group mr-5 col">
+        <%= f.label :費用, for: 'travel_amount_range' %> <br>
+        <%= f.select :amount_range, options_for_select(['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上'], :selected => '0円'), class: 'form-control', id: 'travel_amount_range' %>
+      </div>
+
+      <div class="form-group col">
+        <%= f.label :交通手段, for: 'travel_transportation' %> <br>
+        <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], :selected => '徒歩'), class: 'form-control', id: 'travel_transportation' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>タグ</label>
+      <%= f.text_field :category, class: 'form-control', placeholder: '＃をつけて投稿', id: 'travel_category' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :感想, for: 'travel_body' %>
+      <span class="required" data-v-7e4aabda="">必須</span>
+      <%= f.text_area :body, rows: 8, class: 'form-control', id: 'travel_body' %>
+    </div>
+    
+    <%= f.button "投稿", class: 'button-hover new' %>
+  <% end %>
+</div>
