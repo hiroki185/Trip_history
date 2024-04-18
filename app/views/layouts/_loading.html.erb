@@ -25,6 +25,13 @@
   height:100px;
 }
 
+  .parent-element {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 
 /*アニメーション指定
 文字数に合わせてleftや開始時間（2つ目のs）を設定する*/
@@ -53,7 +60,18 @@
 
 </head>
 <div class="loading">
-  <div class="loading-animation"></div>
+  <div class="loading-animation">
+<div class="parent-element">
+<div style="background-color: #f0f8ff; border-radius: 10px; width:600px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
+  <h3 style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">旅人の部屋</h3>
+  <div>
+    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">旅人の部屋では</h5>
+    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">新しく投稿したりプロフィールを</h5>
+    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">変更することができます</h5>
+  </div>
+</div>
+</div>
+  </div>
   <div class="container animation">
   <p class="bound">
     <span>l</span>
