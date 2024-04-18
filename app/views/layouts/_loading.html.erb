@@ -62,14 +62,53 @@
 <div class="loading">
   <div class="loading-animation">
 <div class="parent-element">
+
 <div style="background-color: #f0f8ff; border-radius: 10px; width:600px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
-  <h3 style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">旅人の部屋</h3>
+  <h3 style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">
+    <% if controller_name == 'users' && action_name == 'index' %>
+      <i class="fas fa-users"></i> 旅人一覧
+    <% elsif controller_name == 'travels' && action_name == 'index' %>
+      <i class="fa-solid fa-suitcase-rolling"></i> 旅一覧
+    <% elsif action_name == 'favorites' %>
+      <i class="fa-solid fa-thumbs-up"></i> いいねした旅
+    <% elsif action_name == 'show' && controller_name == 'travels' %>
+      <i class="fa-solid fa-plus"></i> 投稿ページ
+      <% elsif action_name == 'show' && controller_name == 'users' %>
+       <i class="fas fa-home"></i> 旅人の部屋
+    <% else %>
+     <i class="fa-solid fa-person-walking-luggage"></i> Trip_history
+    <% end %>
+  </h3>
   <div>
+    <% if controller_name == 'users' && action_name == 'index' %>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">旅人一覧では</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">様々な旅人と出会うことができフォローユーザー同士で</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">DMを行うこともできます</h5>
+    <% elsif controller_name == 'travels' && action_name == 'index' %>
+    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">旅一覧では</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">様々な旅を一覧表示で閲覧し</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">いいねをすることができます</h5>
+    <% elsif action_name == 'favorites' %>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">いいねした旅では</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">いいねした投稿を一覧表示で</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">閲覧することができます</h5>
+      <% elsif action_name == 'show' && controller_name == 'travels' %>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">投稿ページでは</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">旅の記録を共有し、詳しい情報を</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">知ることができます</h5>
+
+    <% elsif action_name == 'show' && controller_name == 'users' %>
     <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">旅人の部屋では</h5>
-    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">新しく投稿したりプロフィールを</h5>
-    <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">変更することができます</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">新しく投稿したりプロフィールを</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">変更することができます</h5>
+      <% else %>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">当サイトでは</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">自分の旅行写真を投稿したり</h5>
+      <h5 style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">感想コメントを共有することができます</h5>
+    <% end %>
   </div>
 </div>
+
 </div>
   </div>
   <div class="container animation">
