@@ -32,7 +32,8 @@
 <div class="row" style="margin-left:70px;">
   <div class="col">
     <div class="row">
-      <div class="col-md-8">
+
+      <div class="col-md-9" style="background-color: #f0f8ff; border-radius: 10px; width:600px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
         <div class="row">
           <div class="col">
             <h3 class=""><%= @travel.title %></h3>
@@ -60,7 +61,7 @@
             </p>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-1">
           <div class="col">
             <% if current_user && @travel.user == current_user %>
               <%= image_tag current_user.get_profile_image, size: '60x60', class: 'rounded-circle' %>
@@ -68,12 +69,18 @@
               <%= image_tag @travel.user.get_profile_image, size: '60x60', class: 'rounded-circle' %>
             <% end %>
           </div>
-          <div class="col">
-            <%= link_to user_path(@travel.user), class: "button-hover home mt-3" do %>
-              <%= @travel.user.name %>さんの部屋へ
-              <i class="fa-solid fa-door-open"></i>
+
+          <div class="box col">
+            <%= link_to user_path(@travel.user), class: "" do %>
+          <div id="travel_home">
+          <div class="layer2">
+            <div class="nb">この旅人の部屋へ<i class="fa-solid fa-door-open"></i></div>
+             </div>
+            <div class="textlink">Go to room</div>
+              </div>
             <% end %>
           </div>
+
         </div>
         <div class="triangle ml-3 mt-2"></div>
         <h5 class="break-text" style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;">
@@ -131,6 +138,7 @@
         <%= render "travel_comments/index", travel: @travel %>
       </div>
       </div>
+
       <div class="col-3">
         <div class="mt-4" style="border: 3px solid; border-radius: 15px; height: 300px; background-color: #add8e6;">
           <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>

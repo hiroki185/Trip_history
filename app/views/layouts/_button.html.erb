@@ -1,0 +1,109 @@
+  <head>
+    <style>
+.box {
+    margin: 0 50px 50px;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+}
+
+.box a > div {
+    display: inline-block;
+    position: relative;
+    width: 190px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.box:first-child a > div,
+.box:last-child a > div {
+    width: 200px;
+}
+
+.box a {
+    color: #A8A8A8;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.box .layer2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 200px;
+    height: 50px;
+    background: white;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+
+.box:first-child .layer2,
+.box:last-child .layer2 {
+    left: 0px;
+    width: 200px;
+}
+
+.box:hover .layer2 {
+    top: -20px;
+    left: 15px;
+    width: 200px;
+}
+
+.box:first-child a:hover .layer2 {
+    top: -20px;
+    left: -40px;
+}
+
+.box:last-child a:hover .layer2 {
+    top: -20px;
+    right: -20px;
+}
+
+.box .nb {
+    font-size: 15px;
+    padding-top: 15px;
+}
+
+.box .textlink {
+    position: absolute;
+    width: 200px;
+    bottom: 0px;
+    right: 40px;
+    left: -40px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+
+.box:first-child .textlink {
+    text-align: right;
+}
+
+.box:last-child .textlink {
+    text-align: left;
+}
+
+#travel_home {
+    background: #125486;
+}
+    </style>
+  </head>
+<div class="box">
+  <%= link_to new_user_session_path, class: "" do %>
+      <div id="travel_home">
+          <div class="layer2">
+              <div class="nb">この旅人の部屋へ</div>
+          </div>
+          <div class="textlink">go to room</div>
+      </div>
+  <% end %>
+</div>
