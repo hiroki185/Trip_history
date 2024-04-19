@@ -213,6 +213,9 @@ body {
   width: 270px;
 }
 
+.button-hover.post{
+  width: 50px;
+}
 
 
 /*削除ボタンの赤色のホバー*/
@@ -275,6 +278,10 @@ body {
   width: 30px;
 }
 
+.button.post{
+  width: 50px;
+}
+
 /*新しいボタン*/
 .box {
     display: inline-block;
@@ -299,7 +306,6 @@ body {
 .box a {
     color: #A8A8A8;
     text-decoration: none;
-    
     font-size: 14px;
     font-family: Arial, sans-serif;
 }
@@ -368,5 +374,5 @@ body {
 }
 
 #travel_home {
-    background: #125486;
+    background: #add8e6;
 }

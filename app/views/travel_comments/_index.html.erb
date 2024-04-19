@@ -11,7 +11,7 @@
   }
 </style>
 
-<div class="scrollable" style="overflow: auto; max-height: 500px;">
+<div class="scrollable" style="overflow: auto; max-height: 600px;">
   <% travel.travel_comments.each do |travel_comment| %>
     <div class="line__balloon_l">
       <%= link_to user_path(travel_comment.user) do %>
