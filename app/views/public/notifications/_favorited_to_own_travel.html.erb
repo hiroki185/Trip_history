@@ -1,5 +1,5 @@
 <%= link_to transition_path(notification) do %>
-  <div>
+  <div style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">
     <%= link_to notification.subject.user.name, user_path(notification.subject.user) %>
     があなたの
     <%= link_to '投稿', travel_path(notification.subject.travel) %>
