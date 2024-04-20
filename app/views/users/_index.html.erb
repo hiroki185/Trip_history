@@ -16,7 +16,7 @@
         <div class="col-1"><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></div>
         <div class="col-2"><%= user.name.truncate(7) %></div>
         <div class="col-2">フォロワー数: <%= user.followers.count %></div>
-        <div class="col" id="follow-ajax_<%= user.id %>">
+        <div class="col-3" id="follow-ajax_<%= user.id %>">
           <% if current_user.following?(user) %>
             <%= link_to user_relationships_path(user.id), class: "button-hover", style: "z-index: 9998;", method: :delete, remote: true do %>
               フォローを外す&nbsp;&nbsp;<i class="fa-solid fa-user-minus"></i>
