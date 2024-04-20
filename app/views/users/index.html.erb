@@ -1,9 +1,8 @@
 <%= render 'layouts/loading' %>
-<div class="">
   <%= render 'info', user: @user %>
-  <div class="row justify-content-center">
-    <div class="col-10">
-      <div class="row mt-3" style="border-bottom-width: 5px; border-bottom-style: solid; border-bottom-color: #b0c4de;">
+  <div class="row justify-content-center mt-3">
+    <div class="col-10" style="background-color: #f0f8ff; border-radius: 10px;padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
+      <div class="row mt-3" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9; padding: 10px 0px 0px 0px;">
         <h2 class="col text-center">旅人一覧</h2>
         <div class="col">
          <form class="form-inline my-2 my-lg-0" action="<%= search_users_path %>" method="get">
@@ -18,4 +17,4 @@
       </div>
     </div>
   </div>
-</div>
+

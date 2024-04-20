@@ -10,9 +10,9 @@
   </style>
 </head>
 
-<div class='container mt-3' style='width: 60%;'>
+<div class='container mt-3' style='width: 60%; background-color: #f0f8ff; border-radius: 10px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);'>
   <%= render 'layouts/errors' %>
-  <h2 class="text-center">新規投稿</h2>
+  <h2 class="text-center mb-3" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9; padding: 10px 0px 0px 0px;">新規投稿</h2>
   <%= form_with model: @travel do |f| %>
     <div class="form-group">
       <%= f.label :場所や地名, for: 'travel_title' %>
@@ -25,12 +25,12 @@
       <%= f.text_field :address, class: 'form-control', id: 'travel_address' %>
     </div>
 
-    <div class="row">
       <div class="form-group mr-5 col">
         <%= f.label :画像, for: 'travel_image' %> <br>
         <%= f.file_field :image, accept: "image/*", id: 'travel_image' %>
       </div>
-
+      <div class="col">
+      <div class="row">
       <div class="form-group mr-5 col">
         <%= f.label :費用, for: 'travel_amount_range' %> <br>
         <%= f.select :amount_range, options_for_select(['0円', '0～5000円', '5000円～1万円', '1万円～3万円', '3万円～5万円', '5万円以上'], :selected => '0円'), class: 'form-control', id: 'travel_amount_range' %>
@@ -40,7 +40,9 @@
         <%= f.label :交通手段, for: 'travel_transportation' %> <br>
         <%= f.select :transportation, options_for_select(['徒歩', '自転車', '自動車', '電車', 'バス', '飛行機', '船'], :selected => '徒歩'), class: 'form-control', id: 'travel_transportation' %>
       </div>
-    </div>
+      </div>
+      </div>
+
 
     <div class="form-group">
       <label>タグ</label>
@@ -52,7 +54,7 @@
       <span class="required" data-v-7e4aabda="">必須</span>
       <%= f.text_area :body, rows: 8, class: 'form-control', id: 'travel_body' %>
     </div>
-    
-    <%= f.button "投稿", class: 'button-hover new' %>
+
+    <%= f.button "投稿", class: 'button-hover new', style: "z-index: 9998;" %>
   <% end %>
 </div>

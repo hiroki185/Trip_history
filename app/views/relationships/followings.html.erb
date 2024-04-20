@@ -1,12 +1,14 @@
-<div class='container' style="width: 85%">
- <div class="row" style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px;">
- <h2 class="col-4">
+<div class='container' style="width: 90%">
+ <div style="background-color: #f0f8ff; border-radius: 10px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
+ <div class="row" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9; padding: 10px 0px 0px 0px;">
+ <h2 class="col">
   フォロー一覧
   </h2>
-  <div class="col">
-  <%= link_to "フォロワー一覧", user_followers_path,class: "button-hover col" %>
+  <div class="col" style="margin-left: 400px;">
+  <%= link_to "フォロワー一覧へ", user_followers_path,class: "button-hover col", style: "z-index: 9998;" %>
    </div>
  </div>
 <%= render 'users/index',users: @users %>
 <%= paginate @users %>
+</div>
 </div>

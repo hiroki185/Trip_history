@@ -6,33 +6,39 @@
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
     }
-    
+
   </style>
 </head>
 <div class="scrollable" style="overflow: auto; max-height: 400px;">
-  <table class="table table-borderless">
+
     <% users.each do |user| %>
-      <tr style="border-bottom-width: 4px; border-bottom-style: solid; border-bottom-color: #b0c4de; padding-top: 10px; padding-bottom: 10px;">
-        <td><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></td>
-        <td><%= user.name.truncate(7) %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-        <td id="follow-ajax_<%= user.id %>">
+      <div class="row mt-4" style="border-bottom-width: 3px; border-bottom-style: dotted; border-bottom-color: #a9a9a9;">
+        <div class="col-1"><%= image_tag user.get_profile_image, class: "rounded-circle", size: '50x50' %></div>
+        <div class="col-2"><%= user.name.truncate(7) %></div>
+        <div class="col-2">フォロワー数: <%= user.followers.count %></div>
+        <div class="col" id="follow-ajax_<%= user.id %>">
           <% if current_user.following?(user) %>
-            <%= link_to user_relationships_path(user.id), class: "button-hover", method: :delete, remote: true do %>
+            <%= link_to user_relationships_path(user.id), class: "button-hover", style: "z-index: 9998;", method: :delete, remote: true do %>
               フォローを外す&nbsp;&nbsp;<i class="fa-solid fa-user-minus"></i>
             <% end %>
           <% else %>
-            <%= link_to user_relationships_path(user.id), class: "button-hover", method: :post, remote: true do %>
+            <%= link_to user_relationships_path(user.id), class: "button-hover", style: "z-index: 9998;", method: :post, remote: true do %>
               フォローする&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-user-plus"></i>
             <% end %>
           <% end %>
-        </td>
-        <td>
-          <%= link_to user_path(user.id), class: "button-hover" do %>
-            この旅人の部屋へ<i class="fa-solid fa-door-open"></i>
-          <% end %>
-        </td>
-      </tr>
+        </div>
+          <div class="box col-4 mb-2">
+            <%= link_to user_path(user.id), class: "" do %>
+              <div id="travel_home">
+                <div class="layer2">
+                  <div class="nb">この旅人の部屋へ<i class="fa-solid fa-door-open"></i></div>
+                </div>
+                <div class="textlink">Go to room</div>
+              </div>
+            <% end %>
+          </div>
+
+      </div>
     <% end %>
-  </table>
 </div>
+

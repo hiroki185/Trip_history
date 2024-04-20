@@ -9,7 +9,7 @@
     }
   </style>
 </head>
-<div id="container" class="parent-container">
+<div id="container" class="parent-container" style="background-color: #f0f8ff; border-radius: 10px;padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3); width:950px; margin-left:80px;">
   <div class="row">
     <div class="col">
       <%= image_tag user.get_profile_image, class: "rounded-circle mt-3 mr-1", size: '150x150' %>
@@ -18,9 +18,9 @@
       </h4>
     </div>
     <div class="col">
-      <%= link_to "フォロー一覧", user_followings_path(user), class: "button-hover mt-5" %>
+      <%= link_to "フォロー一覧", user_followings_path(user), class: "button-hover mt-5", style: "z-index: 9998;" %>
       &nbsp;&nbsp;
-      <%= link_to "フォロワー一覧", user_followers_path(user), class: "button-hover" %>
+      <%= link_to "フォロワー一覧", user_followers_path(user), class: "button-hover", style: "z-index: 9998;" %>
     </div>
   </div>
 </div>
