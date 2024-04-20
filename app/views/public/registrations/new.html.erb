@@ -1,7 +1,7 @@
 <div style="text-align: center;">
-  <div class="container-fluid" style="width: 60%;">
+  <div class="container-fluid"  style="background-color: #f0f8ff; border-radius: 10px; width: 55%; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
 
-    <h2 class="mt-3">新規登録</h2>
+    <h2 class="mb-3" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9; padding: 10px 0px 0px 0px;">新規登録</h2>
 
     <%= form_with model: @user, url: user_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
@@ -47,10 +47,10 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control mb-2" %>
       </div>
 
-      <%= f.button "新規登録", class: "button-hover home" %>
+      <%= f.button "新規登録", class: "button-hover home", style: "z-index: 9998;" %>
 
     <% end %>
-    <div>既に登録済みの方</div>
+    <div>既に登録済みの方は</div>
     <p><%= link_to "こちら", new_user_session_path %> からログインしてください。</p>
   </div>
 </div>
