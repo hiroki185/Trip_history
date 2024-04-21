@@ -90,9 +90,9 @@ end
 #scp -i ~/.ssh/practice-aws2.pem ~/.ssh/id_rsa ec2-user@43.207.61.188:.ssh/id_rsa
 #:wq
 #rails db:migrate:status
-#rm -rf db/migrate/20240311065411_hoge.rb
-#touch db/migrate/20190915065320_hoge.rb
-#rails db:migrate:down VERSION=20240306031245
+#rm -rf db/migrate/20240421134237_hoge.rb
+#touch db/migrate/20240421134237_hoge.rb
+#rails db:migrate:down VERSION=20240421134237
 #rm -rf db/migrate/
 #rails destroy model モデル名
 #git reset --hard
