@@ -44,11 +44,10 @@
       </div>
 
 
-<div class="form-group">
-  <label>カテゴリー</label>
-  <%= text_field_tag 'travel[category]', nil, class: 'form-control', placeholder: 'カンマ区切りで複数のカテゴリーを入力してください' %>
-</div>
-
+    <div class="form-group">
+      <label>タグ</label>
+      <%= f.text_field :category, class: 'form-control', placeholder: '＃をつけて投稿', id: 'travel_category' %>
+    </div>
 
     <div class="form-group">
       <%= f.label :感想, for: 'travel_body' %>
