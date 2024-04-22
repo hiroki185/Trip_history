@@ -108,6 +108,7 @@ class TravelsController < ApplicationController
 
   private
 
+
   def travel_params
     params.require(:travel).permit(:title, :body, :image, :amount_range, :transportation, :address, :category)
   end

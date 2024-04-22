@@ -17,6 +17,7 @@ class Travel < ApplicationRecord
   #投稿数
   has_many :view_counts, dependent: :destroy
 
+  has_and_belongs_to_many :categories
   
 #地図機能の記述
   geocoded_by :address

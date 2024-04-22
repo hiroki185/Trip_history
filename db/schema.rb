@@ -52,19 +52,6 @@ ActiveRecord::Schema.define(version: 2024_04_15_060938) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "categories_travels", id: false, force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "travel_id"
-    t.index ["category_id"], name: "index_categories_travels_on_category_id"
-    t.index ["travel_id"], name: "index_categories_travels_on_travel_id"
-  end
-
   create_table "chats", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "room_id", null: false
@@ -117,29 +104,12 @@ ActiveRecord::Schema.define(version: 2024_04_15_060938) do
     t.index ["travel_id"], name: "index_tags_on_travel_id"
   end
 
-  create_table "travel_categories", force: :cascade do |t|
-    t.integer "travel_id", null: false
-    t.integer "category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_travel_categories_on_category_id"
-    t.index ["travel_id"], name: "index_travel_categories_on_travel_id"
-  end
-
   create_table "travel_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
     t.integer "travel_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "travel_tags", force: :cascade do |t|
-    t.string "name"
-    t.integer "travel_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["travel_id"], name: "index_travel_tags_on_travel_id"
   end
 
   create_table "travels", force: :cascade do |t|
@@ -198,9 +168,6 @@ ActiveRecord::Schema.define(version: 2024_04_15_060938) do
   add_foreign_key "chats", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "tags", "travels"
-  add_foreign_key "travel_categories", "categories"
-  add_foreign_key "travel_categories", "travels"
-  add_foreign_key "travel_tags", "travels"
   add_foreign_key "user_rooms", "rooms"
   add_foreign_key "user_rooms", "users"
 end

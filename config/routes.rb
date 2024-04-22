@@ -92,7 +92,7 @@ end
 #rails db:migrate:status
 #rm -rf db/migrate/20240422103417_hoge.rb
 #touch db/migrate/20240422103417_hoge.rb
-#rails db:migrate:down VERSION=20240422103417
+#rails db:migrate:down VERSION=20240422124504
 #rm -rf db/migrate/
 #rails destroy model モデル名
 #git reset --hard
