@@ -76,16 +76,109 @@
   background-color: #696969;
   border-radius: 0px 0px 10px 10px;
 }
+
+.details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+	max-width: 800px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+}
+.details li {
+	flex-basis: calc(33.333% - 8px);
+	position: relative;
+	max-width: 250px;
+	border-radius: 8px;
+}
+@media (max-width: 720px) {
+	.details li {
+		flex-basis: calc(50% - 6px);
+	}
+	.details li:nth-child(n+3) {
+		margin-top: 12px;
+	}
+}
+@media (max-width: 520px) {
+	.details {
+		flex-direction: column;
+		align-items: center;
+	}
+	.details li {
+		flex-basis: auto;
+	}
+	.details li:nth-child(n+2) {
+		margin-top: 12px;
+	}
+}
+
+.details .image {
+	margin: 0;
+}
+.details .image img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+	vertical-align: middle;
+}
+
+.details .text {
+	display: grid;
+	grid-template-rows: 1fr auto 1fr;
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 16px 24px;
+	border-radius: 8px;
+	color: white;
+	text-align: left;
+	background: rgba(220,102,136,.9);
+}
+.details .text dt {
+	justify-self: flex-start;
+	align-self: flex-end;
+}
+.details .text dd {
+	margin: .5em 0 0;
+	font-size: .8em;
+	line-break: strict;
+	overflow-wrap: break-word;
+}
+.details .text .price {
+	justify-self: flex-end;
+}
+
+/* :::::: type2 :::::: */
+.details .type2 img,
+.details .type2 dl {
+	transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+.details .type2:hover img {
+	transform: rotateX(180deg);
+}
+.details .type2 dl {
+	background-color: #dc6688;
+}
+.details .type2:not(:hover) dl {
+	transform: rotateX(-180deg);
+}
+
   </style>
 </head>
-<%= render 'layouts/loading' %>
+
 <div class="row">
   <div class="scrollable col" style="overflow: auto; max-height: 800px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
       <div class="row justify-content-start">
         <% travels_slice.each do |travel| %>
-        <div class="scale mt-3 mr-4 mb-3 photo01">
+        <ul class="details">
+          <li class="type2">
+        <div class="scale mt-3 mr-4 mb-3">
         <div class="handle"><div class="box"></div></div>
         <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
           <% if travel.image.attached? %>
@@ -95,14 +188,29 @@
           <% end %>
           <div style= "padding: 0px 10px;">
           <% if current_user && travel.user == current_user %>
-          <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
-          <% end %>
-          <% if current_user && travel.user == current_user %>
           <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
           <% else %>
           <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
           <% end %>
           <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+
+
+
+
+      <dl class="text">
+			<dt>
+			  <% if current_user && travel.user == current_user %>
+          <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
+          <% end %>
+			  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+			  </dt>
+			<dd>もちっとしたパン生地に、ローストしたくるみをたっぷり練り込んだ、自然な甘みと食感が楽しめるくるみパン。</dd>
+			<dd class="price"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
+
+		</dl>
+
+
+
           <div style="padding: 0px 10px 10px 10px;">
             <div class="bg-dark rounded-pill" style="height: 10px;"></div>
           </div>
@@ -134,9 +242,12 @@
         <div class="roller col-1 mx-auto"></div>
         </div>
         </div>
+                  </li>
+        </ul>
         <% end %>
       </div>
     </div>
     <% end %>
+
   </div>
 </div>

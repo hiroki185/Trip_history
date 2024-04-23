@@ -1,0 +1,103 @@
+  <head>
+    <style>
+.details {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+	max-width: 800px;
+	margin: 1em auto;
+	padding: 0;
+	text-align: center;
+}
+.details li {
+	flex-basis: calc(33.333% - 8px);
+	position: relative;
+	max-width: 250px;
+	border-radius: 8px;
+}
+@media (max-width: 720px) {
+	.details li {
+		flex-basis: calc(50% - 6px);
+	}
+	.details li:nth-child(n+3) {
+		margin-top: 12px;
+	}
+}
+@media (max-width: 520px) {
+	.details {
+		flex-direction: column;
+		align-items: center;
+	}
+	.details li {
+		flex-basis: auto;
+	}
+	.details li:nth-child(n+2) {
+		margin-top: 12px;
+	}
+}
+
+.details .image {
+	margin: 0;
+}
+.details .image img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 8px;
+	vertical-align: middle;
+}
+
+.details .text {
+	display: grid;
+	grid-template-rows: 1fr auto 1fr;
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 16px 24px;
+	border-radius: 8px;
+	color: white;
+	text-align: left;
+	background: rgba(220,102,136,.9);
+}
+.details .text dt {
+	justify-self: flex-start;
+	align-self: flex-end;
+}
+.details .text dd {
+	margin: .5em 0 0;
+	font-size: .8em;
+	line-break: strict;
+	overflow-wrap: break-word;
+}
+.details .text .price {
+	justify-self: flex-end;
+}
+
+/* :::::: type2 :::::: */
+.details .type2 img,
+.details .type2 dl {
+	transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+.details .type2:hover img {
+	transform: rotateX(180deg);
+}
+.details .type2 dl {
+	background-color: #dc6688;
+}
+.details .type2:not(:hover) dl {
+	transform: rotateX(-180deg);
+}
+    </style>
+  </head>
+<ul class="details">
+	<li class="type2">
+		<figure class="image"><%= image_tag 'スクリーンショット 2024-04-20 142542.png', class: "" %></figure>
+		<dl class="text">
+			<dt>パン・オ・ノア</dt>
+			<dd>もちっとしたパン生地に、ローストしたくるみをたっぷり練り込んだ、自然な甘みと食感が楽しめるくるみパン。</dd>
+			<dd class="price">¥250</dd>
+		</dl>
+	</li>
+</ul>
