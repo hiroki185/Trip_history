@@ -13,7 +13,7 @@
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-bottom: 10px solid lightgray;
-      margin-left: 10px;
+      margin-left: 13px;
     }
 
     .scale {
@@ -29,144 +29,135 @@
       border-radius: 40px 40px 0px 0px;
     }
 
+    .photo01 {
+      animation: slideIn01 8s 1;
+    }
 
-.photo01 {
-  animation: slideIn01 8s 1;
-}
+    @keyframes slideIn01 {
+      0% {
+        opacity: 0;
+        transform: translateX(-1000px);
+      }
+      60% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-@keyframes slideIn01 {
-  0% {
-    opacity: 0;/*初期状態では透明に*/
-    transform: translateX(-1000px);
-  }
-  60% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+    .handle {
+      width: 100px;
+      height: 50px;
+      position: relative;
+      background-color: #696969;
+      border-radius: 10px 10px 0px 0px;
+      margin: 0 auto;
+    }
 
+    .box {
+      width: 60px;
+      height: 30px;
+      background-color: #add8e6;
+      border-radius: 10px 10px 0px 0px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
+    .roller {
+      width: 20px;
+      height: 15px;
+      background-color: #696969;
+      border-radius: 0px 0px 10px 10px;
+    }
 
+    .details {
+     list-style: none;
+     max-width: 800px;
+     margin-right: 15px;
 
-.handle {
-  width: 100px;
-  height: 50px;
-  position: relative;
-  background-color: #696969;
-  border-radius: 10px 10px 0px 0px;
-  margin: 0 auto;
-}
+    }
 
-.box {
-  width: 60px;
-  height: 30px;
-  background-color: #add8e6;
-  border-radius: 10px 10px 0px 0px;
-  position: absolute;
-    bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .details li {
+      flex-basis: calc(33.333% - 8px);
+      position: relative;
+      max-width: 250px;
+      border-radius: 8px;
+    }
 
-.roller{
-  width: 20px;
-  height: 15px;
-  background-color: #696969;
-  border-radius: 0px 0px 10px 10px;
-}
+    @media (max-width: 720px) {
+      .details li {
+        flex-basis: calc(50% - 6px);
+      }
 
-.details {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	list-style: none;
-	max-width: 800px;
-	margin: 1em auto;
-	padding: 0;
-	text-align: center;
-}
-.details li {
-	flex-basis: calc(33.333% - 8px);
-	position: relative;
-	max-width: 250px;
-	border-radius: 8px;
-}
-@media (max-width: 720px) {
-	.details li {
-		flex-basis: calc(50% - 6px);
-	}
-	.details li:nth-child(n+3) {
-		margin-top: 12px;
-	}
-}
-@media (max-width: 520px) {
-	.details {
-		flex-direction: column;
-		align-items: center;
-	}
-	.details li {
-		flex-basis: auto;
-	}
-	.details li:nth-child(n+2) {
-		margin-top: 12px;
-	}
-}
+      .details li:nth-child(n+3) {
+        margin-top: 12px;
+      }
+    }
 
-.details .image {
-	margin: 0;
-}
-.details .image img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-	vertical-align: middle;
-}
+    @media (max-width: 520px) {
+      .details {
+        flex-direction: column;
+        align-items: center;
+      }
 
-.details .text {
-	display: grid;
-	grid-template-rows: 1fr auto 1fr;
-	position: absolute;
-	inset: 0;
-	margin: 0;
-	padding: 16px 24px;
-	border-radius: 8px;
-	color: white;
-	text-align: left;
-	background: rgba(220,102,136,.9);
-}
-.details .text dt {
-	justify-self: flex-start;
-	align-self: flex-end;
-}
-.details .text dd {
-	margin: .5em 0 0;
-	font-size: .8em;
-	line-break: strict;
-	overflow-wrap: break-word;
-}
-.details .text .price {
-	justify-self: flex-end;
-}
+      .details li {
+        flex-basis: auto;
+      }
 
-/* :::::: type2 :::::: */
-.details .type2 img,
-.details .type2 dl {
-	transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-}
-.details .type2:hover img {
-	transform: rotateX(180deg);
-}
-.details .type2 dl {
-	background-color: #dc6688;
-}
-.details .type2:not(:hover) dl {
-	transform: rotateX(-180deg);
-}
+      .details li:nth-child(n+2) {
+        margin-top: 12px;
+      }
+    }
 
+    .details .text {
+      display: grid;
+      grid-template-rows: 1fr auto 1fr;
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      padding: 16px 24px;
+      border-radius: 8px;
+      text-align: left;
+      background: rgba(220, 102, 136, .9);
+    }
+
+    .details .text dt {
+      justify-self: flex-start;
+      align-self: flex-end;
+    }
+
+    .details .text dd {
+      font-size: .8em;
+      line-break: strict;
+      overflow-wrap: break-word;
+    }
+
+    .details .text .price {
+      justify-self: flex-end;
+    }
+
+    /* :::::: type2 :::::: */
+    .details .type2 img,
+    .details .type2 dl {
+      transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    .details .type2 .img:hover {
+      transform: rotateX(180deg);
+    }
+
+    .details .type2 dl {
+      background-color: #f0f8ff;
+    }
+
+    .details .type2:not(:hover) dl {
+      transform: rotateX(-180deg);
+    }
   </style>
 </head>
 
@@ -178,76 +169,87 @@
         <% travels_slice.each do |travel| %>
         <ul class="details">
           <li class="type2">
-        <div class="scale mt-3 mr-4 mb-3">
-        <div class="handle"><div class="box"></div></div>
-        <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
-          <% if travel.image.attached? %>
-          <%= image_tag travel.image, class: "img", size: "220x100" %>
-          <% else %>
-          <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100" %>
-          <% end %>
-          <div style= "padding: 0px 10px;">
-          <% if current_user && travel.user == current_user %>
-          <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-          <% else %>
-          <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-          <% end %>
-          <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
-
-
-
-
-      <dl class="text">
-			<dt>
-			  <% if current_user && travel.user == current_user %>
-          <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
-          <% end %>
-			  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
-			  </dt>
-			<dd>もちっとしたパン生地に、ローストしたくるみをたっぷり練り込んだ、自然な甘みと食感が楽しめるくるみパン。</dd>
-			<dd class="price"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
-
-		</dl>
-
-
-
-          <div style="padding: 0px 10px 10px 10px;">
-            <div class="bg-dark rounded-pill" style="height: 10px;"></div>
-          </div>
-            <div class="row">
-            <p class="col ml-3" style="height: 20px;">
-              <% if travel.category.present? %>
-              <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
-              <% end %>
-            </p>
-          </div>
-          <div style="padding: 0px 10px 10px 10px;">
-            <div class="bg-dark rounded-pill" style="height: 10px;"></div>
-          </div>
-          <div class="row" style="padding: 0px 10px;">
-            <p class="col-5" id="comment_counter">
-              <%= render "travel_comments/counter", travel: travel %>
-            </p>
-            <div class="" id="favorite_btn_<%= travel.id %>">
-              <%= render "favorites/btn", travel: travel %>
+            <div class="scale mt-3 mr-4 mb-3">
+              <div class="handle">
+                <div class="box"></div>
+              </div>
+              <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
+                <% if travel.image.attached? %>
+                <%= image_tag travel.image, class: "img ", size: "219x100" %>
+                <% else %>
+                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100" %>
+                <% end %>
+                <div style="padding: 0px 10px;">
+                  <% if current_user && travel.user == current_user %>
+                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <% else %>
+                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <% end %>
+                  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+                  <div style="padding: 0px 10px 10px 10px;">
+                    <div class="bg-dark rounded-pill" style="height: 10px;"></div>
+                  </div>
+                  <div class="row">
+                    <p class="col ml-3" style="height: 20px;">
+                      <% if travel.category.present? %>
+                      <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                      <% end %>
+                    </p>
+                  </div>
+                  <div style="padding: 0px 10px 10px 10px;">
+                    <div class="bg-dark rounded-pill" style="height: 10px;"></div>
+                  </div>
+                  <div class="row" style="padding: 0px 10px;">
+                    <p class="col-5" id="comment_counter">
+                      <%= render "travel_comments/counter", travel: travel %>
+                    </p>
+                  </div>
+                  <div class="text-center">
+                    <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="roller col-1 mx-auto"></div>
+                <div class="roller col-1 mx-auto"></div>
+              </div>
+              <dl class="text">
+                <dd>
+                  <% if current_user && travel.user == current_user %>
+                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <% else %>
+                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <% end %>
+                </dd>
+                <dt>
+                  <% if current_user && travel.user == current_user %>
+                  <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
+                  <% end %>
+                  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+                </dt>
+                <dd style="background-color: lightgray; padding: 8px; border-radius: 16px 20px 20px 20px;">
+                  <%= truncate(travel.body, length: 78) %>
+                </dd>
+                <dd>
+                  <% if travel.category.present? %>
+                  <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                  <% end %>
+                </dd>
+                <dd id="comment_counter">
+                  <%= render "travel_comments/counter", travel: travel %>
+                </dd>
+                <dd class="" id="favorite_btn_<%= travel.id %>">
+                  <%= render "favorites/btn", travel: travel %>
+                </dd>
+                <dd class="price"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
+              </dl>
             </div>
-          </div>
-          <div class="text-center">
-          <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-          </div>
-        </div>
-        </div>
-                        <div class="row">
-        <div class="roller col-1 mx-auto"></div>
-        <div class="roller col-1 mx-auto"></div>
-        </div>
-        </div>
-                  </li>
+          </li>
         </ul>
         <% end %>
       </div>
     </div>
     <% end %>
-
   </div>
 </div>
+
