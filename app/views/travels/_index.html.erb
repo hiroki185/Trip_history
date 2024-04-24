@@ -1,7 +1,7 @@
 <head>
   <style>
     .scrollable {
-      max-height: 600px;
+      max-height: 1000px;
       overflow-y: scroll;
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
@@ -113,8 +113,6 @@
     }
 
     .details .text {
-      display: grid;
-      grid-template-rows: 1fr auto 1fr;
       position: absolute;
       inset: 0;
       margin: 0;
@@ -160,16 +158,16 @@
     }
   </style>
 </head>
-
+<%= render 'layouts/loading' %>
 <div class="row">
-  <div class="scrollable col" style="overflow: auto; max-height: 800px;" id="app-container">
+  <div class="scrollable col" style="overflow: auto; max-height: 1000px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
     <div class="container">
       <div class="row justify-content-start">
         <% travels_slice.each do |travel| %>
         <ul class="details">
           <li class="type2">
-            <div class="scale mt-3 mr-4 mb-3">
+            <div class="scale mt-5 mr-4 mb-3">
               <div class="handle">
                 <div class="box"></div>
               </div>
@@ -213,36 +211,41 @@
                 <div class="roller col-1 mx-auto"></div>
                 <div class="roller col-1 mx-auto"></div>
               </div>
+
               <dl class="text">
-                <dd>
+                <dd style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">
                   <% if current_user && travel.user == current_user %>
-                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
                   <% else %>
-                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
+                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
                   <% end %>
                 </dd>
+                <h5 style="position: absolute; top: 22px; right: 20px; z-index: 9998;" id="favorite_btn_<%= travel.id %>">
+                  <%= render "favorites/btn", travel: travel %>
+                </h5>
                 <dt>
                   <% if current_user && travel.user == current_user %>
                   <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
                   <% end %>
                   <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
                 </dt>
-                <dd style="background-color: lightgray; padding: 8px; border-radius: 16px 20px 20px 20px;">
+                <div class="triangle ml-3 mt-2"></div>
+                <dd style="background-color: lightgray; padding: 8px; border-radius: 16px 20px 20px 20px; height: 150px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);">
                   <%= truncate(travel.body, length: 78) %>
                 </dd>
                 <dd>
                   <% if travel.category.present? %>
-                  <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                  タグ：<%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
                   <% end %>
+
                 </dd>
                 <dd id="comment_counter">
                   <%= render "travel_comments/counter", travel: travel %>
                 </dd>
-                <dd class="" id="favorite_btn_<%= travel.id %>">
-                  <%= render "favorites/btn", travel: travel %>
-                </dd>
-                <dd class="price"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
+                <dd style="position: absolute; bottom: 25px; right: 20px; z-index: 9998;">費用：<%= travel.amount_range %></dd>
+                <dd style="position: absolute; bottom: 0px; right: 20px; z-index: 9998;"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
               </dl>
+
             </div>
           </li>
         </ul>
