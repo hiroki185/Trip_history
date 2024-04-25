@@ -21,13 +21,10 @@
     }
 
     .scale:hover {
-      box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.2);
+      box-shadow: none;
       transform: scale(1.1);
     }
 
-    .img {
-      border-radius: 40px 40px 0px 0px;
-    }
 
     .photo01 {
       animation: slideIn01 8s 1;
@@ -136,6 +133,8 @@
     .details .text .price {
       justify-self: flex-end;
     }
+
+
 
     /* :::::: type2 :::::: */
     .details .type2 img,
@@ -246,7 +245,7 @@ input[type=checkbox]:checked + label::after {
 }
   </style>
 </head>
-<%= render 'layouts/loading' %>
+
 <div class="row">
   <div class="scrollable col" style="overflow: auto; max-height: 1000px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
@@ -255,16 +254,16 @@ input[type=checkbox]:checked + label::after {
         <% travels_slice.each do |travel| %>
         <ul class="details">
           <li class="type2">
-            <div class="scale mt-5 mr-4 mb-3">
+            <div class="mt-5 mr-4 mb-3 scale">
               <div class="handle">
                 <div class="box"></div>
               </div>
 
               <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
                 <% if travel.image.attached? %>
-                <%= image_tag travel.image, class: "img ", size: "219x100" %>
+                <%= image_tag travel.image, class: "", size: "219x100", style: "border-radius: 40px 40px 0px 0px;" %>
                 <% else %>
-                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100" %>
+                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100", style: "border-radius: 40px 40px 0px 0px;" %>
                 <% end %>
                 <div style="padding: 0px 10px;">
                   <% if current_user && travel.user == current_user %>

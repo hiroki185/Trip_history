@@ -14,9 +14,6 @@
       border-bottom: 20px solid lightgray;
     }
 
-    .img {
-      border-radius: 30px 30px 30px 30px;
-    }
   </style>
 </head>
 <%= render 'layouts/loading' %>
@@ -28,9 +25,9 @@
           <div class="col">
             <h3 class=""><%= @travel.title %></h3>
             <% if @travel.image.attached? %>
-              <%= image_tag @travel.image, class: "img", size: "340x240" %>
+              <%= image_tag @travel.image, class: "", size: "340x240", style: "border-radius: 30px 30px 30px 30px;" %>
             <% else %>
-              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "340x240" %>
+              <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "", size: "340x240", style: "border-radius: 30px 30px 30px 30px;" %>
             <% end %>
             <div class="tag-box">
               <% @travel.tags.each do |tag| %>
@@ -97,7 +94,7 @@
               </div>
             <% end %>
           </div>
-          
+
         </div>
         <div class="triangle ml-3 mt-2"></div>
         <h5 class="break-text" style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;">
@@ -151,7 +148,7 @@
         </div>
       </div>
       <div class="col-3">
-        <div class="mt-4" style="border: 3px solid; border-radius: 15px; height: 300px; background-color: #add8e6;">
+        <div class="" style="border: 3px solid; border-radius: 15px; height: 300px; background-color: #add8e6;">
           <h4 class="text-center my-2" style="border-bottom: 3px solid;">タグ一覧</h4>
           <%= render 'travels/tag', categories: @categories %>
         </div>
