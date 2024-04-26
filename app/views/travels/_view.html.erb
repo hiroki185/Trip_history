@@ -1,121 +1,62 @@
 <style>
+  .triangle {
+    width: 10px;
+    height: 10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid lightgray;
+    margin-left: 13px;
+  }
 
+  .photo02 {
+    animation: slideIn02 7s 1;
+  }
 
+  @keyframes slideIn02 {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 0;
+      transform: translateX(1000px);
+    }
+    70% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
+  /* :::::: type1 :::::: */
+  .type1 {
+    overflow: hidden;
+  }
 
+  .type1 .text {
+    transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
 
-.photo02 {
-  animation: slideIn02 7s 1;
-}
-
-@keyframes slideIn02 {
-  0% {
+  .type1:not(:hover) .text {
     opacity: 0;
+    transform: translateY(100%);
   }
-  10% {
-    opacity: 0;
-    transform: translateX(1000px);
-  }
-  70% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-
-
-.details {
-     list-style: none;
-     max-width: 800px;
-     margin-right: 15px;
-
-    }
-
-    .details li {
-      flex-basis: calc(33.333% - 8px);
-      position: relative;
-      max-width: 250px;
-      border-radius: 8px;
-    }
-
-    @media (max-width: 720px) {
-      .details li {
-        flex-basis: calc(50% - 6px);
-      }
-
-      .details li:nth-child(n+3) {
-        margin-top: 12px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .details {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .details li {
-        flex-basis: auto;
-      }
-
-      .details li:nth-child(n+2) {
-        margin-top: 12px;
-      }
-    }
-
-    .details .text {
-      position: absolute;
-      inset: 0;
-      margin: 0;
-      padding: 16px 24px;
-      border-radius: 8px;
-      text-align: left;
-      background: rgba(220, 102, 136, .9);
-    }
-
-    .details .text dt {
-      justify-self: flex-start;
-      align-self: flex-end;
-    }
-
-    .details .text dd {
-      font-size: .8em;
-      line-break: strict;
-      overflow-wrap: break-word;
-    }
-
-    .details .text .price {
-      justify-self: flex-end;
-    }
-
-    /* :::::: type1 :::::: */
-.type1 {
-	overflow: hidden;
-}
-.type1 .text {
-	transition: opacity .6s, transform .6s cubic-bezier(0.215, 0.61, 0.355, 1);
-}
-.type1:not(:hover) .text {
-	opacity: 0;
-	transform: translateY(100%);
-}
 </style>
 
 <% travels.each do |travel| %>
   <% if travel.image.attached? %>
-    <ul class="details mt-3" style="margin-left: 20px;">
+    <ul class="details mt-3 photo02" style="margin-left: 20px;">
       <li class="type1">
         <%= image_tag travel.image, class: "", style: "border-radius: 20px 20px 20px 20px; width: 100%; height: 170px;" %>
         <dl class="text">
           <dt>
             <% if current_user && travel.user == current_user %>
-              <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+              <%= image_tag current_user.get_profile_image, size: '35x35', class: 'rounded-circle left' %>
             <% else %>
-              <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+              <%= image_tag travel.user.get_profile_image, size: '35x35', class: 'rounded-circle left' %>
             <% end %>
-            <%= link_to travel.title.length > 7 ? "#{travel.title[0..6]}..." : travel.title, travel, class: "text-white mr-4" %>
+            <%= link_to travel.title.length > 7 ? "#{travel.title[0..6]}..." : travel.title, travel, class: "" %>
           </dt>
-          <dd>外はパリッと香ばしく、中はしっとりもちっとした食感。田舎パンらしい素朴な味わいです。</dd>
+          <div class="triangle ml-3 mt-2"></div>
+          <dd style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;"><%= truncate(travel.body, length: 30) %></dd>
           <dd style="position: absolute; bottom: 0px; right: 20px; z-index: 9998;">
             <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
           </dd>
@@ -123,19 +64,20 @@
       </li>
     </ul>
   <% else %>
-    <ul class="details mt-3" style="margin-left: 20px;">
+    <ul class="details mt-3 photo02" style="margin-left: 20px;">
       <li class="type1">
         <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "", style: "border-radius: 20px 20px 20px 20px; width: 100%; height: 170px;" %>
-        <dl class="text">
+        <dl class="text" style="">
           <dt>
             <% if current_user && travel.user == current_user %>
-              <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+              <%= image_tag current_user.get_profile_image, size: '35x35', class: 'rounded-circle left' %>
             <% else %>
-              <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle left' %>
+              <%= image_tag travel.user.get_profile_image, size: '35x35', class: 'rounded-circle left' %>
             <% end %>
-            <%= link_to travel.title.length > 7 ? "#{travel.title[0..6]}..." : travel.title, travel, class: "text-white mr-4" %>
+            <%= link_to travel.title.length > 7 ? "#{travel.title[0..6]}..." : travel.title, travel, class: "" %>
           </dt>
-          <dd>外はパリッと香ばしく、中はしっとりもちっとした食感。田舎パンらしい素朴な味わいです。</dd>
+          <div class="triangle ml-3 mt-2"></div>
+          <dd style="background-color: lightgray; padding: 8px; border-radius: 18px 20px 20px 20px;"><%= truncate(travel.body, length: 30) %></dd>
           <dd style="position: absolute; bottom: 0px; right: 20px; z-index: 9998;">
             <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
           </dd>

@@ -21,7 +21,7 @@ body {
 
 /*地図*/
 #map {
-  width: 300px;
+  width: 270px;
   height: 240px;
   border-radius: 30px 30px 30px 30px;
 }
@@ -376,3 +376,62 @@ body {
 #travel_home {
     background: #add8e6;
 }
+
+.details {
+     list-style: none;
+     max-width: 800px;
+     margin-right: 15px;
+
+    }
+
+    .details li {
+      flex-basis: calc(33.333% - 8px);
+      position: relative;
+      max-width: 250px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 720px) {
+      .details li {
+        flex-basis: calc(50% - 6px);
+      }
+
+      .details li:nth-child(n+3) {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .details {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .details li {
+        flex-basis: auto;
+      }
+
+      .details li:nth-child(n+2) {
+        margin-top: 12px;
+      }
+    }
+
+    .details .text {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      border-radius: 8px;
+      padding: 16px 24px;
+      background: #f0f8ff;
+    }
+
+    .details .text dt {
+      justify-self: flex-start;
+      align-self: flex-end;
+    }
+
+    .details .text dd {
+      font-size: .8em;
+      line-break: strict;
+      overflow-wrap: break-word;
+    }

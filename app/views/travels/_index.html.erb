@@ -116,7 +116,7 @@
       padding: 16px 24px;
       border-radius: 8px;
       text-align: left;
-      background: rgba(220, 102, 136, .9);
+
     }
 
     .details .text dt {
@@ -130,9 +130,7 @@
       overflow-wrap: break-word;
     }
 
-    .details .text .price {
-      justify-self: flex-end;
-    }
+
 
 
 
@@ -245,107 +243,102 @@ input[type=checkbox]:checked + label::after {
 }
   </style>
 </head>
-
+<%= render 'layouts/loading' %>
 <div class="row">
   <div class="scrollable col" style="overflow: auto; max-height: 1000px;" id="app-container">
     <% travels.each_slice(3) do |travels_slice| %>
-    <div class="container photo01">
-      <div class="row justify-content-start">
-        <% travels_slice.each do |travel| %>
-        <ul class="details">
-          <li class="type2">
-            <div class="mt-5 mr-4 mb-3 scale">
-              <div class="handle">
-                <div class="box"></div>
-              </div>
-
-              <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
-                <% if travel.image.attached? %>
-                <%= image_tag travel.image, class: "", size: "219x100", style: "border-radius: 40px 40px 0px 0px;" %>
-                <% else %>
-                <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100", style: "border-radius: 40px 40px 0px 0px;" %>
-                <% end %>
-                <div style="padding: 0px 10px;">
-                  <% if current_user && travel.user == current_user %>
-                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-                  <% else %>
-                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle' %>
-                  <% end %>
-                  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
-                  <div style="padding: 0px 10px 10px 10px;">
-                    <div class="bg-dark rounded-pill" style="height: 10px;"></div>
+      <div class="container photo01">
+        <div class="row justify-content-start">
+          <% travels_slice.each do |travel| %>
+            <ul class="details">
+              <li class="type2">
+                <div class="mt-5 mr-4 mb-3 scale">
+                  <div class="handle">
+                    <div class="box"></div>
+                  </div>
+                  <div class="border" style="width: 220px; height: 290px; background-color: #f0fff0; border-radius: 40px 40px 40px 40px;">
+                    <% if travel.image.attached? %>
+                      <%= image_tag travel.image, class: "", size: "219x100", style: "border-radius: 40px 40px 0px 0px;" %>
+                    <% else %>
+                      <%= image_tag 'Untitled_logo_1_free-file.jpg', class: "img", size: "220x100", style: "border-radius: 40px 40px 0px 0px;" %>
+                    <% end %>
+                    <div style="padding: 0px 10px;">
+                      <% if current_user && travel.user == current_user %>
+                        <%= image_tag current_user.get_profile_image, size: '35x35', class: 'rounded-circle' %>
+                      <% else %>
+                        <%= image_tag travel.user.get_profile_image, size: '35x35', class: 'rounded-circle' %>
+                      <% end %>
+                      <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+                      <div style="padding: 0px 10px 10px 10px;">
+                        <div class="bg-dark rounded-pill" style="height: 10px;"></div>
+                      </div>
+                      <div class="row">
+                        <p class="col ml-3" style="height: 20px;">
+                          <% if travel.category.present? %>
+                            <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                          <% end %>
+                        </p>
+                      </div>
+                      <div style="padding: 0px 10px 10px 10px;">
+                        <div class="bg-dark rounded-pill" style="height: 10px;"></div>
+                      </div>
+                      <div class="row" style="padding: 0px 10px;">
+                        <p class="col-5" id="comment_counter">
+                          <%= render "travel_comments/counter", travel: travel %>
+                        </p>
+                      </div>
+                      <div class="text-center">
+                        <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
+                      </div>
+                    </div>
                   </div>
                   <div class="row">
-                    <p class="col ml-3" style="height: 20px;">
-                      <% if travel.category.present? %>
-                      <%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                    <div class="roller col-1 mx-auto"></div>
+                    <div class="roller col-1 mx-auto"></div>
+                  </div>
+                  <dl class="text">
+                    <dd style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">
+                      <% if current_user && travel.user == current_user %>
+                        <%= image_tag current_user.get_profile_image, size: '35x35', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
+                      <% else %>
+                        <%= image_tag travel.user.get_profile_image, size: '35x35', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
                       <% end %>
-                    </p>
-                  </div>
-                  <div style="padding: 0px 10px 10px 10px;">
-                    <div class="bg-dark rounded-pill" style="height: 10px;"></div>
-                  </div>
-                  <div class="row" style="padding: 0px 10px;">
-                    <p class="col-5" id="comment_counter">
+                    </dd>
+                    <h5 style="position: absolute; top: 22px; right: 20px; z-index: 9998;" id="favorite_btn_<%= travel.id %>">
+                      <%= render "favorites/btn", travel: travel %>
+                    </h5>
+                    <dt>
+                      <% if current_user && travel.user == current_user %>
+                        <div class="check-box">
+                          <div class="check-box-in">
+                            <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
+                            <label for="travel_<%= travel.id %>"></label>
+                          </div>
+                        </div>
+                      <% end %>
+                      <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
+                    </dt>
+                    <div class="triangle ml-3 mt-2"></div>
+                    <dd style="background-color: lightgray; padding: 8px; border-radius: 16px 20px 20px 20px; height: 150px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);">
+                      <%= truncate(travel.body, length: 78) %>
+                    </dd>
+                    <dd>
+                      <% if travel.category.present? %>
+                        タグ：<%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
+                      <% end %>
+                    </dd>
+                    <dd id="comment_counter">
                       <%= render "travel_comments/counter", travel: travel %>
-                    </p>
-                  </div>
-                  <div class="text-center">
-                    <%= travel.created_at.strftime('%Y/%m/%d %H:%M') %>
-                  </div>
+                    </dd>
+                    <dd style="position: absolute; bottom: 25px; right: 20px; z-index: 9998;">費用：<%= travel.amount_range %></dd>
+                    <dd style="position: absolute; bottom: 0px; right: 20px; z-index: 9998;"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
+                  </dl>
                 </div>
-              </div>
-              <div class="row">
-                <div class="roller col-1 mx-auto"></div>
-                <div class="roller col-1 mx-auto"></div>
-              </div>
-
-              <dl class="text">
-                <dd style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9;">
-                  <% if current_user && travel.user == current_user %>
-                  <%= image_tag current_user.get_profile_image, size: '40x40', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
-                  <% else %>
-                  <%= image_tag travel.user.get_profile_image, size: '40x40', class: 'rounded-circle mb-2' %>&nbsp;&nbsp;<%= truncate(travel.user.name, length: 7) %>
-                  <% end %>
-                </dd>
-                <h5 style="position: absolute; top: 22px; right: 20px; z-index: 9998;" id="favorite_btn_<%= travel.id %>">
-                  <%= render "favorites/btn", travel: travel %>
-                </h5>
-                <dt>
-<% if current_user && travel.user == current_user %>
-  <div class="check-box">
-    <div class="check-box-in">
-      <%= check_box_tag "selected_travels[]", travel.id, false, id: "travel_#{travel.id}" %>
-      <label for="travel_<%= travel.id %>"></label>
-    </div>
-  </div>
-<% end %>
-                  <%= link_to (travel.title.length > 7) ? "#{travel.title[0..6]}..." : travel.title, travel %>
-                </dt>
-                <div class="triangle ml-3 mt-2"></div>
-                <dd style="background-color: lightgray; padding: 8px; border-radius: 16px 20px 20px 20px; height: 150px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);">
-                  <%= truncate(travel.body, length: 78) %>
-                </dd>
-                <dd>
-                  <% if travel.category.present? %>
-                  タグ：<%= link_to travel.category, tagsearches_search_path(content: travel.category) %>
-                  <% end %>
-
-                </dd>
-                <dd id="comment_counter">
-                  <%= render "travel_comments/counter", travel: travel %>
-                </dd>
-                <dd style="position: absolute; bottom: 25px; right: 20px; z-index: 9998;">費用：<%= travel.amount_range %></dd>
-                <dd style="position: absolute; bottom: 0px; right: 20px; z-index: 9998;"><%= travel.created_at.strftime('%Y/%m/%d %H:%M') %></dd>
-              </dl>
-
-            </div>
-          </li>
-        </ul>
-        <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
       </div>
-    </div>
     <% end %>
   </div>
 </div>
-
