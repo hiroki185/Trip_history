@@ -8,7 +8,6 @@ class TravelCommentsController < ApplicationController
   end
 
   def destroy
-
     @comment = TravelComment.find(params[:id]).destroy
   end
 

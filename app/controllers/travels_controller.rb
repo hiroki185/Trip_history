@@ -76,7 +76,6 @@ class TravelsController < ApplicationController
     elsif params[:favorite]
       @travels = Travel.includes(:favorites).order('favorites.created_at DESC').sort_by { |travel| travel.favorites.count }.reverse
       @travels = Kaminari.paginate_array(@travels).page(params[:page]).per(50)
-
     else
       @travels = Travel.all.page(params[:page]).per(50)
     end
