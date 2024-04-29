@@ -18,21 +18,75 @@
     z-index: -3;
     /* 背景のスタイルを追加 */
   }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.element {
+  position: absolute;
+  display: none;
+  animation-duration: 1s;
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  display: block;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-fill-mode: forwards;
+}
 </style>
   </head>
   <body class="zen-kurenaido-regular">
+  <div class="element">表示される要素です。</div>
 
+  <script>
+    var element = document.querySelector(".element");
+
+    document.addEventListener("click", function(event) {
+      element.style.left = event.clientX + "px";
+      element.style.top = event.clientY + "px";
+
+      if (element.classList.contains("fadeOut")) {
+        element.classList.remove("fadeOut");
+      }
+
+      element.classList.add("fadeIn");
+      setTimeout(function() {
+        element.classList.remove("fadeIn");
+        element.classList.add("fadeOut");
+      }, 2000);
+    });
+  </script>
     <%= render 'layouts/header' %>
 
     <%= render 'layouts/headernav' %>
     <%= render 'layouts/scroll' %>
+
     <div class='container'>
       <%= yield %>
       <%= render 'layouts/footer' %>
+
     </div>
   <div class="background">
     <%= render 'layouts/background' %>
     </div>
+
   </body>
 </html>
