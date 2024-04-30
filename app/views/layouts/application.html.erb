@@ -1,92 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TripHistory</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <script src="https://kit.fontawesome.com/2b7c6e9815.js" crossorigin="anonymous"></script>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <style>
-  .background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
-    /* 背景のスタイルを追加 */
-  }
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-.element {
-  position: absolute;
-  display: none;
-  animation-duration: 1s;
-}
-
-.fadeIn {
-  animation-name: fadeIn;
-  display: block;
-}
-
-.fadeOut {
-  animation-name: fadeOut;
-  animation-fill-mode: forwards;
-}
-</style>
-  </head>
-  <body class="zen-kurenaido-regular">
-  <div class="element">表示される要素です。</div>
-
-  <script>
-    var element = document.querySelector(".element");
-
-    document.addEventListener("click", function(event) {
-      element.style.left = event.clientX + "px";
-      element.style.top = event.clientY + "px";
-
-      if (element.classList.contains("fadeOut")) {
-        element.classList.remove("fadeOut");
-      }
-
-      element.classList.add("fadeIn");
-      setTimeout(function() {
-        element.classList.remove("fadeIn");
-        element.classList.add("fadeOut");
-      }, 2000);
-    });
-  </script>
-    <%= render 'layouts/header' %>
-
-    <%= render 'layouts/headernav' %>
-    <%= render 'layouts/scroll' %>
-
-    <div class='container'>
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-
-    </div>
+<head>
+  <title>TripHistory</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <script src="https://kit.fontawesome.com/2b7c6e9815.js" crossorigin="anonymous"></script>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <style>
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+      /* 背景のスタイルを追加 */
+    }
+  </style>
+</head>
+<body class="zen-kurenaido-regular">
+  <%= render 'layouts/header' %>
+  <%= render 'layouts/headernav' %>
+  <%= render 'layouts/scroll' %>
+  <div class='container'>
+    <%= yield %>
+    <%= render 'layouts/footer' %>
+  </div>
   <div class="background">
     <%= render 'layouts/background' %>
-    </div>
-
-  </body>
+  </div>
+</body>
 </html>
