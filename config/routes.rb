@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
   namespace :public do
     get 'contacts/new'
-    get 'contacts/confirm'
-    get 'contacts/done'
+    post 'contacts/confirm'
+    post 'contacts/done'
   end
   #管理者ログインのルート
   namespace :admin do
@@ -73,7 +73,7 @@ Rails.application.routes.draw do
       get "search"
     end
   end
-  
+
   #お問い合わせのルート
   resources :contacts, only: [:new, :create] do
   collection do
