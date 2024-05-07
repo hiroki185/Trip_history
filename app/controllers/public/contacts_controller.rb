@@ -21,7 +21,7 @@ class Public::ContactsController < ApplicationController
     @contact = Contact.new(contact_params)
     if @contact.save
       ContactMailer.send_mail(@contact).deliver_now
-      redirect_to public_contacts_done_path
+      redirect_to done_contacts_path
     else
       flash[:alert] = @contact.errors.full_messages.join(", ")
       @contact = Contact.new

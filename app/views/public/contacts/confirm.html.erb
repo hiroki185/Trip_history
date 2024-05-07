@@ -35,7 +35,7 @@
         </div>
 
         <div>
-        <%= form_with model: @contact, url: public_contacts_back_path do |f| %>
+        <%= form_with model: @contact, url: back_contacts_path do |f| %>
           <%= f.hidden_field :name %>
           <%= f.hidden_field :email %>
           <%= f.hidden_field :subject %>
