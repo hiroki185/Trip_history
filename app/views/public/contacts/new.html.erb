@@ -1,11 +1,12 @@
 <div class="container-fluid light-blue-container p-5">
-  <div class="row">
-    <div class="col-md-8 offset-md-2">
+  <div class="row" >
+
+    <div class="col-md-8 offset-md-2"style="background-color: #f0f8ff; border-radius: 10px; padding: 20px 30px; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);">
 
     <div class="mb-2">
       <%= flash[:alert] %>
     </div>
-
+<h3 class="text-center" style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: #a9a9a9; padding: 10px 0px 0px 0px;">お問い合わせ</h3>
       <%= form_with model: @contact, url: confirm_contacts_path do |f| %>
         <div class="form-group">
           <%= f.label :name, 'お名前' %><span class="text-danger">*</span>
