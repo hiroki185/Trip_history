@@ -1,0 +1,215 @@
+<head>
+  <style>
+/* Normalize (ignore me!) */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: Lato, Arial, "Hiragino Kaku Gothic Pro W3", Meiryo, sans-serif;
+  color: #ccc;
+  text-align: center;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #fff;
+}
+
+a,
+a:visited {
+  color: #ccc;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #aaa;
+}
+
+/* For extend styles */
+%burger_common {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+%transition_all_04s_easeinout {
+  transition: all 0.3s ease-in-out;
+}
+
+%backface_visibility_hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Main style */
+main {
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: perspective(500px);
+}
+
+#content {
+  position: relative;
+  top: 0;
+  padding: 38vh 10vw 20vh;
+  background-color: #333;
+}
+
+article h1 {
+  font-size: 45px;
+  font-weight: bold;
+  margin: 0 0 100px 0;
+}
+
+.burger {
+  display: inline-block;
+}
+
+.burger.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.burger.wrapper::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.burger.box {
+  position: fixed;
+  width: 40px;
+  height: 24px;
+  padding: 15px;
+  z-index: 3;
+}
+
+.burger.inner {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  top: 50%;
+  margin-top: -2px;
+  transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.burger.inner::before,
+.burger.inner::after {
+  display: block;
+  position: absolute;
+  content: '';
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.burger.inner::before {
+  top: -10px;
+}
+
+.burger.inner::after {
+  bottom: -10px;
+}
+
+.a {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 25vw;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  text-align: left;
+  background-color: #000;
+  z-index: 2;
+  transform: translateX(-100%);
+}
+
+.a::-webkit-scrollbar {
+  display: none;
+}
+
+.b {
+  list-style-type: none;
+  padding: 0;
+  margin: 80px 0 0;
+  transform: translateX(-100%);
+}
+
+.b li {
+  line-height: 1.2;
+}
+
+.b li a {
+  display: block;
+  padding: 10px 5vw;
+  margin: 12px 0;
+}
+
+#nav_check {
+  position: absolute;
+  visibility: hidden;
+}
+
+#nav_check:checked + .burger.wrapper::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#nav_check:checked + .burger.wrapper .inner {
+  transform: rotate(225deg);
+}
+
+#nav_check:checked ~ .a {
+  transform: translateX(0);
+}
+
+#nav_check:checked ~ main #content {
+  transform-origin: left center;
+  transform: translateX(15vw) translateZ(-20vw) rotateY(-13deg);
+  filter: blur(3px);
+}
+
+  </style>
+</head>
+<input type="checkbox" role="button" title="menu" id="nav_check" />
+<label for="nav_check" class="burger wrapper" aria-hidden="true" title="menu">
+  <span class="burger box">
+    <span class="burger inner"></span>
+  </span>
+</label>
+<nav class="a">
+  <ul class="b">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Products</a></li>
+    <li><a href="#">Company</a></li>
+  </ul>
+</nav>
+<main class="main">
+  <section id="content">
+    <article>
+    <h1>Sliding side menu with pure CSS</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis purus et ex luctus accumsan. Nulla maximus ac neque quis ultrices. Sed volutpat congue ipsum, quis vestibulum odio sodales et. Suspendisse vel posuere eros. Morbi faucibus nulla urna, id vehicula tortor posuere vitae. Donec non convallis neque. Donec id turpis sed metus lacinia vehicula.</p>
+
+      <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.</p>
+    </article>
+  </section>
+</main>
