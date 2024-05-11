@@ -18,9 +18,168 @@
       z-index: -3;
       /* 背景のスタイルを追加 */
     }
+
+    /* Normalize (ignore me!) */
+/* End of Normalize */
+
+/* For extend styles */
+.burger_common {
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+}
+.transition_all_04s_easeinout {
+  transition: all 0.3s ease-in-out;
+}
+.backface_visibility_hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Main style */
+main {
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  transform: perspective(500px);
+}
+main #content {
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+}
+
+
+.burger {
+  display: inline-block;
+}
+.burger.wrapper {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  cursor: pointer;
+}
+.burger.wrapper::before {
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+  opacity: 0;
+}
+
+.burger.bloc {
+  position: fixed;
+  width: 40px;
+  height: 24px;
+  z-index: 3;
+}
+.burger.inner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -2px;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.burger.inner::before,
+.burger.inner::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background-color: #fff;
+  transition: all 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+.burger.inner::before {
+  top: -10px;
+}
+.burger.inner::after {
+  bottom: -10px;
+}
+
+.c {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 25vw;
+  overflow-y: scroll;
+  text-align: left;
+  background-color: #000;
+  z-index: 2;
+  transform: translateX(-100%);
+  transition: all 0.3s ease-in-out;
+  backface-visibility: hidden;
+}
+.c::-webkit-scrollbar {
+  display: none;
+}
+.c.b {
+  list-style-type: none;
+  padding: 0;
+  margin: 80px 0 0;
+  transform: translateX(-100%);
+  transition: all 0.3s cubic-bezier(0.49, 0.24, 0, 1.32) 0.2s;
+}
+.c.b li {
+  line-height: 1.2;
+  color: white;
+}
+.c.b li h2 {
+  display: block;
+  padding: 10px 5vw;
+  margin: 12px 0;
+  color: white;
+}
+
+#nav_check {
+  position: absolute;
+  visibility: hidden;
+}
+#nav_check:checked + .burger.wrapper::before {
+  opacity: 1;
+  pointer-events: auto;
+}
+#nav_check:checked ~ .c {
+  transform: translateX(0);
+}
+#nav_check:checked ~ main #content {
+  transform-origin: left center;
+  transform: translateX(15vw) translateZ(-20vw) rotateY(-13deg);
+  filter: blur(3px);
+}
   </style>
 </head>
 <body class="zen-kurenaido-regular">
+  <input type="checkbox" role="button" title="menu" id="nav_check" />
+<label for="nav_check" class="burger wrapper" aria-hidden="true" title="menu">
+  <span class="burger bloc">
+    <span class="burger inner"></span>
+  </span>
+</label>
+<nav class="c">
+  <ul class="b">
+    <li><h2>Home</h2></li>
+    <li><h2>Home</h2></li>
+    <li><h2>Home</h2></li>
+    <li><h2>Home</h2></li>
+    <li><h2>Home</h2></li>
+  </ul>
+</nav>
+<main class="main">
+  <section id="content">
+
   <%= render 'layouts/header' %>
   <%= render 'layouts/headernav' %>
   <%= render 'layouts/scroll' %>
@@ -28,6 +187,9 @@
     <%= yield %>
     <%= render 'layouts/footer' %>
   </div>
+
+  </section>
+</main>
   <div class="background">
     <%= render 'layouts/background' %>
   </div>
