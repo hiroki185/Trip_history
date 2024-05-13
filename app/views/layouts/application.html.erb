@@ -19,11 +19,6 @@
       /* 背景のスタイルを追加 */
     }
 
-
-
-
-
-
 /* For extend styles */
 .burger_common {
   display: block;
@@ -53,20 +48,13 @@ main #content {
   transition: all 0.3s ease-in-out;
   backface-visibility: hidden;
 }
-main article h1 {
-  font-size: 45px;
-  font-weight: bold;
-  margin: 0 0 100px 0;
-}
 
-.burger {
-  display: inline-block;
-}
+
+
 .burger.wrapper {
   position: absolute;
-  top: 0;
-  left: 0;
-  cursor: pointer;
+  top: 25px;
+  left: 20px;
 }
 .burger.wrapper::before {
   content: "";
@@ -87,6 +75,8 @@ main article h1 {
   width: 40px;
   height: 24px;
   z-index: 3;
+  top: 25px;
+  left: 20px;
 }
 .burger.inner {
   display: block;
@@ -187,10 +177,10 @@ main article h1 {
   </style>
 </head>
 <body class="zen-kurenaido-regular">
-  
 <% if current_user %>
+
   <input type="checkbox" role="button" title="menu" id="nav_check" />
-<label for="nav_check" class="burger wrapper mt-3" aria-hidden="true" title="menu">
+<label for="nav_check" class="burger wrapper" aria-hidden="true" title="menu">
   <span class="burger bloc">
     <span class="burger inner"></span>
   </span>
@@ -241,7 +231,7 @@ main article h1 {
 <% end %>
 <%= render 'layouts/header' %>
 <% if current_user %>
-  <%= render 'layouts/loading' %>
+
 <% end %>
 <main class="main">
   <section id="content">
