@@ -136,12 +136,12 @@ main #content {
   backface-visibility: hidden;
 }
 .b li {
-  line-height: 1.2;
+  line-height: 3;
 }
 .b li h2 {
   display: block;
   padding: 10px 5vw;
-  margin: 12px 0;
+  margin: 30px 0;
   color: #fff;
 }
 
@@ -177,6 +177,7 @@ main #content {
   </style>
 </head>
 <body class="zen-kurenaido-regular">
+  <%= render 'layouts/header' %>
 <% if current_user %>
 
   <input type="checkbox" role="button" title="menu" id="nav_check" />
@@ -229,9 +230,9 @@ main #content {
   </ul>
 </nav>
 <% end %>
-<%= render 'layouts/header' %>
-<% if current_user %>
 
+<% if current_user %>
+<%= render 'layouts/loading' %>
 <% end %>
 <main class="main">
   <section id="content">
