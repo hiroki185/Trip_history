@@ -130,20 +130,12 @@ main #content {
 }
 .b {
   list-style-type: none;
-  padding: 0;
-  margin: 80px 0 0;
+  margin: 80px auto;
   transition: all 0.3s cubic-bezier(0.49, 0.24, 0, 1.32) 0.2s;
   backface-visibility: hidden;
 }
-.b li {
-  line-height: 3;
-}
-.b li h2 {
-  display: block;
-  padding: 10px 5vw;
-  margin: 30px 0;
-  color: #fff;
-}
+
+
 
 #nav_check {
   position: absolute;
@@ -232,7 +224,7 @@ main #content {
 <% end %>
 
 <% if current_user %>
-<%= render 'layouts/loading' %>
+
 <% end %>
 <main class="main">
   <section id="content">
